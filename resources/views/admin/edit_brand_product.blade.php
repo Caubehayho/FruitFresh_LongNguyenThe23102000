@@ -8,7 +8,7 @@
             <section class="panel pt-4 pb-4 pl-4 pr-4">
                 <header class="panel-heading">
                     <div>
-                        <h2 class="text-center items-center" style="margin-top: 30px; margin-bottom: 10px">EDIT DANH MỤC HOA QUẢ</h2>
+                        <h2 class="text-center items-center" style="margin-top: 30px; margin-bottom: 10px">EDIT THƯƠNG HIỆU</h2>
                     </div>
                 </header>
                 <div class="panel-body">
@@ -21,17 +21,17 @@
                     ?>
                     <div class="position-center">
                         @foreach ($ListDataEdit as $Data)
-                        <form role="form" action="{{URL::to('/update-category-product/'.$Data->category_id)}}" method="post">
+                        <form role="form" action="{{URL::to('/update-brand-product/'.$Data->brand_id)}}" method="post">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên danh mục</label>
-                                <input type="text" value="{{ $Data->category_name }}" name="category_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục">
+                                <label for="exampleInputEmail1">Tên thương hiệu</label>
+                                <input type="text" value="{{ $Data->brand_name }}" name="brand_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên thương hiệu">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Mô tả danh mục</label>
-                                <textarea style="resize: : none" rows="8" type="password" name="category_product_desc" class="form-control" id="exampleInputPassword1">{{ $Data->category_desc }}</textarea>
+                                <label for="exampleInputPassword1">Mô tả thương hiệu</label>
+                                <textarea style="resize: : none" rows="8" type="password" name="brand_product_desc" class="form-control" id="exampleInputPassword1">{{ $Data->brand_desc }}</textarea>
                             </div>
-                            <button type="submit" name="add_category_product" class="btn btn-info">Cập nhật danh mục</button>
+                            <button type="submit" name="add_category_product" class="btn btn-info">Cập nhật thương hiệu</button>
                         </form>
                         @endforeach
                     </div>

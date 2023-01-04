@@ -46,20 +46,21 @@ class CategoryProduct extends Controller
 
     public function hide_category_product( $categoryProductId ){
         DB::table('tbl_category_product')->where('category_id', $categoryProductId)->update(['category_status'=>1]);
-        Session::put('message', 'Ẩn danh mục thành công');
+        Session::put('message', 'Show danh mục thành công');
         return Redirect::to('all-category-product');
     }
 
 
     public function show_category_product( $categoryProductId ){
         DB::table('tbl_category_product')->where('category_id', $categoryProductId)->update(['category_status'=>0]);
-        Session::put('message', 'Show danh mục thành công');
+        Session::put('message', 'Ẩn danh mục thành công');
         return Redirect::to('all-category-product');
     }
 
     public function edit_category_product( $categoryProductId ){
+        $title = 'Sửa danh mục';
         $edit_category_product = DB::table('tbl_category_product')->where('category_id', $categoryProductId)->get();
-        $manager_category_product = view('admin.edit_category_product')->with('ListDataEdit', $edit_category_product);
+        $manager_category_product = view('admin.edit_category_product', compact('title'))->with('ListDataEdit', $edit_category_product);
         return view ('admin_layout')->with('admin.edit_category_product', $manager_category_product);
     }
 

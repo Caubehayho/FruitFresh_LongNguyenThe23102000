@@ -138,8 +138,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <a class="navbar-brand pt-0" href="https://argon-dashboard-laravel-bs4.creative-tim.com/home">
-                <img src="{{ asset('Back_End/image/logoduahau.png') }}" class="navbar-brand-img" alt="...">
+            <a class="navbar-brand pt-0" href="{{URL::to('/dashboard')}}">
+                <img style="max-height: 3.5rem;" src="{{ asset('Back_End/image/logoduahau.png') }}" class="navbar-brand-img" alt="...">
                 <span class="h4 mb-0 text-black text-uppercase d-none d-lg-inline-block">DUAHAU-X</span>
             </a>
 
@@ -235,22 +235,55 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button"
-                            aria-expanded="true" aria-controls="navbar-examples">
-                            <i class="fa-solid fa-folder-tree"></i>
-                            <span class="nav-link-text" ">Danh mục hoa quả</span>
+                        <a class="nav-link collapsed" href="#navbar-forms" data-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="navbar-forms">
+                            <i class="fa-brands fa-slack"></i>
+                            <span class="nav-link-text">Danh mục hoa quả</span>
                         </a>
-                        <div class="collapse show" id="navbar-examples">
+                        <div class="collapse" id="navbar-forms" style="">
                             <ul class="nav nav-sm flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('category_product_addfruit') }}">
-                                        Thêm danh mục
-                                    </a>
+                                <li class="nav-item ">
+                                    <a href="{{ route('category_product_addfruit') }}" class="nav-link"> Thêm danh
+                                        mục</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('category_product_listfruit') }}">
-                                        Danh sách danh mục
-                                    </a>
+                                <li class="nav-item ">
+                                    <a href="{{ route('category_product_listfruit') }}" class="nav-link">Tất cả danh
+                                        mục</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link " href="#navbar-pages" data-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="navbar-pages">
+                            <i class="fa-solid fa-copyright"></i>
+                            <span class="nav-link-text">Thương hiệu</span>
+                        </a>
+                        <div class="collapse " id="navbar-pages">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item ">
+                                    <a href="{{ route('product_addbrand') }}" class="nav-link">Thêm thương hiệu </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="{{ route('product_listbrand') }}" class="nav-link">Tất cả thương hiệu</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#navbar-tables" data-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="navbar-tables">
+                            <i class="fa-solid fa-hippo"></i>
+                            <span class="nav-link-text">Sản phẩm</span>
+                        </a>
+                        <div class="collapse" id="navbar-tables" style="">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item ">
+                                    <a href="{{ route('product_add') }}" class="nav-link">Thêm sản phẩm</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="{{ route('product_list') }}" class="nav-link">Tất cả sản phẩm</a>
                                 </li>
                             </ul>
                         </div>
@@ -289,7 +322,8 @@
                             aria-haspopup="true" aria-expanded="false">
                             <div class="media align-items-center">
                                 <span class="avatar avatar-sm rounded-circle">
-                                    <img alt="Image placeholder" src="{{ asset('Back_End/image/avatarduahau.jpg') }}">
+                                    <img alt="Image placeholder"
+                                        src="{{ asset('Back_End/image/avatarduahau.jpg') }}">
                                 </span>
                                 <div class="media-body ml-2 d-none d-lg-block">
                                     <span class="mb-0 text-sm  font-weight-bold">
