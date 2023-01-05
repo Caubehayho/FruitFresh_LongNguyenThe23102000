@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryProduct;
 use App\Http\Controllers\BrandProduct;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SlideController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,8 +72,23 @@ Route::get('/all-product', [ProductController::class, "all_product"])->name("pro
 
 Route::post('/save-product', [ProductController::class, "save_product"]);
 Route::post('/update-product/{ProductId}', [ProductController::class, "update_product"]);
-//Brand Product-show-hide-product
+// Product-show-hide-product
 Route::get('/hide-product/{ProductId}', [ProductController::class, "hide_product"]);
 Route::get('/show-product/{ProductId}', [ProductController::class, "show_product"]);
+
+
+
+
+//Slide
+Route::get('/add-slide', [SlideController::class, "add_slide"])->name("slide_add");
+Route::get('/edit-slide/{SlideId}', [SlideController::class, "edit_slide"]);
+Route::get('/delete-slide/{SlideId}', [SlideController::class, "delete_slide"]);
+Route::get('/all-slide', [SlideController::class, "all_slide"])->name("slide_list");
+
+Route::post('/save-slide', [SlideController::class, "save_slide"]);
+Route::post('/update-slide/{SlidetId}', [SlideController::class, "update_slide"]);
+//Show-hide-slide
+Route::get('/hide-slide/{SlideId}', [SlideController::class, "hide_slide"]);
+Route::get('/show-slide/{SlideId}', [SlideController::class, "show_slide"]);
 
 

@@ -138,8 +138,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <a class="navbar-brand pt-0" href="{{URL::to('/dashboard')}}">
-                <img style="max-height: 3.5rem;" src="{{ asset('Back_End/image/logoduahau.png') }}" class="navbar-brand-img" alt="...">
+            <a class="navbar-brand pt-0" href="{{ URL::to('/dashboard') }}">
+                <img style="max-height: 3.5rem;" src="{{ asset('Back_End/image/logoduahau.png') }}"
+                    class="navbar-brand-img" alt="...">
                 <span class="h4 mb-0 text-black text-uppercase d-none d-lg-inline-block">DUAHAU-X</span>
             </a>
 
@@ -284,6 +285,25 @@
                                 </li>
                                 <li class="nav-item ">
                                     <a href="{{ route('product_list') }}" class="nav-link">Tất cả sản phẩm</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#navbar-maps" data-toggle="collapse" role="button"
+                            aria-expanded="" aria-controls="navbar-maps">
+                            <i class="fa-solid fa-spider"></i>
+                            <span class="nav-link-text">Slider</span>
+                        </a>
+                        <div class="collapse " id="navbar-maps">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item ">
+                                    <a href="{{ route('slide_add') }}"
+                                        class="nav-link">Thêm slide</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="{{ route('slide_list') }}"
+                                        class="nav-link">Quản lý slide</a>
                                 </li>
                             </ul>
                         </div>

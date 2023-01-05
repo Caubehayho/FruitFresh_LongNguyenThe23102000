@@ -12,8 +12,20 @@ use DB;
 
 class BrandProduct extends Controller
 {
+
+    public function AuthLogin(){
+        $admin_id = Session::get('admin_id');
+        if($admin_id){
+            return Redirect::to('dashboard');
+        }
+        else{
+            return Redirect::to('admin')->send();
+        }
+    }
+
     
     public function add_brand_product(){
+        $this->AuthLogin();
         $title = 'Thêm thương hiệu sản phẩm';
         return view ('admin.add_brand_product', compact('title'));
     }
@@ -21,7 +33,7 @@ class BrandProduct extends Controller
 
 
     public function all_brand_product(){
-
+        $this->AuthLogin();
         $title = 'Tất cả thương hiệu';
         $all_brand_product = DB::table('tbl_brand')->get();
         $manager_brand_product = view('admin.all_brand_product', compact('title'))->with('ListData', $all_brand_product);
@@ -31,6 +43,7 @@ class BrandProduct extends Controller
 
 
     public function save_brand_product(Request $request){
+        $this->AuthLogin();
         $data = array();
         $data['brand_name'] = $request->brand_product_name;
         $data['brand_desc'] = $request->brand_product_desc;
@@ -43,6 +56,7 @@ class BrandProduct extends Controller
 
 
     public function hide_brand_product( $BrandProductId ){
+        $this->AuthLogin();
         DB::table('tbl_brand')->where('brand_id', $BrandProductId)->update(['brand_status'=>1]);
         Session::put('message', 'Show thương hiệu thành công');
         return Redirect::to('all-brand-product');
@@ -50,12 +64,14 @@ class BrandProduct extends Controller
 
 
     public function show_brand_product( $BrandProductId ){
+        $this->AuthLogin();
         DB::table('tbl_brand')->where('brand_id', $BrandProductId)->update(['brand_status'=>0]);
         Session::put('message', 'Ẩn thương hiệu thành công');
         return Redirect::to('all-brand-product');
     }
 
     public function edit_brand_product( $BrandProductId ){
+        $this->AuthLogin();
         $title = 'Sửa thương hiệu';
         $edit_brand_product = DB::table('tbl_brand')->where('brand_id', $BrandProductId)->get();
         $manager_brand_product = view('admin.edit_brand_product', compact('title'))->with('ListDataEdit', $edit_brand_product);
@@ -63,6 +79,7 @@ class BrandProduct extends Controller
     }
 
     public function update_brand_product(Request $request, $BrandProductId){
+        $this->AuthLogin();
         $data = array();
         $data['brand_name'] = $request->brand_product_name;
         $data['brand_desc'] = $request->brand_product_desc;
@@ -73,6 +90,7 @@ class BrandProduct extends Controller
 
 
     public function delete_brand_product($BrandProductId){
+        $this->AuthLogin();
         DB::table('tbl_brand')->where('brand_id', $BrandProductId)->delete();
         Session::put('message', 'Xóa thương hiệu thành công');
         return Redirect::to('all-brand-product');

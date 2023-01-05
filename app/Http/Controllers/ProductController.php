@@ -13,7 +13,23 @@ use DB;
 
 class ProductController extends Controller
 {
+
+    public function AuthLogin(){
+        $admin_id = Session::get('admin_id');
+        if($admin_id){
+            return Redirect::to('dashboard');
+        }
+        else{
+            return Redirect::to('admin')->send();
+        }
+    }
+
+
+
+
+
     public function add_product(){
+        $this->AuthLogin();
         $title = 'Thêm sản phẩm';
         $cate_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
@@ -24,6 +40,7 @@ class ProductController extends Controller
 
     public function all_product(){
 
+        $this->AuthLogin();
         $title = 'Tất cả sản phẩm';
         $all_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
@@ -35,6 +52,7 @@ class ProductController extends Controller
 
 
     public function save_product(Request $request){
+        $this->AuthLogin();
         $data = array();
         $data['product_name'] = $request->product_name;
         $data['product_price'] = $request->product_price;
@@ -65,11 +83,13 @@ class ProductController extends Controller
 
 
     public function hide_product( $ProductId ){
+        $this->AuthLogin();
         DB::table('tbl_product')->where('product_id', $ProductId)->update(['product_status'=>1]);
         Session::put('message', 'Show sản phẩm thành công');
         return Redirect::to('all-product');
     }
     public function show_product( $ProductId ){
+        $this->AuthLogin();
         DB::table('tbl_product')->where('product_id', $ProductId)->update(['product_status'=>0]);
         Session::put('message', 'Ẩn sản phẩm thành công');
         return Redirect::to('all-product');
@@ -78,6 +98,7 @@ class ProductController extends Controller
 
 
     public function edit_product( $ProductId ){
+        $this->AuthLogin();
         $title = 'Sửa sản phẩm';
         $cate_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
@@ -90,6 +111,7 @@ class ProductController extends Controller
 
 
     public function update_product(Request $request, $ProductId){
+        $this->AuthLogin();
         $data = array();
         $data['product_name'] = $request->product_name;
         $data['product_price'] = $request->product_price;
@@ -121,6 +143,7 @@ class ProductController extends Controller
 
 
     public function delete_product($ProductId){
+        $this->AuthLogin();
         DB::table('tbl_product')->where('product_id', $ProductId)->delete();
         Session::put('message', 'Xóa sản phẩm thành công');
         return Redirect::to('all-product');

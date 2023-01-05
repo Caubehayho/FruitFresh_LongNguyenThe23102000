@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home | E-Shopper</title>
+    <title>Dưa Hấu X</title>
     <link href="{{ asset('Front_End/Css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('Front_End/Css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('Front_End/Css/prettyPhoto.css') }}" rel="stylesheet">
@@ -18,7 +18,7 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="shortcut icon" href="{{asset('Back_End/image/logoduahau.png')}}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
@@ -37,8 +37,8 @@
                     <div class="col-sm-6">
                         <div class="contactinfo">
                             <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i> +84 867 471 823</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i> longvanh2000@gmail.com </a></li>
                             </ul>
                         </div>
                     </div>
@@ -64,7 +64,8 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="index.html"><img src="{{asset('Front_End/image/home/logo.pn')}}g" alt="" /></a>
+                            <a href="index.html"><img src="{{ asset('Front_End/image/home/logo.pn') }}g"
+                                    alt="" /></a>
                         </div>
                         <div class="btn-group pull-right">
                             <div class="btn-group">
@@ -124,8 +125,8 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href="{{URL::to('Trangchu')}}" class="active">Home</a></li>
-                                <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                <li><a href="{{ URL::to('Trangchu') }}" class="active">Trang chủ</a></li>
+                                <li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Products</a></li>
                                         <li><a href="product-details.html">Product Details</a></li>
@@ -134,14 +135,10 @@
                                         <li><a href="login.html">Login</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
+                                <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
                                 </li>
-                                <li><a href="404.html">404</a></li>
-                                <li><a href="contact-us.html">Contact</a></li>
+                                <li><a href="404.html">Giỏ hàng</a></li>
+                                <li><a href="contact-us.html">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -170,47 +167,56 @@
                         </ol>
 
                         <div class="carousel-inner">
-                            <div class="item active">
+                            @foreach ($slide as $slidehome)
+                                <div class="item active">
+                                    <div class="col-sm-6">
+                                        <h1>{{$slidehome->slide_name}}</h1>
+                                        <h2>{{$slidehome->slide_desc}}</h2>
+                                        <p>{{$slidehome->slide_content}} </p>
+                                        {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <img src="{{ URL::to('Up_Load/Slide/' . $slidehome->slide_image) }}"
+                                            class="girl img-responsive" alt="" />
+                                    </div>
+                                </div>
+                            @endforeach
+                            <div class="item ">
                                 <div class="col-sm-6">
-                                    <h1><span>E</span>-SHOPPER</h1>
-                                    <h2>Free E-Commerce Template</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                    <h1>{{$slidehome->slide_name}}</h1>
+                                    <h2>{{$slidehome->slide_desc}}</h2>
+                                    <p>{{$slidehome->slide_content}} </p>
+                                    {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{asset('Front_End/image/home/girl1.j')}}pg" class="girl img-responsive" alt="" />
-                                    <img src="{{asset('Front_End/image/home/pricing')}}.png" class="pricing" alt="" />
+                                    <img src="{{ URL::to('Up_Load/Slide/' . $slidehome->slide_image) }}"
+                                        class="girl img-responsive" alt="" />
+                                </div>
+                            </div>
+                            <div class="item ">
+                                <div class="col-sm-6">
+                                    <h1>{{$slidehome->slide_name}}</h1>
+                                    <h2>{{$slidehome->slide_desc}}</h2>
+                                    <p>{{$slidehome->slide_content}} </p>
+                                    {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="{{ URL::to('Up_Load/Slide/' . $slidehome->slide_image) }}"
+                                        class="girl img-responsive" alt="" />
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="col-sm-6">
-                                    <h1><span>E</span>-SHOPPER</h1>
-                                    <h2>100% Responsive Design</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                    <h1>{{$slidehome->slide_name}}</h1>
+                                    <h2>{{$slidehome->slide_desc}}</h2>
+                                    <p>{{$slidehome->slide_content}} </p>
+                                    {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{asset('Front_End/image/home/girl2.j')}}pg" class="girl img-responsive" alt="" />
-                                    <img src="{{asset('Front_End/image/home/pricing')}}.png" class="pricing" alt="" />
+                                    <img src="{{ URL::to('Up_Load/Slide/' . $slidehome->slide_image) }}"
+                                        class="girl img-responsive" alt="" />
                                 </div>
                             </div>
-
-                            <div class="item">
-                                <div class="col-sm-6">
-                                    <h1><span>E</span>-SHOPPER</h1>
-                                    <h2>Free Ecommerce Template</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
-                                </div>
-                                <div class="col-sm-6">
-                                    <img src="{{asset('Front_End/image/home/girl3.j')}}pg" class="girl img-responsive" alt="" />
-                                    <img src="{{asset('Front_End/image/home/pricing')}}.png" class="pricing" alt="" />
-                                </div>
-                            </div>
-
                         </div>
 
                         <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
@@ -232,152 +238,61 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="left-sidebar">
-                        <h2>Category</h2>
                         <div class="panel-group category-products" id="accordian">
                             <!--category-productsr-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                            Sportswear
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="sportswear" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="#">Nike </a></li>
-                                            <li><a href="#">Under Armour </a></li>
-                                            <li><a href="#">Adidas </a></li>
-                                            <li><a href="#">Puma</a></li>
-                                            <li><a href="#">ASICS </a></li>
+                            <div style="padding-bottom: 20px">
+                                <h2>Danh mục hoa quả</h2>
+                                @foreach ($category as $catehome)
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordian"
+                                                    href="#sportswear">
+                                                    {{ $catehome->category_name }}
+                                                </a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <!--/category-products-->
+
+                            <div class="brands_products">
+                                <!--brands_products-->
+                                <h2>Thương hiệu sản phẩm</h2>
+                                @foreach ($brand as $brandhome)
+                                    <div class="brands-name">
+                                        <ul class="nav nav-pills nav-stacked">
+                                            <li><a href="#">
+                                                    <span class="pull-right">(28)</span>
+                                                    {{ $brandhome->brand_name }}
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordian" href="#mens">
-                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                            Mens
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="mens" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="#">Fendi</a></li>
-                                            <li><a href="#">Guess</a></li>
-                                            <li><a href="#">Valentino</a></li>
-                                            <li><a href="#">Dior</a></li>
-                                            <li><a href="#">Versace</a></li>
-                                            <li><a href="#">Armani</a></li>
-                                            <li><a href="#">Prada</a></li>
-                                            <li><a href="#">Dolce and Gabbana</a></li>
-                                            <li><a href="#">Chanel</a></li>
-                                            <li><a href="#">Gucci</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--/brands_products-->
 
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordian" href="#womens">
-                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                            Womens
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="womens" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="#">Fendi</a></li>
-                                            <li><a href="#">Guess</a></li>
-                                            <li><a href="#">Valentino</a></li>
-                                            <li><a href="#">Dior</a></li>
-                                            <li><a href="#">Versace</a></li>
-                                        </ul>
-                                    </div>
+                            <div class="price-range">
+                                <!--price-range-->
+                                <h2>Price Range</h2>
+                                <div class="well text-center">
+                                    <input type="text" class="span2" value="" data-slider-min="0"
+                                        data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]"
+                                        id="sl2"><br />
+                                    <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
                                 </div>
                             </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Kids</a></h4>
-                                </div>
+                            <!--/price-range-->
+
+                            <div class="shipping text-center">
+                                <!--shipping-->
+                                <img src="{{ asset('Front_End/image/home/shippin') }}g.jpg" alt="" />
                             </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Fashion</a></h4>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Households</a></h4>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Interiors</a></h4>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Clothing</a></h4>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Bags</a></h4>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Shoes</a></h4>
-                                </div>
-                            </div>
+                            <!--/shipping-->
+
                         </div>
-                        <!--/category-products-->
-
-                        <div class="brands_products">
-                            <!--brands_products-->
-                            <h2>Brands</h2>
-                            <div class="brands-name">
-                                <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
-                                    <li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
-                                    <li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
-                                    <li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
-                                    <li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
-                                    <li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
-                                    <li><a href="#"> <span class="pull-right">(4)</span>Rösch creative
-                                            culture</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--/brands_products-->
-
-                        <div class="price-range">
-                            <!--price-range-->
-                            <h2>Price Range</h2>
-                            <div class="well text-center">
-                                <input type="text" class="span2" value="" data-slider-min="0"
-                                    data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]"
-                                    id="sl2"><br />
-                                <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
-                            </div>
-                        </div>
-                        <!--/price-range-->
-
-                        <div class="shipping text-center">
-                            <!--shipping-->
-                            <img src="{{asset('Front_End/image/home/shippin')}}g.jpg" alt="" />
-                        </div>
-                        <!--/shipping-->
-
                     </div>
                 </div>
 
@@ -404,7 +319,7 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{asset('Front_End/image/home/iframe1')}}.png" alt="" />
+                                        <img src="{{ asset('Front_End/image/home/iframe1') }}.png" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -419,7 +334,7 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{asset('Front_End/image/home/iframe2')}}.png" alt="" />
+                                        <img src="{{ asset('Front_End/image/home/iframe2') }}.png" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -434,7 +349,7 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{asset('Front_End/image/home/iframe3')}}.png" alt="" />
+                                        <img src="{{ asset('Front_End/image/home/iframe3') }}.png" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -449,7 +364,7 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{asset('Front_End/image/home/iframe4')}}.png" alt="" />
+                                        <img src="{{ asset('Front_End/image/home/iframe4') }}.png" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -462,7 +377,7 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="address">
-                            <img src="{{asset('Front_End/image/home/map.png')}}" alt="" />
+                            <img src="{{ asset('Front_End/image/home/map.png') }}" alt="" />
                             <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
                         </div>
                     </div>
@@ -552,12 +467,12 @@
 
 
 
-    <script src="{{asset('Front_End/js/jquery.js')}}"></script>
-    <script src="{{asset('Front_End/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('Front_End/js/jquery.scrollUp.min.js')}}"></script>
-    <script src="{{asset('Front_End/js/price-range.js')}}"></script>
-    <script src="{{asset('Front_End/js/jquery.prettyPhoto.js')}}"></script>
-    <script src="{{asset('Front_End/js/main.js')}}"></script>
+    <script src="{{ asset('Front_End/js/jquery.js') }}"></script>
+    <script src="{{ asset('Front_End/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('Front_End/js/jquery.scrollUp.min.js') }}"></script>
+    <script src="{{ asset('Front_End/js/price-range.js') }}"></script>
+    <script src="{{ asset('Front_End/js/jquery.prettyPhoto.js') }}"></script>
+    <script src="{{ asset('Front_End/js/main.js') }}"></script>
 </body>
 
 </html>
