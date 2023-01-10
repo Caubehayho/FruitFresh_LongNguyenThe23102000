@@ -18,7 +18,7 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
-    <link rel="shortcut icon" href="{{asset('Back_End/image/logoduahau.png')}}">
+    <link rel="shortcut icon" href="{{ asset('Back_End/image/logoduahau.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
@@ -64,7 +64,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="index.html"><img src="{{ asset('Front_End/image/home/logo.pn') }}g"
+                            <a href="{{ URL::to('/Trangchu') }}"><img src="{{ asset('Front_End/image/home/logo.png') }}"
                                     alt="" /></a>
                         </div>
                         <div class="btn-group pull-right">
@@ -170,9 +170,9 @@
                             @foreach ($slide as $slidehome)
                                 <div class="item active">
                                     <div class="col-sm-6">
-                                        <h1>{{$slidehome->slide_name}}</h1>
-                                        <h2>{{$slidehome->slide_desc}}</h2>
-                                        <p>{{$slidehome->slide_content}} </p>
+                                        <h1>{{ $slidehome->slide_name }}</h1>
+                                        <h2>{{ $slidehome->slide_desc }}</h2>
+                                        <p>{{ $slidehome->slide_content }} </p>
                                         {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
                                     </div>
                                     <div class="col-sm-6">
@@ -180,45 +180,32 @@
                                             class="girl img-responsive" alt="" />
                                     </div>
                                 </div>
-                            @endforeach
-                            <div class="item ">
+                                <div class="item ">
+                                    <div class="col-sm-6">
+                                        <h1>{{ $slidehome->slide_name }}</h1>
+                                        <h2>{{ $slidehome->slide_desc }}</h2>
+                                        <p>{{ $slidehome->slide_content }} </p>
+                                        {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <img src="{{ URL::to('Up_Load/Slide/' . $slidehome->slide_image) }}"
+                                            class="girl img-responsive" alt="" />
+                                    </div>
+                                </div>
+                            
+                            {{-- <div class="item ">
                                 <div class="col-sm-6">
                                     <h1>{{$slidehome->slide_name}}</h1>
                                     <h2>{{$slidehome->slide_desc}}</h2>
                                     <p>{{$slidehome->slide_content}} </p>
-                                    {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
                                 </div>
                                 <div class="col-sm-6">
                                     <img src="{{ URL::to('Up_Load/Slide/' . $slidehome->slide_image) }}"
                                         class="girl img-responsive" alt="" />
-                                </div>
-                            </div>
-                            <div class="item ">
-                                <div class="col-sm-6">
-                                    <h1>{{$slidehome->slide_name}}</h1>
-                                    <h2>{{$slidehome->slide_desc}}</h2>
-                                    <p>{{$slidehome->slide_content}} </p>
-                                    {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
-                                </div>
-                                <div class="col-sm-6">
-                                    <img src="{{ URL::to('Up_Load/Slide/' . $slidehome->slide_image) }}"
-                                        class="girl img-responsive" alt="" />
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="col-sm-6">
-                                    <h1>{{$slidehome->slide_name}}</h1>
-                                    <h2>{{$slidehome->slide_desc}}</h2>
-                                    <p>{{$slidehome->slide_content}} </p>
-                                    {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
-                                </div>
-                                <div class="col-sm-6">
-                                    <img src="{{ URL::to('Up_Load/Slide/' . $slidehome->slide_image) }}"
-                                        class="girl img-responsive" alt="" />
-                                </div>
+                                </div> --}}
+                                @endforeach
                             </div>
                         </div>
-
                         <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
                             <i class="fa fa-angle-left"></i>
                         </a>
@@ -246,10 +233,12 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordian"
-                                                    href="#sportswear">
-                                                    {{ $catehome->category_name }}
-                                                </a>
+                                                <li>
+                                                    <a
+                                                        href="{{ URL::to('/danh-muc-hoa-qua/' . $catehome->category_id) }}">
+                                                        {{ $catehome->category_name }}
+                                                    </a>
+                                                </li>
                                             </h4>
                                         </div>
                                     </div>
@@ -263,7 +252,7 @@
                                 @foreach ($brand as $brandhome)
                                     <div class="brands-name">
                                         <ul class="nav nav-pills nav-stacked">
-                                            <li><a href="#">
+                                            <li><a href="{{ URL::to('/thuong-hieu-hoa-qua/' . $brandhome->brand_id) }}">
                                                     <span class="pull-right">(28)</span>
                                                     {{ $brandhome->brand_name }}
                                                 </a>

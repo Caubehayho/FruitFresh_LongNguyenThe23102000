@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryProduct;
 use App\Http\Controllers\BrandProduct;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SlideController;
+use App\Http\Controllers\CartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,9 +21,17 @@ use App\Http\Controllers\SlideController;
 
 //FrontEnd
 Route::get('/',[HomeController::class, "index"] );
-Route::get('/Trangchu', function () {
-    return view('master');
-})->name("Trang_chu");
+Route::get('/Trangchu',[HomeController::class, "index"] );
+
+
+
+//Danh muc san pham trang chu
+Route::get('/danh-muc-hoa-qua/{category_id}', [CategoryProduct::class, "show_category_home"]);
+//Thuong hieu san pham trang chu
+Route::get('/thuong-hieu-hoa-qua/{brand_id}', [BrandProduct::class, "show_brand_home"]);
+//Chi tiet san pham trang chu
+Route::get('/chi-tiet-hoa-qua/{product_id}', [ProductController::class, "details_product"]);
+
 
 
 //BackEnd
@@ -91,4 +100,10 @@ Route::post('/update-slide/{SlidetId}', [SlideController::class, "update_slide"]
 Route::get('/hide-slide/{SlideId}', [SlideController::class, "hide_slide"]);
 Route::get('/show-slide/{SlideId}', [SlideController::class, "show_slide"]);
 
+
+
+
+
+//Cart
+Route::post('/save-cart', [CartController::class, "save_cart"]);
 

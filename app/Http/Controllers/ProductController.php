@@ -148,4 +148,35 @@ class ProductController extends Controller
         Session::put('message', 'Xóa sản phẩm thành công');
         return Redirect::to('all-product');
     }
+    //End Admin pages
+
+
+
+    public function details_product($product_id){
+
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->get();
+
+        $details_product = DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
+        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->where('tbl_product.product_id', $product_id )->get();
+
+
+        //San pham lien quan
+        foreach($details_product as $value)
+        {
+            $category_id = $value->category_id;
+        }
+
+        //lấy ra tất cả sản phẩm có category_id == sản phẩm đang xem cho tiết
+        $related_product = DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
+        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->where('tbl_category_product.category_id', $category_id )->whereNotIn('tbl_product.product_id', [$product_id] )->limit(3)->get();
+
+        return view('pages.sanpham.show_detail')->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home)->with('product_details' , $details_product )->with('relate', $related_product );
+    }
+
+
+
 }

@@ -95,4 +95,30 @@ class BrandProduct extends Controller
         Session::put('message', 'Xóa thương hiệu thành công');
         return Redirect::to('all-brand-product');
     }
+      //End Function Admin Page
+
+
+
+
+
+
+
+
+
+
+    public function show_brand_home($brand_id){
+
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->get();
+
+        //lấy ra danh mục có id trùng category_id từ 2 bảng thỏa mãn status
+        $brand_by_id = DB::table('tbl_product')->join('tbl_brand', 'tbl_product.brand_id', '=', 'tbl_brand.brand_id')->where('tbl_product.product_status', '1')->where('tbl_product.brand_id', $brand_id)->get();
+
+         //lấy tên danh mục làm tiêu đề
+         $brand_name = DB::table('tbl_brand')->where('tbl_brand.brand_id', $brand_id )->limit(1)->get();
+       
+
+        return view('pages.brand.show_brand')->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home)->with('brand_by_id', $brand_by_id)->with('brand_name', $brand_name);
+    }
 }

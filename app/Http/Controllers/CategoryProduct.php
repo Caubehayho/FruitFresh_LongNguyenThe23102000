@@ -98,4 +98,32 @@ class CategoryProduct extends Controller
         Session::put('message', 'Xóa danh mục sản phẩm thành công');
         return Redirect::to('all-category-product');
     }
+    
+    //End Function Admin Page
+
+
+
+
+
+
+
+    public function show_category_home($category_id){
+
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->get();
+
+        //lấy ra sản phẩm có id trùng category_id từ 2 bảng thỏa mãn status
+        $category_by_id = DB::table('tbl_product')->join('tbl_category_product', 'tbl_product.category_id', '=', 'tbl_category_product.category_id')->where('tbl_product.product_status', '1')->where('tbl_product.category_id', $category_id)->get();
+
+         //lấy tên danh mục làm tiêu đề
+        $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id', $category_id )->limit(1)->get();
+
+        return view('pages.category.show_category')->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home)->with('category_by_id', $category_by_id)->with('category_name', $category_name);
+    }
+
+      
+ 
+
+
 }
