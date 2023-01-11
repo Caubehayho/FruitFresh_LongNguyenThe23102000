@@ -48,7 +48,7 @@
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                             </ul>
                         </div>
@@ -63,11 +63,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">
-                        <div class="logo pull-left">
-                            <a href="{{ URL::to('/Trangchu') }}"><img src="{{ asset('Front_End/image/home/logo.png') }}"
-                                    alt="" /></a>
+                        <div class="logo pull-left" style=" display: flex">
+                            <a style="display: block; max-width: 320px;" href="{{ URL::to('/Trangchu') }}">
+                                <img style="width: 100%; height: 100%" src="{{ asset('Back_End/image/logoduahau6.png') }}"alt="" />
+                            </a>
+                            {{-- <span style="display: flex; justify-content: center">DuaHau-X</span> --}}
                         </div>
-                        <div class="btn-group pull-right">
+                        {{-- <div class="btn-group pull-right">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default dropdown-toggle usa"
                                     data-toggle="dropdown">
@@ -91,16 +93,16 @@
                                     <li><a href="#">Pound</a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                                <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                                <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+                                <li><a href="#"><i class="fa fa-user"></i>Tài khoản</a></li>
+                                <li><a href="#"><i class="fa fa-star"></i>Yêu thích</a></li>
+                                <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Thanh toán </a></li>
+                                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+                                <li><a href="login.html"><i class="fa fa-lock"></i> Đăng nhập</a></li>
                             </ul>
                         </div>
                     </div>
@@ -137,7 +139,7 @@
                                 </li>
                                 <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
                                 </li>
-                                <li><a href="404.html">Giỏ hàng</a></li>
+                                <li><a href="{{URL::to('/show-cart')}}">Giỏ hàng</a></li>
                                 <li><a href="contact-us.html">Liên hệ</a></li>
                             </ul>
                         </div>
@@ -166,34 +168,10 @@
                             <li data-target="#slider-carousel" data-slide-to="2"></li>
                         </ol>
 
-                        <div class="carousel-inner">
-                            @foreach ($slide as $slidehome)
-                                <div class="item active">
-                                    <div class="col-sm-6">
-                                        <h1>{{ $slidehome->slide_name }}</h1>
-                                        <h2>{{ $slidehome->slide_desc }}</h2>
-                                        <p>{{ $slidehome->slide_content }} </p>
-                                        {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <img src="{{ URL::to('Up_Load/Slide/' . $slidehome->slide_image) }}"
-                                            class="girl img-responsive" alt="" />
-                                    </div>
-                                </div>
-                                <div class="item ">
-                                    <div class="col-sm-6">
-                                        <h1>{{ $slidehome->slide_name }}</h1>
-                                        <h2>{{ $slidehome->slide_desc }}</h2>
-                                        <p>{{ $slidehome->slide_content }} </p>
-                                        {{-- <button type="button" class="btn btn-default get">Get it now</button> --}}
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <img src="{{ URL::to('Up_Load/Slide/' . $slidehome->slide_image) }}"
-                                            class="girl img-responsive" alt="" />
-                                    </div>
-                                </div>
+                        <div class="carousel-inner" style="max-height: 400px;">
                             
-                            {{-- <div class="item ">
+                            {{-- @foreach ($slide as $slidehome)
+                            <div class="item active">
                                 <div class="col-sm-6">
                                     <h1>{{$slidehome->slide_name}}</h1>
                                     <h2>{{$slidehome->slide_desc}}</h2>
@@ -202,8 +180,41 @@
                                 <div class="col-sm-6">
                                     <img src="{{ URL::to('Up_Load/Slide/' . $slidehome->slide_image) }}"
                                         class="girl img-responsive" alt="" />
-                                </div> --}}
-                                @endforeach
+                                </div>
+                            </div>
+                            @endforeach --}}
+                            <div class="item active">
+                                <div class="col-sm-0">
+                                    <h1></h1>
+                                    <h2></h2>
+                                    <p></p>
+                                </div>
+                                <div class="col-sm-12">
+                                    <img src="{{ URL::to('/Up_Load/Slide/slide-1.jpg')}}"
+                                        class="girl img-responsive" alt="" />
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-sm-0">
+                                    <h1></h1>
+                                    <h2></h2>
+                                    <p></p>
+                                </div>
+                                <div class="col-sm-12">
+                                    <img src="{{ URL::to('/Up_Load/Slide/slide-2.jpg')}}"
+                                        class="girl img-responsive" alt=""/>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-sm-0">
+                                    <h1></h1>
+                                    <h2></h2>
+                                    <p></p>
+                                </div>
+                                <div class="col-sm-12">
+                                    <img src="{{ URL::to('/Up_Load/Slide/parallax-1.jpg')}}"
+                                        class="girl img-responsive" alt="" />
+                                </div>
                             </div>
                         </div>
                         <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
