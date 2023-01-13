@@ -8,6 +8,7 @@ use App\Http\Controllers\BrandProduct;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,7 @@ use App\Http\Controllers\CartController;
 //FrontEnd
 Route::get('/',[HomeController::class, "index"] );
 Route::get('/Trangchu',[HomeController::class, "index"] );
+Route::post('/tim-kiem',[HomeController::class, "search"] );
 
 
 
@@ -110,3 +112,13 @@ Route::post('/update-cart-quantity', [CartController::class, "update_cart_quanti
 Route::get('/show-cart', [CartController::class, "show_cart"]);
 Route::get('/delete-to-cart/{rowId}', [CartController::class, "delete_to_cart"]);
 
+
+
+//Checkout
+Route::get('/login-checkout', [CheckoutController::class, "login_checkout"]);
+Route::get('/logout-checkout', [CheckoutController::class, "logout_checkout"]);
+Route::post ('/add-customer', [CheckoutController::class, "add_customer"]);
+Route::post ('/login-customer', [CheckoutController::class, "login_customer"]);
+Route::get('/check-out', [CheckoutController::class, "check_out"]);
+Route::post ('/save-checkout-customer', [CheckoutController::class, "save_checkout_customer"]);
+Route::get('/payment', [CheckoutController::class, "payment"]);

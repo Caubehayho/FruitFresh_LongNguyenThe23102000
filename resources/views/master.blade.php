@@ -24,6 +24,10 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
     <script src="https://kit.fontawesome.com/5bf87cd97a.js" crossorigin="anonymous"></script>
+
+    {{-- Flicktiky --}}
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 </head>
 <!--/head-->
 
@@ -65,7 +69,8 @@
                     <div class="col-sm-4">
                         <div class="logo pull-left" style=" display: flex">
                             <a style="display: block; max-width: 320px;" href="{{ URL::to('/Trangchu') }}">
-                                <img style="width: 100%; height: 100%" src="{{ asset('Back_End/image/logoduahau6.png') }}"alt="" />
+                                <img style="width: 100%; height: 100%"
+                                    src="{{ asset('Back_End/image/logoduahau6.png') }}"alt="" />
                             </a>
                             {{-- <span style="display: flex; justify-content: center">DuaHau-X</span> --}}
                         </div>
@@ -98,11 +103,57 @@
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-user"></i>Tài khoản</a></li>
                                 <li><a href="#"><i class="fa fa-star"></i>Yêu thích</a></li>
-                                <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Thanh toán </a></li>
-                                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-                                <li><a href="login.html"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+
+                                <?php
+                                $customer_id = Session::get('customer_id');
+                                $shipping_id = Session::get('shipping_id');
+
+                                if ($customer_id != null){
+                                ?>
+                                <li>
+                                    <a href="{{ URL::to('/payment') }}"><i class="fa fa-crosshairs"></i> Thanh
+                                        toán</a>
+                                </li>
+                                <?php
+                                }
+
+                                else {
+                                    ?>
+                                <li>
+                                    <a href="{{ URL::to('/login-checkout') }}"><i class="fa fa-lock"></i> Thanh
+                                        toán</a>
+                                </li>
+                                <?php
+                                }
+                                ?>
+
+                                <li><a href="{{ URL::to('/show-cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ
+                                        hàng</a></li>
+
+                                <?php
+
+
+                                $customer_id = Session::get('customer_id');
+                                // dd($customer_id);
+                                if ($customer_id != null){
+                                    ?>
+                                <li>
+                                    <a href="{{ URL::to('/logout-checkout') }}"><i
+                                            class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+                                </li>
+                                <?php
+                                }
+
+                                else {
+                                    ?>
+                                <li>
+                                    <a href="{{ URL::to('/login-checkout') }}"><i class="fa fa-lock"></i> Đăng nhập</a>
+                                </li>
+                                <?php
+                                }
+                                ?>
+
                             </ul>
                         </div>
                     </div>
@@ -114,7 +165,7 @@
         <div class="header-bottom">
             <!--header-bottom-->
             <div class="container">
-                <div class="row">
+                <div class="row" style="align-items: center; display: flex">
                     <div class="col-sm-9">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -139,15 +190,19 @@
                                 </li>
                                 <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
                                 </li>
-                                <li><a href="{{URL::to('/show-cart')}}">Giỏ hàng</a></li>
+                                <li><a href="{{ URL::to('/show-cart') }}">Giỏ hàng</a></li>
                                 <li><a href="contact-us.html">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        <div class="search_box pull-right">
-                            <input type="text" placeholder="Search" />
-                        </div>
+                        <form action="{{ URL::to('/tim-kiem') }}" method="POST">
+                            {{ csrf_field() }}
+                            <div class="search_box pull-right">
+                                <button style="padding: none"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                <input type="text" name="keywords_submit" placeholder="Tìm kiếm sản phẩm" />
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -156,7 +211,9 @@
     </header>
     <!--/header-->
 
-    <section id="slider">
+
+
+    {{-- <section id="slider">
         <!--slider-->
         <div class="container">
             <div class="row">
@@ -168,7 +225,7 @@
                             <li data-target="#slider-carousel" data-slide-to="2"></li>
                         </ol>
 
-                        <div class="carousel-inner" style="max-height: 400px;">
+                        <div class="carousel-inner" style="max-height: 500px;">
                             
                             {{-- @foreach ($slide as $slidehome)
                             <div class="item active">
@@ -183,53 +240,89 @@
                                 </div>
                             </div>
                             @endforeach --}}
-                            <div class="item active">
-                                <div class="col-sm-0">
-                                    <h1></h1>
-                                    <h2></h2>
-                                    <p></p>
-                                </div>
-                                <div class="col-sm-12">
-                                    <img src="{{ URL::to('/Up_Load/Slide/slide-1.jpg')}}"
-                                        class="girl img-responsive" alt="" />
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="col-sm-0">
-                                    <h1></h1>
-                                    <h2></h2>
-                                    <p></p>
-                                </div>
-                                <div class="col-sm-12">
-                                    <img src="{{ URL::to('/Up_Load/Slide/slide-2.jpg')}}"
-                                        class="girl img-responsive" alt=""/>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="col-sm-0">
-                                    <h1></h1>
-                                    <h2></h2>
-                                    <p></p>
-                                </div>
-                                <div class="col-sm-12">
-                                    <img src="{{ URL::to('/Up_Load/Slide/parallax-1.jpg')}}"
-                                        class="girl img-responsive" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-                            <i class="fa fa-angle-left"></i>
-                        </a>
-                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </div>
+    {{-- <div class="item active" style="position: relative">
+        <div class="" style="position: absolute; top: 100%; left: 0; z-index: 1">
+            <h1>Dưa Hấu - X</h1>
+            <h2>fdgdfgfdg</h2>
+            <p>dfgdfgfdg</p>
+        </div>
+        <div class="col-sm-12">
+            <img src="{{ URL::to('/Up_Load/Slide/slide-1.jpg') }}" class="girl img-responsive" alt="" />
+        </div>
+    </div>
+    <div class="item" style="position: relative">
+        <div class="" style="position: absolute; top: 100%; left: 0; z-index: 1">
+            <h1></h1>
+            <h2></h2>
+            <p></p>
+        </div>
+        <div class="col-sm-12">
+            <img src="{{ URL::to('/Up_Load/Slide/slide-2.jpg') }}" class="girl img-responsive" alt="" />
+        </div>
+    </div>
+    <div class="item" style="position: relative">
+        <div class="" style="position: absolute; top: 100%; left: 0; z-index: 1">
+            <h1></h1>
+            <h2></h2>
+            <p></p>
+        </div>
+        <div class="col-sm-12">
+            <img src="{{ URL::to('/Up_Load/Slide/parallax-1.jpg') }}" class="girl img-responsive" alt="" />
+        </div>
+    </div>
+    </div>
+    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+        <i class="fa fa-angle-left"></i>
+    </a>
+    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+        <i class="fa fa-angle-right"></i>
+    </a>
+    </div>
 
+    </div>
+    </div>
+    </div>
+    </section> --}}
+    <!--/slider-->
+
+
+    <section id="slider" class="slider-slictiky">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="main-carousel"
+                    data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "adaptiveHeight": true, "autoPlay": 3000}'>
+                    <div class="carousel-cell" style="position: relative">
+                        <img style="width: 100%" src="{{ URL::to('/Up_Load/Slide/slide1.jpg') }}"
+                            class="girl img-responsive" alt="" />
+                        <div class="col-sm-6" style="position: absolute; text-align: center">
+                            <h1> Dưa hấu - x </h1>
+                            <h2> Hoa quả xanh thiên nhiên </h2>
+                            <p> Mang chất dinh dưỡng đến với mọi người </p>
+                        </div>
+                    </div>
+                    <div class="carousel-cell " style="position: relative">
+                        <img style="width: 100%" src="{{ URL::to('/Up_Load/Slide/slide2.jpg') }}"
+                            class="girl img-responsive" alt="" />
+                        <div class="col-sm-6" style="position: absolute; text-align: center">
+                            <h1> Dưa hấu - x </h1>
+                            <h2> Hoa quả xanh thiên nhiên </h2>
+                            <p> Mang chất dinh dưỡng đến với mọi người </p>
+                        </div>
+                    </div>
+                    <div class="carousel-cell" style="position: relative">
+                        <img style="width: 100%" src="{{ URL::to('/Up_Load/Slide/slide6.jpg') }}"
+                            class="girl img-responsive" alt="" />
+                        <div class="col-sm-6" style="position: absolute; text-align: center">
+                            <h1> Dưa hấu - x </h1>
+                            <h2> Hoa quả xanh thiên nhiên </h2>
+                            <p> Mang chất dinh dưỡng đến với mọi người </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!--/slider-->
+
 
     <section>
         <div class="container">
@@ -263,7 +356,8 @@
                                 @foreach ($brand as $brandhome)
                                     <div class="brands-name">
                                         <ul class="nav nav-pills nav-stacked">
-                                            <li><a href="{{ URL::to('/thuong-hieu-hoa-qua/' . $brandhome->brand_id) }}">
+                                            <li><a
+                                                    href="{{ URL::to('/thuong-hieu-hoa-qua/' . $brandhome->brand_id) }}">
                                                     <span class="pull-right">(28)</span>
                                                     {{ $brandhome->brand_name }}
                                                 </a>
@@ -276,19 +370,19 @@
 
                             <div class="price-range">
                                 <!--price-range-->
-                                <h2>Price Range</h2>
+                                <h2>Lọc giá tiền</h2>
                                 <div class="well text-center">
                                     <input type="text" class="span2" value="" data-slider-min="0"
                                         data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]"
                                         id="sl2"><br />
-                                    <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+                                    <b class="pull-left">0 vnđ</b> <b class="pull-right">800 vnđ</b>
                                 </div>
                             </div>
                             <!--/price-range-->
 
                             <div class="shipping text-center">
                                 <!--shipping-->
-                                <img src="{{ asset('Front_End/image/home/shippin') }}g.jpg" alt="" />
+                                <img src="{{ asset('Up_Load/product/side.jpg') }}" alt="" />
                             </div>
                             <!--/shipping-->
 
@@ -305,145 +399,80 @@
 
     <footer id="footer">
         <!--Footer-->
-        <div class="footer-top">
+        {{-- <div class="footer-top">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-2">
+                    <div class="col-sm-12">
                         <div class="companyinfo">
-                            <h2><span>e</span>-shopper</h2>
+                            <img src="" alt="">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <img src="{{ asset('Front_End/image/home/iframe1') }}.png" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <img src="{{ asset('Front_End/image/home/iframe2') }}.png" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <img src="{{ asset('Front_End/image/home/iframe3') }}.png" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <img src="{{ asset('Front_End/image/home/iframe4') }}.png" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="address">
-                            <img src="{{ asset('Front_End/image/home/map.png') }}" alt="" />
-                            <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
+        </div> --}}
         <div class="footer-widget">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                         <div class="single-widget">
-                            <h2>Service</h2>
+                            <h2>Gian hàng chúng tôi</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">Online Help</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Order Status</a></li>
-                                <li><a href="#">Change Location</a></li>
-                                <li><a href="#">FAQ’s</a></li>
+                                <li>
+                                    <ul class="footer-visit" style="display: flex">
+                                        <li>
+                                            <i style="font-size: 23px; color: #ffffff; padding-right: 15px; position: relative; top: 25%"
+                                                class="fa-solid fa-location-dot"></i>
+                                        </li>
+                                        <li>
+                                            <a href="#" style="line-height: 30px">
+                                                Ngõ 180, đường Z115, Tân Thịnh, Thái Nguyên
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <ul class="footer-visit" style="display: flex; justify-content: flex-start">
+                                        <li style="display: flex">
+                                            <i style="font-size: 23px; color: #ffffff; padding-right: 15px; position: relative; top: 25%"
+                                                class="fa-solid fa-clock"></i>
+                                        </li>
+                                        <li>
+                                            <a style="display: block" href="#">
+                                                T2 - T6: 8:00am - 5:00pm
+                                            </a>
+                                            <a style="display: block" href="#">
+                                                T7 - CN: 10:00am - 9:50pm
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <div class="single-widget">
-                            <h2>Quock Shop</h2>
+                            <h2>Lựa chọn</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">T-Shirt</a></li>
-                                <li><a href="#">Mens</a></li>
-                                <li><a href="#">Womens</a></li>
-                                <li><a href="#">Gift Cards</a></li>
-                                <li><a href="#">Shoes</a></li>
+                                <li><a href="#">Lịch sử</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Phiếu quà tặng</a></li>
+                                <li><a href="#">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-2">
-                        <div class="single-widget">
-                            <h2>Policies</h2>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">Terms of Use</a></li>
-                                <li><a href="#">Privecy Policy</a></li>
-                                <li><a href="#">Refund Policy</a></li>
-                                <li><a href="#">Billing System</a></li>
-                                <li><a href="#">Ticket System</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="single-widget">
-                            <h2>About Shopper</h2>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">Company Information</a></li>
-                                <li><a href="#">Careers</a></li>
-                                <li><a href="#">Store Location</a></li>
-                                <li><a href="#">Affillate Program</a></li>
-                                <li><a href="#">Copyright</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-sm-offset-1">
-                        <div class="single-widget">
-                            <h2>About Shopper</h2>
+                    <div class="col-sm-5 ">
+                        <div class="single-widget" style="padding-left: 30px">
+                            <h2>Liên hệ với chúng tôi</h2>
                             <form action="#" class="searchform">
-                                <input type="text" placeholder="Your email address" />
-                                <button type="submit" class="btn btn-default"><i
-                                        class="fa fa-arrow-circle-o-right"></i></button>
-                                <p>Get the most recent updates from <br />our site and be updated your self...</p>
+                                <div style="background-color: #ffffff; display: flex">
+                                    <input type="text" placeholder="Your email address" />
+                                    <button type="submit" class=" btn-default"
+                                        style="display: flex; align-item: center; justify-content: center">
+                                        <i class="fa-solid fa-right-long"></i>
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -455,9 +484,9 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="row">
-                    <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+                    <p class="pull-left">Copyright © 2023 DưaHấu - X Inc. All rights reserved.</p>
                     <p class="pull-right">Designed by <span><a target="_blank"
-                                href="http://www.themeum.com">Themeum</a></span></p>
+                                href="https://www.facebook.com/thelong.nguyen.3150807/">Caubehayho2k</a></span></p>
                 </div>
             </div>
         </div>

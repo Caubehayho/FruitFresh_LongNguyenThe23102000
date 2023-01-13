@@ -5,20 +5,257 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Abel);
 
+/* font-slider-start */
+/* devanagari */
+@font-face {
+  font-family: 'Kalam';
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/kalam/v16/YA9Qr0Wd4kDdMtD6GjLNkiQ4tg.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Kalam';
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/kalam/v16/YA9Qr0Wd4kDdMtD6GjLCkiQ4tg.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Kalam';
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/kalam/v16/YA9Qr0Wd4kDdMtD6GjLMkiQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* devanagari */
+@font-face {
+  font-family: 'Kalam';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/kalam/v16/YA9dr0Wd4kDdMthQOCfzsw.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Kalam';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/kalam/v16/YA9dr0Wd4kDdMthfOCfzsw.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Kalam';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/kalam/v16/YA9dr0Wd4kDdMthROCc.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* devanagari */
+@font-face {
+  font-family: 'Kalam';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/kalam/v16/YA9Qr0Wd4kDdMtDqHTLNkiQ4tg.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Kalam';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/kalam/v16/YA9Qr0Wd4kDdMtDqHTLCkiQ4tg.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Kalam';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/kalam/v16/YA9Qr0Wd4kDdMtDqHTLMkiQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lato/v23/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lato/v23/S6uyw4BMUTPHjx4wXg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLDz8Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLDz8Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLDz8Z1xlFQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJbecmNE.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJnecmNE.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLGT9Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLGT9Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLEj6Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLEj6Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLCz7Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLCz7Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* font-slider-end */
+
 @font-face {
   font-family: 'DMSans-Regular';
   src: url(../../Font_New/DMSans-Regular.ttf);
-} 
+}
 
 @font-face {
   font-family: 'DMSans-Bold';
   src: url(../../Font_New/DMSans-Bold.ttf);
-} 
+}
 
 @font-face {
   font-family: 'DMSans-Medium';
   src: url(../../Font_New/DMSans-Medium.ttf);
-} 
+}
 
 body {
   font-family: 'DMSans-Regular', sans-serif;
@@ -158,21 +395,24 @@ a#scrollUp i {
   background: #4d8b32;
 }
 
-.header-middle {
+.slider-slictiky {
   position: relative;
 }
 
-.header-middle::after{
+.slider-slictiky::after {
   position: absolute;
   left: 0;
+  top: 100%;
   content: url(../../Back_End/image/decor.PNG);
+  z-index: 20;
 }
 
-.header-middle::before{
+.slider-slictiky::before {
   position: absolute;
   right: 0;
-  top:100%;
+  top: 100%;
   content: url(../../Back_End/image/decor.PNG);
+  z-index: 20;
 }
 
 .header-middle .container .row {
@@ -285,7 +525,7 @@ a#scrollUp i {
   font-size: 17px;
   font-weight: 300;
   padding: 0;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
 }
 
 .mainmenu ul li a:hover,
@@ -295,20 +535,45 @@ a#scrollUp i {
   color: #44a41b;
 }
 
+
+.search_box {
+  display: flex;
+  width: 100%;
+}
+
+.search_box button {
+  background: #44a41b;
+  border: none;
+  width: 20%;
+}
+
+.search_box i {
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+}
+
 .search_box input {
-  background: #F0F0E9;
+  background: #ffffff;
   border: medium none;
-  color: #B2B2B2;
+  color: #44a41b;
   font-family: 'DMSans-Regular';
   font-size: 12px;
   font-weight: 300;
   height: 35px;
   outline: medium none;
-  padding-left: 10px;
-  width: 155px;
+  width: 80%;
   background-image: url(../images/home/searchicon.png);
   background-repeat: no-repeat;
   background-position: 130px;
+  padding-left: 10px;
+  border: 1px solid gainsboro;
+}
+
+.search_box input::placeholder {
+  font-size: 14px;
+  color: #44a41b;
+  padding-left: 10px;
 }
 
 
@@ -332,7 +597,7 @@ ul.sub-menu {
   position: absolute;
   top: 30px;
   left: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: #ffffff;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -341,7 +606,23 @@ ul.sub-menu {
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
   display: none;
   z-index: 999;
+  box-shadow: 0 -8px 16px rgb(0 0 0 / 10%);
 }
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown::before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 10px;
+  background-color: transparent;
+  top: 100%;
+  left: 0;
+}
+
 
 .dropdown ul.sub-menu li .active {
   color: #44a41b;
@@ -350,7 +631,7 @@ ul.sub-menu {
 
 
 .navbar-nav li ul.sub-menu li {
-  padding: 10px 20px 0;
+  padding: 20px 25px 0;
 }
 
 .navbar-nav li ul.sub-menu li:last-child {
@@ -358,7 +639,7 @@ ul.sub-menu {
 }
 
 .navbar-nav li ul.sub-menu li a {
-  color: #fff;
+  color: black;
 }
 
 .navbar-nav li ul.sub-menu li a:hover {
@@ -368,6 +649,8 @@ ul.sub-menu {
 .fa-angle-down {
   padding-left: 5px;
 }
+
+
 
 @-webkit-keyframes fadeInUp {
   0% {
@@ -388,7 +671,15 @@ ul.sub-menu {
 **************************/
 
 #footer {
-  background: #F0F0E9;
+  background-color: #36383a;
+}
+
+.footer-visit {
+  padding-left: 0;
+}
+
+.footer-visit li {
+  padding: 15px 0;
 }
 
 
@@ -402,7 +693,7 @@ ul.sub-menu {
 }
 
 .companyinfo h2 {
-  color: #B4B1AB;
+  color: #ffffff;
   font-family: abel;
   font-size: 27px;
   text-transform: uppercase;
@@ -413,7 +704,7 @@ ul.sub-menu {
 }
 
 .companyinfo p {
-  color: #B3B3AD;
+  color: #ffffff;
   font-family: 'DMSans-Regular', sans-serif;
   font-size: 12px;
   font-weight: 300;
@@ -438,7 +729,7 @@ ul.sub-menu {
   display: block;
   height: 61px;
   margin-bottom: 10px;
-  border: 2px solid #CCCCC6;
+  border: 2px solid gainsboro;
   border-radius: 3px;
 }
 
@@ -449,7 +740,7 @@ ul.sub-menu {
   height: 61px;
   background: #44a41b;
   border-radius: 3px;
-  color: #FFF;
+  color: #ffffff;
   font-size: 20px;
   line-height: 0;
   display: block;
@@ -471,7 +762,7 @@ ul.sub-menu {
 }
 
 .video-gallery p {
-  color: #8C8C88;
+  color: #ffffff;
   font-family: 'DMSans-Regular', sans-serif;
   font-size: 12px;
   font-weight: 500;
@@ -479,7 +770,7 @@ ul.sub-menu {
 }
 
 .video-gallery h2 {
-  color: #8c8c88;
+  color: #ffffff;
   font-family: 'DMSans-Regular', sans-serif;
   font-size: 12px;
   font-weight: 300;
@@ -499,7 +790,7 @@ ul.sub-menu {
 }
 
 .address p {
-  color: #666663;
+  color: #ffffff;
   font-family: 'DMSans-Regular', sans-serif;
   font-size: 14px;
   font-weight: 300;
@@ -510,20 +801,27 @@ ul.sub-menu {
 
 .footer-widget {
   margin-bottom: 68px;
+  padding-top: 100px;
 }
 
-.footer-widget .container {
-  border-top: 1px solid #FFFFFF;
-  padding-top: 15px;
-}
 
 .single-widget h2 {
-  color: #666663;
+  color: #ffffff;
   font-family: 'DMSans-Regular', sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   margin-bottom: 22px;
   text-transform: uppercase;
+  position: relative;
+}
+.single-widget h2::before{
+  position: absolute;
+  content: "";
+  width: 30%;
+  height: 3px;
+  background-color: #44a41b;
+  top: 150%;
+  left: 0;
 }
 
 .single-widget h2 i {
@@ -531,7 +829,7 @@ ul.sub-menu {
 }
 
 .single-widget ul li a {
-  color: #8C8C88;
+  color: #ffffff;
   font-family: 'DMSans-Regular', sans-serif;
   font-size: 14px;
   font-weight: 300;
@@ -549,28 +847,26 @@ ul.sub-menu {
 
 
 .searchform input {
-  border: 1px solid #DDDDDD;
-  color: #CCCCC6;
+  border: 1px solid #ffffff;
+  color: #44a41b;
   font-family: 'DMSans-Regular', sans-serif;
   font-size: 14px;
   margin-top: 0;
   outline: medium none;
   padding: 7px;
-  width: 212px;
+  width: 90%;
 }
 
 
 .searchform button {
+  width: 10%;
   background: #44a41b;
-  border: medium none;
-  border-radius: 0;
-  margin-left: -5px;
-  margin-top: -3px;
+  border: none !important;
   padding: 7px 17px;
 }
 
 .searchform button i {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 20px;
 }
 
@@ -580,7 +876,7 @@ ul.sub-menu {
 }
 
 .searchform p {
-  color: #8C8C88;
+  color: #ffffff;
   font-family: 'DMSans-Regular', sans-serif;
   font-size: 14px;
   font-weight: 300;
@@ -588,7 +884,7 @@ ul.sub-menu {
 }
 
 .footer-bottom {
-  background: #D6D6D0;
+  background: #ffffff;
   padding-top: 10px;
 }
 
@@ -611,9 +907,249 @@ ul.sub-menu {
 **************************/
 
 
+/*Slicktiky-start*/
+.carousel-cell {
+  width: 100%;
+
+}
+
+.carousel-cell .col-sm-6 {
+  left: 25%;
+  bottom: 30%;
+
+}
+
+.carousel-cell.is-selected .col-sm-6 h1{
+  animation-duration: 1.3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  opacity: 1;
+
+  -webkit-animation-name: fadeInDown;
+	animation-name: fadeInDown;
+}
+
+.carousel-cell.is-selected .col-sm-6 h2{
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  opacity: 1;
+
+  -webkit-animation-name: slideInLeft;
+	animation-name: slideInLeft;
+}
+
+.carousel-cell.is-selected .col-sm-6 p{
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  opacity: 1;
+
+  -webkit-animation-name: slideInRight;
+	animation-name: slideInRight;
+}
+
+
+
+
+.carousel-cell .col-sm-6 h1
+ {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: .025em;
+  text-shadow: 1px 9px 16px rgb(0 0 0 / 18%);
+  letter-spacing: .05em;
+}
+.carousel-cell .col-sm-6 h2
+ {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: .025em;
+  text-shadow: 1px 9px 16px rgb(0 0 0 / 18%);
+  letter-spacing: .05em;
+}
+.carousel-cell .col-sm-6 p
+ {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: .025em;
+  text-shadow: 1px 9px 16px rgb(0 0 0 / 18%);
+  letter-spacing: .05em;
+}
+
+
+.carousel-cell .col-sm-6 h1 {
+  font-size: 90px;
+  margin-bottom: 4%;
+}
+
+.carousel-cell .col-sm-6 h2 {
+  font-size: 55px;
+  margin-bottom: 2%;
+}
+
+.carousel-cell .col-sm-6 p {
+  font-size: 25px;
+}
+
+.main-carousel .flickity-prev-next-button.previous {
+  left: 30px;
+
+}
+
+.main-carousel .flickity-page-dots {
+  bottom: 25px;
+}
+
+.main-carousel .flickity-prev-next-button.next {
+  right: 30px;
+
+}
+
+.flickity-page-dots .dot.is-selected {
+  background-color: #44a41b;
+
+}
+
+.main-carousel .flickity-page-dots .dot {
+  height: 4px;
+  width: 40px;
+  border-radius: 0;
+  margin: 2px;
+
+}
+
+.flickity-button .flickity-button-icon {
+  color: #44a41b;
+
+}
+
+@-webkit-keyframes slideInRight {
+	0% {
+		-webkit-transform: translate3d(100%, 0, 0);
+		transform: translate3d(100%, 0, 0);
+		visibility: visible;
+	}
+	100% {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes slideInRight {
+	0% {
+		-webkit-transform: translate3d(100%, 0, 0);
+		transform: translate3d(100%, 0, 0);
+		visibility: visible;
+	}
+	100% {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@-webkit-keyframes slideInLeft {
+	0% {
+		-webkit-transform: translate3d(-100%, 0, 0);
+		transform: translate3d(-100%, 0, 0);
+		visibility: visible;
+	}
+	100% {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes slideInLeft {
+	0% {
+		-webkit-transform: translate3d(-100%, 0, 0);
+		transform: translate3d(-100%, 0, 0);
+		visibility: visible;
+	}
+	100% {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@-webkit-keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, 70px, 0);
+		transform: translate3d(0, 40px, 0);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: none;
+		transform: none;
+	}
+}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, 70px, 0);
+		transform: translate3d(0, 40px, 0);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: none;
+		transform: none;
+	}
+}
+
+@-webkit-keyframes fadeInDown {
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -40px, 0);
+		transform: translate3d(0, -40px, 0);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: none;
+		transform: none;
+	}
+}
+
+@keyframes fadeInDown {
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -40px, 0);
+		transform: translate3d(0, -40px, 0);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: none;
+		transform: none;
+	}
+}
+
+
+
+
+/*Slicktiky-end*/
+
 #slider {
   padding-bottom: 45px;
+  /* z-index: 15;
+  background-color: #4d8b32; */
 }
+
 
 .carousel-indicators li {
   background: #C4C4BE;
@@ -1231,7 +1767,6 @@ h2.title {
 
 .view-product img {
   border: 1px solid #F7F7F0;
-  height: 380px;
   width: 100%;
 }
 
@@ -1781,6 +2316,7 @@ input[type=number]::-webkit-outer-spin-button {
   /* font-weight: bold; */
   text-align: center;
 }
+
 /* antity js end */
 
 .cart_quantity_input {

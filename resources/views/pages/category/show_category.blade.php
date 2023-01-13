@@ -11,7 +11,7 @@
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
-                                <img style="max-height: 130px" src="{{ URL::to('Up_Load/Product/' . $product_category->product_image) }}"
+                                <img style="max-height: 190px" src="{{ URL::to('Up_Load/Product/' . $product_category->product_image) }}"
                                     alt="" />
                                 <h2>{{ number_format($product_category->product_price) . ' ' . 'VNĐ' }}</h2>
                                 <p>{{ $product_category->product_name }}</p>

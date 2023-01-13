@@ -298,12 +298,10 @@
                         <div class="collapse " id="navbar-maps">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item ">
-                                    <a href="{{ route('slide_add') }}"
-                                        class="nav-link">Thêm slide</a>
+                                    <a href="{{ route('slide_add') }}" class="nav-link">Thêm slide</a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a href="{{ route('slide_list') }}"
-                                        class="nav-link">Quản lý slide</a>
+                                    <a href="{{ route('slide_list') }}" class="nav-link">Quản lý slide</a>
                                 </li>
                             </ul>
                         </div>

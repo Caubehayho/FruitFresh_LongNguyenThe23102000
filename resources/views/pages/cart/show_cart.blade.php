@@ -1,7 +1,6 @@
 @extends('master')
 @section('content')
     <section id="cart_items">
-        <div class="container">
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
                     <li><a href="{{ URL::to('/') }}">Trang chủ</a></li>
@@ -79,11 +78,9 @@
                     </tbody>
                 </table>
             </div>
-        </div>
     </section>
     <!--/#cart_items-->
     <section id="do_action">
-        <div class="container">
             <div class="heading">
                 <h3>Bạn có muốn đi tới thanh toán không?</h3>
                 <p>Thêm phiếu giảm giá hoặc voucher ưu đãi của bạn</p>
@@ -151,12 +148,24 @@
                             <li>Phí vận chuyển <span>Free</span></li>
                             <li>Thành tiền <span>{{ Cart::total(0, ',', '.') . ' ' . 'vnđ' }}</span></li>
                         </ul>
-                        <a class="btn btn-default update" href="">Cập nhật</a>
-                        <a class="btn btn-default check_out" href="">Thanh toán</a>
+                        {{-- <a class="btn btn-default update" href="">Cập nhật</a> --}}
+                        <?php
+                                $customer_id = Session::get('customer_id');
+                                if ($customer_id != null){
+                                    ?>
+                                <a class="btn btn-default check_out" href="{{URL::to('/check-out')}}">Thanh toán</a>
+                                <?php
+                                }
+
+                                else {
+                                    ?>
+                                <a class="btn btn-default check_out" href="{{URL::to('/login-checkout')}}">Thanh toán</a>
+                                <?php
+                                }
+                                ?>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
     <!--/#do_action-->
 @endsection
