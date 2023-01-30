@@ -34,6 +34,8 @@ class ProductController extends Controller
         $cate_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
         return view ('admin.add_product', compact('title'))->with('cate_product', $cate_product)->with('brand_product', $brand_product);
+
+
     }
 
 
@@ -53,6 +55,19 @@ class ProductController extends Controller
 
     public function save_product(Request $request){
         $this->AuthLogin();
+        $rules = [
+            'product_name'=> 'required|min:6',
+            'product_price'=> 'required|integer'
+        ];
+        $message = [
+            'product_name.required' => 'Tên sản phẩm bắt buộc phải nhập',
+            'product_name.min' => 'Tên sản phẩm không được nhỏ hơn :min ký tự',
+            'product_price.required' => 'Giá sản phẩm bắt buộc phải nhập',
+            'product_price.integer' => 'Giá sản phẩm bắt buộc phải là số'
+        ];
+        $request->validate($rules, $message);
+
+        
         $data = array();
         $data['product_name'] = $request->product_name;
         $data['product_price'] = $request->product_price;
@@ -78,6 +93,7 @@ class ProductController extends Controller
 
         DB::table('tbl_product')->insert($data);
         Session::put('message', 'Thêm sản phẩm thành công');
+
         return Redirect::to('all-product');
     }
 

@@ -85,18 +85,23 @@
                 </tbody>
             </table>
         </div>
+        <h4>Chọn hình thức thanh toán</h4>
 
-        <div class="payment-options">
-            <span>
-                <label><input name="payment_option" value="1" type="checkbox"> Trả bằng thẻ ATM </label>
-            </span>
-            <span>
-                <label><input name="payment_option" value="2" type="checkbox"> Nhận tiền mặt </label>
-            </span>
-            <span>
-                <label><input name="payment_option" type="checkbox"> Trả qua momo </label>
-            </span>
-        </div>
+        <form action="{{URL::to('/order-place')}}" method="POST" >
+            {{ csrf_field() }}
+            <div class="payment-options" style="margin-bottom: 0px;">
+                <span>
+                    <label><input name="payment_option" value="1" type="checkbox"> Trả bằng thẻ ATM </label>
+                </span>
+                <span>
+                    <label><input name="payment_option" value="2" type="checkbox"> Nhận tiền mặt </label>
+                </span>
+                <span>
+                    <label><input name="payment_option" value="3" type="checkbox"> Trả qua momo </label>
+                </span>
+            </div>
+            <input type="submit" name="send_oder_place" value="Đặt hàng" class="btn btn-primary btn-sm">
+        </form>
     </section>
     <!--/#cart_items-->
 @endsection

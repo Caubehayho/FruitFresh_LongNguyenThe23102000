@@ -119,6 +119,9 @@
     <link type="text/css" href="https://argon-dashboard-laravel-bs4.creative-tim.com/argon/css/argon.css?v=1.0.0"
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/5bf87cd97a.js" crossorigin="anonymous"></script>
+
+
+
 </head>
 
 <body class="">
@@ -234,6 +237,23 @@
                         <a class="nav-link" href="{{ URL::to('dashboard') }}">
                             <i class="fa-solid fa-tv"></i> Bảng điều khiển
                         </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#navbar-dashboards" data-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="navbar-dashboards">
+                            <i class="fa-solid fa-carrot"></i>
+                            <span class="nav-link-text">Đơn hàng</span>
+                        </a>
+                        <div class="collapse" id="navbar-dashboards" style="">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item active">
+                                    <a href="{{ URL::to('/manage-order') }}" class="nav-link">Quản lý đơn hàng</a>
+                                </li>
+                                {{-- <li class="nav-item ">
+                                        class="nav-link">Alternative</a>
+                                </li> --}}
+                            </ul>
+                        </div>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link collapsed" href="#navbar-forms" data-toggle="collapse" role="button"
@@ -397,6 +417,14 @@
         integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA=="
         data-cf-beacon='{"rayId":"7811a966298787f6","version":"2022.11.3","r":1,"token":"1b7cbb72744b40c580f8633c6b62637e","si":100}'
         crossorigin="anonymous"></script>
+    {{-- validator-form --}}
+    {{-- <script src="{{ asset('public/Back_End/js/jquery.form-validator.min.js') }}"></script>
+    <script type="text/javascript">
+        $.validate({
+
+        });
+    </script> --}}
+
 </body>
 
 </html>

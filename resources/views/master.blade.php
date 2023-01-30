@@ -108,6 +108,7 @@
                                 <?php
                                 $customer_id = Session::get('customer_id');
                                 $shipping_id = Session::get('shipping_id');
+                                // dd( $shipping_id);
 
                                 if ($customer_id != null){
                                 ?>

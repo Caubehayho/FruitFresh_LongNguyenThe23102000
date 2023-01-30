@@ -122,3 +122,10 @@ Route::post ('/login-customer', [CheckoutController::class, "login_customer"]);
 Route::get('/check-out', [CheckoutController::class, "check_out"]);
 Route::post ('/save-checkout-customer', [CheckoutController::class, "save_checkout_customer"]);
 Route::get('/payment', [CheckoutController::class, "payment"]);
+Route::post('/order-place', [CheckoutController::class, "order_place"]);
+
+
+
+//order
+Route::get('/manage-order', [CheckoutController::class, "manage_order"]);
+Route::get('/view-order/{orderId}', [CheckoutController::class, "view_order"]);
