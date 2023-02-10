@@ -3,6 +3,7 @@
     @foreach ($product_details as $detail_pro)
         <div class="product-details">
             <!--product-details-->
+           <div>
             <div class="col-sm-5">
                 <div class="view-product">
                     <img src="{{ URL::to('Up_Load/Product/' . $detail_pro->product_image) }}" alt="" />
@@ -45,7 +46,7 @@
                     <!--/product-information-->
                     <img src="images/product-details/new.jpg" class="newarrival" alt="" />
                     <h1>{{ $detail_pro->product_name }}</h1>
-                    <img src="images/product-details/rating.png" alt="" />
+                    <img src="{{URL::to('Front_End/Image/product-details/rating.png')}}" alt="" />
                     <form action="{{ URL::to('/save-cart') }}" method="POST">
                         {{ csrf_field() }}
                         <span>
@@ -58,21 +59,34 @@
                         <p><b>Tình trạng:</b> Còn hàng</p>
                         <p><b>Thương hiệu: </b>{{ $detail_pro->brand_name }}</p>
                         <p><b>Danh mục: </b>{{ $detail_pro->category_name }}</p>
-                        <a href=""><img src="images/product-details/share.png" class="share img-responsive"
+                        <a href=""><img src="{{URL::to('Front_End/Image/product-details/share.png')}}" class="share img-responsive"
                                 alt="" /></a>
-                        <button type="submit" class="btn btn-fefault cart">
+                        <button style="margin-left: 0;margin-top: 15px; display: block" type="submit" class="btn btn-fefault cart">
                             <i class="fa fa-shopping-cart"></i>
                             Thêm giỏ hàng
                         </button>
+                        <div class="fb-share-button" data-href="http://127.0.0.1:8000/"
+                        data-layout="button_count" data-size="large"><a target="_blank"
+                         href="https://www.facebook.com/sharer/sharer.php?u={{$url_canonical}}&amp;src=sdkpreparse"
+                          class="fb-xfbml-parse-ignore">Chia sẻ</a>
+                       </div>
+                       {{-- <div class="fb-like" data-href="http://127.0.0.1:8000/"
+                        data-width="" data-layout="standard" data-action="like"
+                         data-size="small" data-share="false">
+                        </div> --}}
                     </form>
                 </div>
                 <!--/product-information-->
             </div>
+           </div>
+        </div>
+
+        <div class="fb-comments" data-href="{{$url_canonical}}" data-width="" data-numposts="5">
         </div>
         <!--/product-details-->
 
 
-        <div class="category-tab shop-details-tab">
+        <div style="margin-top: 20px" class="category-tab shop-details-tab">
             <!--category-tab-->
             <div class="col-sm-12">
                 <ul class="nav nav-tabs">

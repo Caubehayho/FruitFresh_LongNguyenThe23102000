@@ -7,6 +7,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Dưa Hấu X</title>
+    {{-- seo --}}
+    {{-- <link rel="canonical" href="{{$url_canonical}}"> --}}
+    {{-- seo-end --}}
+
+    <meta property="og:site_name" content="http://127.0.0.1:8000/">
+
     <link href="{{ asset('Front_End/Css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('Front_End/Css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('Front_End/Css/prettyPhoto.css') }}" rel="stylesheet">
@@ -14,6 +20,7 @@
     <link href="{{ asset('Front_End/Css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('Front_End/Css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('Front_End/Css/responsive.css') }}" rel="stylesheet">
+    <link href="{{ asset('Front_End/Css/sweetalert.css') }}" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -129,7 +136,7 @@
                                 }
                                 ?>
 
-                                <li><a href="{{ URL::to('/show-cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ
+                                <li><a href="{{ URL::to('/giohang') }}"><i class="fa fa-shopping-cart"></i> Giỏ
                                         hàng</a></li>
 
                                 <?php
@@ -503,6 +510,55 @@
     <script src="{{ asset('Front_End/js/price-range.js') }}"></script>
     <script src="{{ asset('Front_End/js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('Front_End/js/main.js') }}"></script>
+    <script src="{{ asset('Back_End/js/sweetalert.min.js') }}"></script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0"
+        nonce="zeg0gWPS"></script>
+
+        {{-- cart ajax --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.add-to-cart').click(function() {
+                var id = $(this).data('id_product');
+                var cart_product_id = $('.cart_product_id_' + id).val();
+                var cart_product_name = $('.cart_product_name_' + id).val();
+                var cart_product_image = $('.cart_product_image_' + id).val();
+                var cart_product_price = $('.cart_product_price_' + id).val();
+                var cart_product_qty = $('.cart_product_qty_' + id).val();
+                var _token = $('input[name="_token"]').val();
+
+                $.ajax({
+                    url: '{{ url('/add-cart-ajax') }}',
+                    method: 'POST',
+                    data: {
+                        cart_product_id: cart_product_id,
+                        cart_product_name: cart_product_name,
+                        cart_product_image: cart_product_image,
+                        cart_product_price: cart_product_price,
+                        cart_product_qty: cart_product_qty,
+                        _token: _token
+                    },
+                    success:function(data) {
+                        // alert(data);
+                        swal({
+                                title: "Đã thêm sản phẩm vào giỏ hàng",
+                                text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                                showCancelButton: true,
+                                cancelButtonText: "Xem tiếp",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Đi đến giỏ hàng",
+                                closeOnConfirm: false
+                            },
+                            function() {
+                                window.location.href = "{{ url('/giohang') }}";
+                            });
+
+                    }
+
+                });
+            })
+        });
+    </script>
 </body>
 
 </html>

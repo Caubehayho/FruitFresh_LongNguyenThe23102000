@@ -255,6 +255,50 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active collapsed" href="#navbar-examples" data-toggle="collapse"
+                            role="button" aria-expanded="false" aria-controls="navbar-examples">
+                            <i class="fab fa-laravel"></i>
+                            <span class="nav-link-text">Mã giảm giá</span>
+                        </a>
+                        <div class="collapse" id="navbar-examples" style="">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ URL::to('/insert-coupon') }}">
+                                        Quản lý mã giảm giá
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ URL::to('/list-coupon') }}">
+                                        Tất cả mã giảm giá
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#navbar" data-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="navbar">
+                            <i class="fab fa-laravel"></i>
+                            <span class="nav-link-text">Vận chuyển</span>
+                        </a>
+                        <div class="collapse" id="navbar" style="">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ URL::to('/delivery') }}">
+                                        Quản lý vận chuyển
+                                    </a>
+                                </li>
+                                {{-- <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="{{URL::to('/list-coupon')}}">
+                                        Tất cả mã giảm giá
+                                    </a>
+                                </li> --}}
+                            </ul>
+                        </div>
+                    </li>
+
                     <li class="nav-item ">
                         <a class="nav-link collapsed" href="#navbar-forms" data-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="navbar-forms">
@@ -287,7 +331,8 @@
                                     <a href="{{ route('product_addbrand') }}" class="nav-link">Thêm thương hiệu </a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a href="{{ route('product_listbrand') }}" class="nav-link">Tất cả thương hiệu</a>
+                                    <a href="{{ route('product_listbrand') }}" class="nav-link">Tất cả thương
+                                        hiệu</a>
                                 </li>
                             </ul>
                         </div>
@@ -424,6 +469,107 @@
 
         });
     </script> --}}
+
+    {{-- Ajax Vận chuyển tỉnh thành phố --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            fetch_delivery();
+
+            function fetch_delivery(){  //lấy dữ liệu:thông tin phí ship các tỉnh ra bằng ajax
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: '{{ url('/select-feeship') }}',
+                    method: 'POST',
+                    data: {
+                        "_token": _token,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
+                        $('#load_delivery').html(data); //html(data): gửi ra tất cả data của /select-feeship nhả về #load_delivery để laod ra
+                    }
+                });
+            }
+            
+            $(document).on('blur','.fee_feeship_edit', function(){
+                var feeship_id = $(this).data('feeship_id');
+                var fee_value = $(this).text();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: '{{ url('/update-delivery') }}',
+                    method: 'POST',
+                    data: {
+                        "feeship_id": feeship_id,
+                        "fee_value": fee_value,
+                        "_token": _token,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
+                        fetch_delivery();
+                    }
+                })
+            });
+
+            $('.add_delivery').click(function(){
+
+
+                var city = $('.city').val();
+                var province = $('.province').val();
+                var wards = $('.wards').val();
+                var fee_ship = $('.fee_ship').val();
+                var _token = $('input[name="_token"]').val();
+                // alert(city);
+                // alert(province);
+                // alert(wards);
+                // alert(fee_ship);
+                $.ajax({
+                    url: '{{ url('/insert-delivery') }}',
+                    method: 'POST',
+                    data: {
+                       " city": city,
+                        "province": province,
+                        "wards": wards,
+                        "fee_ship": fee_ship,
+                        "_token": _token,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
+                        fetch_delivery();
+                    }
+                });
+
+
+
+
+
+            });
+            $('.choose').on('change', function() {
+                var action = $(this).attr('id');
+                var ma_id = $(this).val();
+                var _token = $('input[name="_token"]').val();
+                var result = '';
+
+                if (action == 'city') {
+                    result = 'province';
+                } else {
+                    result = 'wards';
+                }
+                $.ajax({
+                    url: '{{ url('/select-delivery') }}',
+                    method: 'POST',
+                    data: {
+                       " action": action,
+                        "ma_id": ma_id,
+                        "_token": _token,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
+                        $('#' + result).html(data);
+                    }
+                });
+            });
+        })
+    </script>
 
 </body>
 

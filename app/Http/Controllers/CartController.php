@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 session_start();
 
 use Illuminate\Http\Request;
+use App\Models\Coupon;
 use DB;
 use Cart;
 
@@ -65,4 +66,149 @@ class CartController extends Controller
 
         return Redirect::to('/show-cart');
     }
+
+
+    //add cart ajax
+    public function add_cart_ajax(Request $request){
+        $data = $request->all();
+        // print_r($data);
+        $session_id = substr(md5(microtime()), rand(0, 26),5); //mỗi sản phẩm thêm vào sẽ tạo ra 1 sectionId riêng, khi xóa sẽ dựa vào sectionId này
+        $cart = Session::get('cart');
+        if($cart==true){
+            $is_avaiable = 0;
+            foreach($cart as $key => $val){
+                if ($val['product_id']==$data['cart_product_id']){
+                    $is_avaiable++;
+                    $cart[$key]['product_qty']+=1;
+                    Session::put('cart',$cart);
+                }
+            }
+            if ($is_avaiable == 0 ){
+                $cart[] = array(
+                    'session_id' => $session_id,
+                    'product_id' => $data['cart_product_id'],
+                    'product_name' => $data['cart_product_name'],
+                    'product_image' =>$data['cart_product_image'],
+                    'product_qty' => $data['cart_product_qty'],
+                    'product_price' => $data['cart_product_price']
+                );
+                Session::put('cart', $cart);
+            }
+        }else{
+            $cart[] = array(
+                'session_id' => $session_id,
+                'product_id' => $data['cart_product_id'],
+                'product_name' => $data['cart_product_name'],
+                'product_image' =>$data['cart_product_image'],
+                'product_qty' => $data['cart_product_qty'],
+                'product_price' => $data['cart_product_price']
+            );
+        }
+        Session::put('cart', $cart);
+        Session::save();
+    }
+
+    //Gio hang ajax
+    public function giohang(){
+        $title = 'Thêm giỏ hàng ajax';
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->get();
+
+        return view('pages.cart.cart_ajax', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home);
+    }
+
+    //delete-ajax
+    public function del_product($session_id){
+        $cart = Session::get('cart');
+        // echo '<pre>';
+        // print_r($cart);
+        // echo '</pre>';
+        if($cart==true){
+            foreach( $cart as $key => $val){   //key la gia tri id tu 0, 1 , 2, 3, 4, ...
+                if($val['session_id']==$session_id){
+                    unset($cart[$key]);
+                }
+            }
+            Session::put('cart', $cart);
+            return redirect()->back()->with('message', 'Xóa sản phẩm thành công');
+        }else{
+            return redirect()->back()->with('message', 'Xóa sản phẩm thất bại');
+        }
+    }
+
+    //update-cart-ajax
+    public function update_cart( Request $request){
+        $data = $request->all();
+        $cart = Session::get('cart');
+        if($cart==true){
+            foreach($data['cart_qty'] as $key => $qty){ //$key là sessionId của sản phẩm , qty là só lượng
+                foreach($cart as $session =>$val){
+                    if($val['session_id']==$key){
+                        $cart[$session]['product_qty'] = $qty;
+                    }
+                }
+            }
+            Session::put('cart', $cart);
+            return redirect()->back()->with('message', 'Cập nhật số lượng thành công');
+        }else{
+            return redirect()->back()->with('message', 'Cập nhật số lượng thất bại');
+        }
+    }
+
+    //delete-all-product 
+    public function del_all_product(){
+        $cart = Session::get('cart');
+        if($cart==true){
+            Session::forget('cart');
+            Session::forget('coupon');
+            return redirect()->back()->with('message', 'Xóa giỏ hàng thành công');
+        }
+    }
+
+
+    //Check-Coupon
+
+    public function check_coupon(Request $request){
+        $data = $request->all();
+        print_r($data);
+        $coupon = Coupon::where('coupon_code', $data['coupon'])->first();
+
+        if($coupon){
+            $count_coupon = $coupon->count();
+            if($count_coupon>0){
+                $coupon_session = Session::get('coupon');
+                if($coupon_session==true){
+                    $is_avaiable = 0;
+                    if($is_avaiable==0){
+                        $cou[] = array(
+                            'coupon_code' => $coupon->coupon_code,
+                            'coupon_condition' => $coupon->coupon_condition,
+                            'coupon_number' => $coupon->coupon_number,
+                        );
+
+                        Session::put('coupon', $cou);
+                    }
+                }
+                else{
+                    $cou[] = array(
+                        'coupon_code' => $coupon->coupon_code,
+                        'coupon_condition' => $coupon->coupon_condition,
+                        'coupon_number' => $coupon->coupon_number,
+                    );
+
+                    Session::put('coupon', $cou);
+                }
+                Session::save();
+                return redirect()->back()->with('message', ' Thêm mã giảm giá thành công');
+            }
+        }else{
+            return redirect()->back()->with('error', ' Mã giảm giá không đúng');
+        }
+    }
+
+
+
+
+
 }

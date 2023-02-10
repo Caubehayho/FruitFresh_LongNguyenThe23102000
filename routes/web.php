@@ -8,7 +8,9 @@ use App\Http\Controllers\BrandProduct;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CheckoutController; 
+use App\Http\Controllers\CouponController;
+use App\Http\Controllers\DeliveryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -109,9 +111,24 @@ Route::get('/show-slide/{SlideId}', [SlideController::class, "show_slide"]);
 //Cart
 Route::post('/save-cart', [CartController::class, "save_cart"]);
 Route::post('/update-cart-quantity', [CartController::class, "update_cart_quantity"]);
+Route::post('/update-cart', [CartController::class, "update_cart"]);
+Route::post('/add-cart-ajax', [CartController::class, "add_cart_ajax"]);
 Route::get('/show-cart', [CartController::class, "show_cart"]);
+Route::get('/giohang', [CartController::class, "giohang"]);
 Route::get('/delete-to-cart/{rowId}', [CartController::class, "delete_to_cart"]);
+Route::get('/del-product/{session_id}', [CartController::class, "del_product"]); 
+Route::get('/del-all-product', [CartController::class, "del_all_product"]); 
 
+
+
+//Coupon
+Route::post('/check-coupon', [CartController::class, "check_coupon"]);
+//Coupon-Admin
+Route::get('/insert-coupon', [CouponController::class, "insert_coupon"]);
+Route::get('/delete-coupon/{coupon_id}', [CouponController::class, "delete_coupon"]);
+Route::get('/unset-coupon', [CouponController::class, "unset_coupon"]);
+Route::get('/list-coupon', [CouponController::class, "list_coupon"]);
+Route::post('/insert-coupon-code', [CouponController::class, "insert_coupon_code"]);
 
 
 //Checkout
@@ -129,3 +146,12 @@ Route::post('/order-place', [CheckoutController::class, "order_place"]);
 //order
 Route::get('/manage-order', [CheckoutController::class, "manage_order"]);
 Route::get('/view-order/{orderId}', [CheckoutController::class, "view_order"]);
+
+
+
+//Delivery
+Route::get('/delivery', [DeliveryController::class, "delivery"]);
+Route::post('/select-delivery', [DeliveryController::class, "select_delivery"]);
+Route::post('/insert-delivery', [DeliveryController::class, "insert_delivery"]);
+Route::post('/select-feeship', [DeliveryController::class, "select_feeship"]);
+Route::post('/update-delivery', [DeliveryController::class, "update_feeship"]);
