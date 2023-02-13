@@ -158,7 +158,12 @@
                                                     <br>
                                                     <input type="submit" class="btn btn-default check_coupon check_out" value="Tính mã giảm giá" name="check_coupon" style="width: 90%">
                                                     @if(Session::get('coupon'))
-                                                    <a class="btn btn-default check_out" href="{{ url('/unset-coupon') }}">Xóa Mã khuyến mãi</a>
+                                                          <a class="btn btn-default check_out" href="{{ url('/unset-coupon') }}">Xóa Mã khuyến mãi</a>
+                                                    @endif
+                                                    @if(Session::get('customer_id'))
+                                                        <a class="btn btn-default check_out" href="{{ url('/check-out') }}">Đặt hàng</a>
+                                                    @else
+                                                        <a class="btn btn-default check_out" href="{{ url('/login-checkout') }}">Đặt hàng</a>
                                                     @endif
                                             </form>
                                     </td>

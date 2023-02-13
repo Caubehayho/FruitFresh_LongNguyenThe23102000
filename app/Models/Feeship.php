@@ -9,7 +9,7 @@ class Feeship extends Model
 {
     public $timestamps = false; //set time to false
     protected $fillable = [
-     'fee_mtp', 'fee_maqh', 'fee_xaid', 'fee_feeship'
+     'fee_matp', 'fee_maqh', 'fee_xaid', 'fee_feeship'
     ];
     protected $primaryKey = 'fee_id';
     protected $table = 'tbl_feeship';

@@ -43,4 +43,33 @@ class HomeController extends Controller
 
     }
 
+    //Contact-home
+    public function contact(){
+    
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->limit(4)->get();
+
+        return view('pages.contact.contact')->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home);
+    }
+
+    //News-home
+    public function news(){
+        $title = 'Tin tức';
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->limit(4)->get();
+
+        return view('pages.news.news', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home);
+    }
+
+    public function details_new(){
+        $title = 'Chi tiết bài viết';
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->limit(4)->get();
+
+        return view('pages.news.details-new', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home);
+    }
+
 }

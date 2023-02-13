@@ -491,6 +491,8 @@
                 });
             }
             
+
+
             $(document).on('blur','.fee_feeship_edit', function(){
                 var feeship_id = $(this).data('feeship_id');
                 var fee_value = $(this).text();
@@ -510,9 +512,10 @@
                 })
             });
 
+
+
+
             $('.add_delivery').click(function(){
-
-
                 var city = $('.city').val();
                 var province = $('.province').val();
                 var wards = $('.wards').val();
@@ -537,12 +540,9 @@
                         fetch_delivery();
                     }
                 });
-
-
-
-
-
             });
+
+
             $('.choose').on('change', function() {
                 var action = $(this).attr('id');
                 var ma_id = $(this).val();
@@ -554,6 +554,7 @@
                 } else {
                     result = 'wards';
                 }
+                
                 $.ajax({
                     url: '{{ url('/select-delivery') }}',
                     method: 'POST',

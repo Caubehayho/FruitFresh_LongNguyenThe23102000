@@ -163,17 +163,17 @@
                                 <li><a href="{{ URL::to('Trangchu') }}" class="active">Trang chủ</a></li>
                                 <li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="#">Products</a></li>
-                                        <li><a href="#">Product Details</a></li>
-                                        <li><a href="#">Checkout</a></li>
-                                        <li><a href="#">Cart</a></li>
-                                        <li><a href="#">Login</a></li>
+                                        <li><a href="shop.html">Products</a></li>
+                                        <li><a href="product-details.html">Product Details</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="cart.html">Cart</a></li>
+                                        <li><a href="login.html">Login</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="{{ URL::to('/news') }}">Tin tức</a>
                                 </li>
                                 <li><a href="{{ URL::to('/giohang') }}">Giỏ hàng</a></li>
-                                <li><a href="{{ URL::to('/contact') }}">Liên hệ</a></li>
+                                <li><a href="{{ URL::to('/contact')}}">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -191,8 +191,6 @@
         </div>
         <!--/header-bottom-->
     </header>
-    <!--/header-->
-
 
 
     <section id="slider" class="slider-slictiky">
@@ -236,77 +234,96 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-sm-3">
-                    <div class="left-sidebar">
-                        <div class="panel-group category-products" id="accordian">
-                            <!--category-productsr-->
-                            <div style="padding-bottom: 20px">
-                                <h2>Danh mục hoa quả</h2>
-                                @foreach ($category as $catehome)
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
+                <div class="col-sm-12 padding-right">
+                    <div id="contact-page" class="container">
+                        <div class="bg">
+                            <div class="row">    		
+                                <div class="col-sm-12">    			   			
+                                    <h2 class="title text-center"><strong>Liên hệ với chúng tôi</strong></h2>    			    				    				
+                                    <div id="gmap" class="contact-map">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20274.48251057591!2d105.94835020360753!3d20.26979824885619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313679cd26a46f65%3A0x308e66ee30caf0bc!2zTUlOSCBUUkFORyBGUlVJVCAtIEhvYSBxdeG6oyBuaOG6rXAga2jhuql1IGNhbyBj4bqlcA!5e0!3m2!1svi!2sus!4v1676211967473!5m2!1svi!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    </div>
+                                </div>			 		
+                            </div>    	
+                            <div class="row">  	
+                                {{-- <div class="col-sm-8">
+                                    <div class="contact-form">
+                                        <h2 class="title text-center">Get In Touch</h2>
+                                        <div class="status alert alert-success" style="display: none"></div>
+                                        <form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+                                            <div class="form-group col-md-6">
+                                                <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <input type="email" name="email" class="form-control" required="required" placeholder="Email">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <input type="text" name="subject" class="form-control" required="required" placeholder="Subject">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
+                                            </div>                        
+                                            <div class="form-group col-md-12">
+                                                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div> --}}
+                                <div class="col-sm-12">
+                                    <div class="contact-info">
+                                        <h2 class="title text-center">Thông tin liên hệ</h2>
+                                        <address>
+                                            <p>Dưa Hấu - X : Fruit-Fresh</p>
+                                            <p>383 Trần Hưng Đạo, Ninh Khánh, Ninh Bình, 430000, Việt Nam</p>
+                                            <p>Thành phố Ninh Bình, Ninh Bình</p>
+                                            <p>Mobile: +84 086 741 823</p>
+                                            <p>Fax: 1-714-252-0026</p>
+                                            <p>Email: longvanh2000@gmail.com</p>
+                                        </address>
+                                        <div class="social-networks">
+                                            <h2 class="title text-center">Mạng xã hội</h2>
+                                            <ul>
                                                 <li>
-                                                    <a
-                                                        href="{{ URL::to('/danh-muc-hoa-qua/' . $catehome->category_id) }}">
-                                                        {{ $catehome->category_name }}
-                                                    </a>
+                                                    <a href="#"><i class="fa fa-facebook"></i></a>
                                                 </li>
-                                            </h4>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-youtube"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                @endforeach
-                            </div>
-                            <!--/category-products-->
-
-                            <div class="brands_products">
-                                <!--brands_products-->
-                                <h2>Thương hiệu sản phẩm</h2>
-                                @foreach ($brand as $brandhome)
-                                    <div class="brands-name">
-                                        <ul class="nav nav-pills nav-stacked">
-                                            <li><a
-                                                    href="{{ URL::to('/thuong-hieu-hoa-qua/' . $brandhome->brand_id) }}">
-                                                    <span class="pull-right">(28)</span>
-                                                    {{ $brandhome->brand_name }}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <!--/brands_products-->
-
-                            <div class="price-range">
-                                <!--price-range-->
-                                <h2>Lọc giá tiền</h2>
-                                <div class="well text-center">
-                                    <input type="text" class="span2" value="" data-slider-min="0"
-                                        data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]"
-                                        id="sl2"><br />
-                                    <b class="pull-left">0 vnđ</b> <b class="pull-right">800 vnđ</b>
-                                </div>
-                            </div>
-                            <!--/price-range-->
-
-                            <div class="shipping text-center">
-                                <!--shipping-->
-                                <img src="{{ asset('Up_Load/product/side.jpg') }}" alt="" />
-                            </div>
-                            <!--/shipping-->
-
-                        </div>
+                                </div>    			
+                            </div>  
+                        </div>	
                     </div>
-                </div>
-
-                <div class="col-sm-9 padding-right">
-                    @yield('content')
                 </div>
             </div>
         </div>
     </section>
 
     <footer id="footer">
+        <!--Footer-->
+        {{-- <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="companyinfo">
+                            <img src="" alt="">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
         <div class="footer-widget">
             <div class="container">
                 <div class="row">
@@ -322,7 +339,7 @@
                                         </li>
                                         <li>
                                             <a href="#" style="line-height: 30px">
-                                                383 Trần Hưng Đạo, Ninh Khánh, TP Ninh Bình, Ninh Bình
+                                                Ngõ 180, đường Z115, Tân Thịnh, Thái Nguyên
                                             </a>
                                         </li>
                                     </ul>
@@ -402,181 +419,6 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0"
         nonce="zeg0gWPS"></script>
-
-    {{-- cart ajax --}}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.add-to-cart').click(function() {
-                var id = $(this).data('id_product');
-                var cart_product_id = $('.cart_product_id_' + id).val();
-                var cart_product_name = $('.cart_product_name_' + id).val();
-                var cart_product_image = $('.cart_product_image_' + id).val();
-                var cart_product_price = $('.cart_product_price_' + id).val();
-                var cart_product_qty = $('.cart_product_qty_' + id).val();
-                var _token = $('input[name="_token"]').val();
-
-                $.ajax({
-                    url: '{{ url('/add-cart-ajax') }}',
-                    method: 'POST',
-                    data: {
-                        cart_product_id: cart_product_id,
-                        cart_product_name: cart_product_name,
-                        cart_product_image: cart_product_image,
-                        cart_product_price: cart_product_price,
-                        cart_product_qty: cart_product_qty,
-                        _token: _token
-                    },
-                    success: function(data) {
-                        // alert(data);
-                        swal({
-                                title: "Đã thêm sản phẩm vào giỏ hàng",
-                                text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
-                                showCancelButton: true,
-                                cancelButtonText: "Xem tiếp",
-                                confirmButtonClass: "btn-success",
-                                confirmButtonText: "Đi đến giỏ hàng",
-                                closeOnConfirm: false
-                            },
-                            function() {
-                                window.location.href = "{{ url('/giohang') }}";
-                            });
-
-                    }
-
-                });
-            })
-        });
-    </script>
-
-
-    {{-- Tính phí vận chuyển blade: show_checkout --}}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.choose').on('change', function() {
-                var action = $(this).attr('id');
-                var ma_id = $(this).val();
-                var _token = $('input[name="_token"]').val();
-                var result = '';
-
-                if (action == 'city') {
-                    result = 'province';
-                } else {
-                    result = 'wards';
-                }
-
-                $.ajax({
-                    url: '{{ url('/select-delivery-home') }}',
-                    method: 'POST',
-                    data: {
-                        "action": action,
-                        "ma_id": ma_id,
-                        "_token": _token,
-                        "_token": "{{ csrf_token() }}"
-                    },
-                    success: function(data) {
-                        $('#' + result).html(data);
-                    }
-                });
-            });
-        });
-    </script>
-
-    {{-- Click tính phi vận chuyển show_check_out --}}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.caculate_delivery').click(function() {
-                var matp = $('.city').val();
-                var maqh = $('.province').val();
-                var xaid = $('.wards').val();
-                var _token = $('input[name="_token"]').val();
-
-                //    console.log(matp);
-                //    console.log(maqh);
-                //    console.log(xaid);
-
-                if (matp == "" && maqh == "" && xaid == "") {
-                    alert('vui lòng chọn địa chỉ!!!');
-                } else {
-                    $.ajax({
-                        url: '{{ url('/caculate-fee') }}',
-                        method: 'POST',
-                        data: {
-                            "matp": matp,
-                            "maqh": maqh,
-                            "xaid": xaid,
-                            "_token": _token,
-                            "_token": "{{ csrf_token() }}"
-                        },
-                        success: function() {
-                            location.reload();
-
-                        }
-                    });
-                }
-            })
-        })
-    </script>
-
-
-    {{-- Gửi thông tin check_out vào chi tiết đơn hàng --}}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.send_order').click(function() {
-                swal({
-                        title: "Xác nhận mua hàng",
-                        text: "Đơn hàng sẽ không được hoàn trả khi đã xác nhận, bạn có muốn tiệp tục đặt hàng không? ",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonClass: "btn-danger",
-                        confirmButtonText: "Đồng ý",
-
-                        cancelButtonText: "Hủy bỏ",
-                        closeOnConfirm: false,
-                        closeOnConfirm: false
-                    },
-                    function(isConfirm) {
-                        if (isConfirm) {
-                            var shipping_email = $('.shipping_email').val();
-                            var shipping_name = $('.shipping_name').val();
-                            var shipping_address = $('.shipping_address').val();
-                            var shipping_phone = $('.shipping_phone').val();
-                            var shipping_notes = $('.shipping_notes').val();
-                            var shipping_method = $('.payment_select').val();
-                            var order_fee = $('.order_fee').val();
-                            var order_coupon = $('.order_coupon').val();
-                            var _token = $('input[name="_token"]').val();
-
-                            $.ajax({
-                                url: '{{ url('/confirm-order') }}',
-                                method: 'POST',
-                                data: {
-                                    shipping_email: shipping_email,
-                                    shipping_name: shipping_name,
-                                    shipping_address: shipping_address,
-                                    shipping_phone: shipping_phone,
-                                    shipping_notes: shipping_notes,
-                                    shipping_method: shipping_method,
-                                    order_fee: order_fee,
-                                    order_coupon: order_coupon,
-                                    _token: _token
-                                },
-                                success: function() {
-                                    swal("Đơn hàng", "Đơn hàng của bản đã đã gửi thành công ", "success");
-                                }
-
-                            });
-                            window.setTimeout(() => {
-                                location.reload();
-                            }, 3000);
-                           
-                        } else {
-                            swal("Đóng", "Đơn hàng chưa được gửi, vui lòng suy nghĩ lại", "error");
-                        }
-                    });
-            })
-        });
-    </script>
-
 </body>
 
 </html>
