@@ -363,10 +363,10 @@
                         <div class="collapse " id="navbar-maps">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item ">
-                                    <a href="{{ route('slide_add') }}" class="nav-link">Thêm slide</a>
+                                    <a href="{{ URL::to('/add-slider') }}" class="nav-link">Thêm slide</a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a href="{{ route('slide_list') }}" class="nav-link">Quản lý slide</a>
+                                    <a href="{{ URL::to('/manage-slider') }}" class="nav-link">Quản lý slide</a>
                                 </li>
                             </ul>
                         </div>
@@ -469,6 +469,48 @@
 
         });
     </script> --}}
+
+    {{-- Quản lý hàng tồn view_order --}}
+    <script type="text/javascript">
+        $('.order_details').change(function(){
+            var order_status = $(this).val();
+            var order_id = $(this).children(":selected").attr('id');
+            var _token = $('input[name="_token"]').val();
+
+            //lay ra so luong
+            quantity = [];
+            $("input[name='product_sales_quantity']").each(function(){
+                quantity.push($(this).val());
+            });
+
+            //lay ra product id
+            order_product_id=[];
+            $("input[name='order_product_id']").each(function(){
+                order_product_id.push($(this).val());
+            });
+            $.ajax({
+                    url: '{{ url('/update-order-qty') }}',
+                    method: 'POST',
+                    data: {
+                        "order_status": order_status,
+                        "order_id": order_id,
+                        "quantity": quantity,
+                        "order_product_id": order_product_id,
+                        "_token": _token,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
+                       alert('Cap nhat thanh cong');
+                    }
+                });
+
+
+        });
+    </script>
+
+
+
+
 
     {{-- Ajax Vận chuyển tỉnh thành phố --}}
     <script type="text/javascript">

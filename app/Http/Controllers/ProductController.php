@@ -57,19 +57,23 @@ class ProductController extends Controller
         $this->AuthLogin();
         $rules = [
             'product_name'=> 'required|min:6',
-            'product_price'=> 'required|integer'
+            'product_price'=> 'required|integer',
+            'product_quantity'=> 'required|integer'
         ];
         $message = [
             'product_name.required' => 'Tên sản phẩm bắt buộc phải nhập',
             'product_name.min' => 'Tên sản phẩm không được nhỏ hơn :min ký tự',
             'product_price.required' => 'Giá sản phẩm bắt buộc phải nhập',
-            'product_price.integer' => 'Giá sản phẩm bắt buộc phải là số'
+            'product_price.integer' => 'Giá sản phẩm bắt buộc phải là số',
+            'product_quantity.required' => 'Sos lượng sản phẩm bắt buộc phải nhập',
+            'product_quantity.integer' => 'Sos lượng sản phẩm bắt buộc phải là số'
         ];
         $request->validate($rules, $message);
 
         
         $data = array();
         $data['product_name'] = $request->product_name;
+        $data['product_quantity'] = $request->product_quantity;
         $data['product_price'] = $request->product_price;
         $data['product_type'] = $request->product_type;
         $data['product_desc'] = $request->product_desc;
@@ -130,6 +134,7 @@ class ProductController extends Controller
         $this->AuthLogin();
         $data = array();
         $data['product_name'] = $request->product_name;
+        $data['product_quantity'] = $request->product_quantity;
         $data['product_price'] = $request->product_price;
         $data['product_type'] = $request->product_type;
         $data['product_desc'] = $request->product_desc;

@@ -31,7 +31,15 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên sản phẩm</label>
                                 <input type="text" name="product_name" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Tên danh mục">
+                                    placeholder="Tên sản phẩm">
+                                @error('product_name')
+                                    <div style="color: red"><i>{{ $message }}</i></div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Số lượng</label>
+                                <input type="text" name="product_quantity" class="form-control" id="exampleInputEmail1"
+                                    placeholder="Số lượng sản phẩm">
                                 @error('product_name')
                                     <div style="color: red"><i>{{ $message }}</i></div>
                                 @enderror

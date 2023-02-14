@@ -108,6 +108,7 @@
                         {{-- <th scope="col" class="sort" data-sort="name">ID</th> --}}
                         <th scope="col" class="sort" data-sort="budget">Tên sản phẩm</th>
                         <th scope="col" class="sort" data-sort="status">Hình ảnh</th>
+                        <th scope="col" class="sort" data-sort="budget">Số lượng</th>
                         {{-- <th scope="col" class="sort" data-sort="status">Mô tả sản phẩm</th>
                         <th scope="col" class="sort" data-sort="status">Giới thiệu sản phẩm</th> --}}
                         <th scope="col" class="sort" data-sort="status">Giá</th>
@@ -132,6 +133,9 @@
                             </td>
                             <td>
                                 <img src="Up_Load/Product/{{ $Data->product_image }}" height="100" width="100">
+                            </td>
+                            <td class="budget">
+                                {{ $Data->product_quantity }}
                             </td>
                             <td class="budget">
                                 {{ $Data->product_price }}

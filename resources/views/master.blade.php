@@ -198,35 +198,19 @@
     <section id="slider" class="slider-slictiky">
         <div class="container-fluid">
             <div class="row">
-                <div class="main-carousel"
-                    data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "adaptiveHeight": true, "autoPlay": 3000}'>
-                    <div class="carousel-cell" style="position: relative">
-                        <img style="width: 100%" src="{{ URL::to('/Up_Load/Slide/slide1.jpg') }}"
-                            class="girl img-responsive" alt="" />
-                        <div class="col-sm-6" style="position: absolute; text-align: center">
-                            <h1> Dưa hấu - x </h1>
-                            <h2> Hoa quả xanh thiên nhiên </h2>
-                            <p> Mang chất dinh dưỡng đến với mọi người </p>
+                    <div class="main-carousel"
+                        data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "adaptiveHeight": true, "autoPlay": 3000}'>
+                        @foreach($slider as $key => $slide)
+                        <div class="carousel-cell" style="position: relative">
+                            <img src="Up_Load/Slide/{{ $slide->slider_image }}" height="100%" width="100%"
+                                class="girl img-responsive" alt="" />
+                            <div class="col-sm-6" style="position: absolute; text-align: center">
+                                <h1> {{$slide->slider_name}} </h1>
+                                <h2> {{$slide->slider_des}} </h2>
+                                <p> {{$slide->slider_content}} </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="carousel-cell " style="position: relative">
-                        <img style="width: 100%" src="{{ URL::to('/Up_Load/Slide/slide2.jpg') }}"
-                            class="girl img-responsive" alt="" />
-                        <div class="col-sm-6" style="position: absolute; text-align: center">
-                            <h1> Dưa hấu - x </h1>
-                            <h2> Hoa quả xanh thiên nhiên </h2>
-                            <p> Mang chất dinh dưỡng đến với mọi người </p>
-                        </div>
-                    </div>
-                    <div class="carousel-cell" style="position: relative">
-                        <img style="width: 100%" src="{{ URL::to('/Up_Load/Slide/slide6.jpg') }}"
-                            class="girl img-responsive" alt="" />
-                        <div class="col-sm-6" style="position: absolute; text-align: center">
-                            <h1> Dưa hấu - x </h1>
-                            <h2> Hoa quả xanh thiên nhiên </h2>
-                            <p> Mang chất dinh dưỡng đến với mọi người </p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

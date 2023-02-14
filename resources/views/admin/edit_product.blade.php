@@ -30,6 +30,11 @@
                                         value="{{ $Data->product_name }}">
                                 </div>
                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Số lượng</label>
+                                    <input type="text" name="product_quantity" class="form-control" id="exampleInputEmail1"
+                                        value="{{ $Data->product_quantity }}">
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleInputEmail1">Hình ảnh sản phẩm</label>
                                     <input type="file" name="product_image" class="form-control" id="exampleInputEmail1">
                                     <img src="{{ URL::to('Up_Load/Product/' . $Data->product_image) }}" height="200"

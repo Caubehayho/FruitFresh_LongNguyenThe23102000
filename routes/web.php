@@ -12,6 +12,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\BannerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -93,17 +94,14 @@ Route::get('/show-product/{ProductId}', [ProductController::class, "show_product
 
 
 
-//Slide
-Route::get('/add-slide', [SlideController::class, "add_slide"])->name("slide_add");
-Route::get('/edit-slide/{SlideId}', [SlideController::class, "edit_slide"]);
-Route::get('/delete-slide/{SlideId}', [SlideController::class, "delete_slide"]);
-Route::get('/all-slide', [SlideController::class, "all_slide"])->name("slide_list");
+//Banner
+Route::get('/manage-slider', [BannerController::class, "manage_slider"]);
+Route::get('/add-slider', [BannerController::class, "add_slider"]);
+Route::get('/delete-slide/{slide_id}', [BannerController::class, "delete_slide"]);
 
-Route::post('/save-slide', [SlideController::class, "save_slide"]);
-Route::post('/update-slide/{SlidetId}', [SlideController::class, "update_slide"]);
-//Show-hide-slide
-Route::get('/hide-slide/{SlideId}', [SlideController::class, "hide_slide"]);
-Route::get('/show-slide/{SlideId}', [SlideController::class, "show_slide"]);
+Route::post('/insert-slider', [BannerController::class, "insert_slider"]);
+Route::get('/unactive-slide/{slide_id}', [BannerController::class, "unactive_slide"]);
+Route::get('/active-slide/{slide_id}', [BannerController::class, "active_slide"]);
 
 
 
@@ -153,6 +151,8 @@ Route::post('/confirm-order', [CheckoutController::class, "confirm_order"]);
 Route::get('/manage-order', [OrderController::class, "manage_order"]);
 Route::get('/view-order/{order_code}', [OrderController::class, "view_order"]);
 Route::get('/print-order/{checkout_code}', [OrderController::class, "print_order"]);
+
+Route::post('/update-order-qty', [OrderController::class, "update_order_qty"]);
 
 
 

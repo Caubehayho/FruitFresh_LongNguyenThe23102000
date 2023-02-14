@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 session_start();
 use Illuminate\Http\Request;
 use DB;
+use App\Models\Slider;
 
 
 class HomeController extends Controller
@@ -16,7 +17,8 @@ class HomeController extends Controller
 
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
-        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->limit(4)->get();
+        //Slider
+        $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
 
         // $all_product = DB::table('tbl_product')
         // ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
@@ -24,7 +26,7 @@ class HomeController extends Controller
 
         $all_product = DB::table('tbl_product')->where('product_status', '1')->orderby('product_id', 'desc')->limit(3)->get();
 
-        return view('pages.home')->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home)->with('all_product', $all_product);
+        return view('pages.home')->with('category', $cate_product)->with('brand', $brand_product)->with('all_product', $all_product)->with('slider', $slider);
     }
 
 
@@ -34,12 +36,13 @@ class HomeController extends Controller
 
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
-        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->limit(4)->get();
+        //Slider
+        $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
 
         $search_product = DB::table('tbl_product')->where('product_status', '1')->where('product_name', 'like', '%'.$keywords. '%')->get();
 
 
-        return view('pages.sanpham.search')->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home)->with('search_product', $search_product);
+        return view('pages.sanpham.search')->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider)->with('search_product', $search_product);
 
     }
 
@@ -48,9 +51,10 @@ class HomeController extends Controller
     
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
-        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->limit(4)->get();
+         //Slider
+        $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
 
-        return view('pages.contact.contact')->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home);
+        return view('pages.contact.contact')->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider);
     }
 
     //News-home
@@ -58,18 +62,20 @@ class HomeController extends Controller
         $title = 'Tin tức';
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
-        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->limit(4)->get();
+        //Slider
+        $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
 
-        return view('pages.news.news', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home);
+        return view('pages.news.news', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider);
     }
 
     public function details_new(){
         $title = 'Chi tiết bài viết';
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
-        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->limit(4)->get();
+        //Slider
+        $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
 
-        return view('pages.news.details-new', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home);
+        return view('pages.news.details-new', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider);
     }
 
 }
