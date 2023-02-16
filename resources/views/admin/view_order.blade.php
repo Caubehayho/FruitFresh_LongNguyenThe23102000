@@ -113,9 +113,15 @@
                             </td>
 
                             <td>
-                                <input type="number" min="1" value="{{ $details->product_sales_quantity }}" name="product_sales_quantity">
+                                <input type="number" class="order_qty_{{$details->product_id}}" min="1" value="{{ $details->product_sales_quantity }}" name="product_sales_quantity">
+                               
+
+                                
+                                <input type="hidden" name="order_code" class="order_code" value="{{$details->order_code}}">
                                 <input type="hidden" name="order_product_id" class="order_product_id" value="{{$details->product_id}}">
-                                <button class="btn btn-default" name="update_quantity">Cập nhật</button>
+
+
+                                <button class="btn btn-default update_quantity_order" data-product_id="{{$details->product_id}}" name="update_quantity_order">Cập nhật</button>
 
                             <td>
                                 {{ number_format($details->product_price, 0, ',', '.') }}vnđ
@@ -164,7 +170,7 @@
                                         @csrf
                                         <select class="form-control order_details">
                                             <option value="">---chon hinh thuc don hang---</option>
-                                            <option id="{{$or->order_id}}" value="1">Chưa xử lý</option>
+                                            <option id="{{$or->order_id}}" selected value="1">Chưa xử lý</option>
                                             <option id="{{$or->order_id}}" value="2">Đã xử lý - Đã giao hàng</option>
                                             <option id="{{$or->order_id}}" value="3">Hủy đơn - Tạm giữ</option>
                                     </select>

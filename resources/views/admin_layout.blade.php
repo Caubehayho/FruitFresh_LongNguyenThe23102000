@@ -470,6 +470,35 @@
         });
     </script> --}}
 
+    {{-- Button cập nhật view_order --}}
+    <script type="text/javascript">
+        $('.update_quantity_order').click(function(){
+            var order_product_id = $(this).data('product_id'); 
+            var order_qty = $('.order_qty_'+order_product_id).val();
+            var order_code = $('.order_code').val();
+            var _token = $('input[name="_token"]').val();
+
+            $.ajax({
+                    url: '{{ url('/update-qty') }}',
+                    method: 'POST',
+                    data: {
+                        "order_product_id": order_product_id,
+                        "order_qty": order_qty,
+                        "order_code": order_code,
+                        "_token": _token,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
+                        alert('Cập nhật số lượng sản phẩm đơn hàng thành công')
+                        location.reload();
+                    }
+                });
+
+        });
+    </script>
+
+
+
     {{-- Quản lý hàng tồn view_order --}}
     <script type="text/javascript">
         $('.order_details').change(function(){
@@ -500,7 +529,8 @@
                         "_token": "{{ csrf_token() }}"
                     },
                     success: function(data) {
-                       alert('Cap nhat thanh cong');
+                        alert('Cập nhật trạng thái đơn hàng thành công')
+                       location.reload();
                     }
                 });
 

@@ -10,7 +10,9 @@ use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Customer;
 use App\Models\Coupon;
-
+use App\Models\Testid;
+use App\Models\Product;
+use DB;
 use PDF;
 
 
@@ -18,14 +20,6 @@ use PDF;
 class OrderController extends Controller
 {
 
-    //update quantity order
-    public function update_order_qty(Request $request){
-        $data = $request->all();
-        // dd($data);
-        $order = Order::find($data['order_id']);
-        $order->order_status = $data['order_status'];
-        $order->save();
-    }
 
     public function print_order($checkout_code){
         $pdf = \App::make('dompdf.wrapper');
@@ -267,4 +261,48 @@ class OrderController extends Controller
         $order = Order::orderby('created_at', 'DESC')->get();
         return view('admin.manage_order', compact('title'))->with(compact('order'));
     }
+
+    
+    //update quantity order
+    public function update_order_qty(Request $request){
+        //update order
+        $data = $request->all();
+        $id = $data['order_id'];
+        $order = DB::table('tbl_order')->where('order_id', $id)->update(['order_status'=>$data['order_status']]);
+        // $tu = $order->order_status;
+        $order_status = DB::table('tbl_order')->where('order_id', $id)->first();
+        $quantity_order = $data['quantity'];
+        if($order_status->order_status==2){
+            foreach($data['order_product_id'] as $key =>$product_id){
+                $product = Product::find($product_id);
+                $product_quantity = $product->product_quantity; 
+                $product_sold = $product->product_sold; 
+                foreach($quantity_order as $key2 => $data_second){ 
+                    if($key == $key2){ 
+                        $product_remain = $product_quantity - $data_second; 
+                        $product->product_quantity = $product_remain; 
+                        $product->product_sold = $product_sold + $data_second; 
+                        $product->save(); 
+                    } 
+                }
+            }
+        }
+    }
+
+
+    //button capnhat quantity view_order
+    public function update_qty(Request $request){
+        $data = $request->all();
+        $order_details = OrderDetails::where('product_id', $data['order_product_id'])->where('order_code', $data['order_code'])->first();
+        
+        $product_id = $data['order_product_id'];
+        $order_code = $data['order_code'];
+        DB::table('tbl_order_details')->where('product_id', $product_id)->where('order_code', $order_code)->update(['product_sales_quantity'=>$data['order_qty']]);
+
+    }
+
+
+
+
+
 }

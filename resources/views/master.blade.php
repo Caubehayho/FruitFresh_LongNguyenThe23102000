@@ -198,16 +198,16 @@
     <section id="slider" class="slider-slictiky">
         <div class="container-fluid">
             <div class="row">
-                    <div class="main-carousel"
-                        data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "adaptiveHeight": true, "autoPlay": 3000}'>
-                        @foreach($slider as $key => $slide)
+                <div class="main-carousel"
+                    data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "adaptiveHeight": true, "autoPlay": 3000}'>
+                    @foreach ($slider as $key => $slide)
                         <div class="carousel-cell" style="position: relative">
-                            <img src="Up_Load/Slide/{{ $slide->slider_image }}" height="100%" width="100%"
+                            <img src="{{asset('/Up_Load/Slide/'. $slide->slider_image)}}" height="100%" width="100%"
                                 class="girl img-responsive" alt="" />
                             <div class="col-sm-6" style="position: absolute; text-align: center">
-                                <h1> {{$slide->slider_name}} </h1>
-                                <h2> {{$slide->slider_des}} </h2>
-                                <p> {{$slide->slider_content}} </p>
+                                <h1> {{ $slide->slider_name }} </h1>
+                                <h2> {{ $slide->slider_des }} </h2>
+                                <p> {{ $slide->slider_content }} </p>
                             </div>
                         </div>
                     @endforeach
@@ -273,9 +273,10 @@
                             </div>
                             <!--/price-range-->
 
-                            <div class="shipping text-center">
+                            <div style="width:100%" class="shipping text-center">
                                 <!--shipping-->
-                                <img src="{{ asset('Up_Load/product/side.jpg') }}" alt="" />
+                                <img style="width: 100%" src="{{ asset('Up_Load/product/side.jpg') }}"
+                                    alt="" />
                             </div>
                             <!--/shipping-->
 
@@ -285,6 +286,672 @@
 
                 <div class="col-sm-9 padding-right">
                     @yield('content')
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="category-tab">
+                    <!--category-tab-->
+                    <div class="col-sm-12">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
+                            <li><a href="#blazers" data-toggle="tab">Blazers</a></li>
+                            <li><a href="#sunglass" data-toggle="tab">Sunglass</a></li>
+                            <li><a href="#kids" data-toggle="tab">Kids</a></li>
+                            <li><a href="#poloshirt" data-toggle="tab">Polo shirt</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="tshirt">
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery1.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery2.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery3.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery4.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="blazers">
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery4.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery3.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery2.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery1.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="sunglass">
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery3.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery4.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery1.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery2.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="kids">
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery1.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery2.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery3.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery4.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="poloshirt">
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery2.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery4.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery3.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('Front_End/image/home/gallery1.jpg') }}"
+                                                alt="" />
+                                            <h2>$56</h2>
+                                            <p>Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/category-tab-->
+
+
+                <div class="element">
+                    <h2 class="title text-center">Cam kết của chúng tôi</h2>
+                    <ul>
+                        <li>
+                            <div class="element-icon">
+                                <span>
+                                    <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+                                    <lord-icon src="https://cdn.lordicon.com/iejknaed.json" trigger="hover"
+                                        colors="outline:#000000,primary:#848484,secondary:#a5e830,tertiary:#ebe6ef,quaternary:#a5e830"
+                                        style="width:110px;height:110px">
+                                    </lord-icon>
+                                </span>
+                            </div>
+                            <div class="element-content">
+                                <h4>Bảo vệ người mua</h4>
+                                <span>
+                                    Consectetur adipiscing elit, sed do eiusmod tempo.
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="element-icon">
+                                <span>
+                                    <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+                                    <lord-icon src="https://cdn.lordicon.com/ptzvfshs.json" trigger="hover"
+                                        colors="outline:#121331,primary:#a5e830,secondary:#eee966"
+                                        style="width:110px;height:110px">
+                                    </lord-icon>
+                                </span>
+                            </div>
+                            <div class="element-content">
+                                <h4>Giá tốt nhất</h4>
+                                <span>
+                                    Consectetur adipiscing elit, sed do eiusmod tempo.
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="element-icon">
+                                <span>
+                                    <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+                                    <lord-icon src="https://cdn.lordicon.com/osvvqecf.json" trigger="hover"
+                                        colors="outline:#000000,primary:#000000,secondary:#ffffff,tertiary:#a5e830"
+                                        style="width:110px;height:110px">
+                                    </lord-icon>
+                                </span>
+                            </div>
+                            <div class="element-content">
+                                <h4>Hỗ trợ 24/7</h4>
+                                <span>
+                                    Consectetur adipiscing elit, sed do eiusmod tempo.
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="element-icon">
+                                <span>
+                                    <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+                                    <lord-icon src="https://cdn.lordicon.com/qwzdhaoa.json" trigger="hover"
+                                        colors="outline:#000000,primary:#f24c00,secondary:#a66037,tertiary:#a5e830"
+                                        style="width:110px;height:110px">
+                                    </lord-icon>
+                                </span>
+                            </div>
+                            <div class="element-content">
+                                <h4>Chất lượng tốt</h4>
+                                <span>
+                                    Consectetur adipiscing elit, sed do eiusmod tempo.
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+
+
+                <div class="recommended_items">
+                    <!--recommended_items-->
+                    <h2 class="title text-center">Bài viết mới nhất</h2>
+                    {{-- <div style="display: flex; justify-content: center">
+                        <img decoding="async" width="41" height="41" src="https://demo.webdigify.com/WCM02/WCM055_agriosa/wp-content/uploads/2022/10/title-icon.png" class="attachment-large size-large wp-image-26140" alt="" loading="lazy">
+                    </div> --}}
+
+                    <section id="slider" class="slider-slictiky slider-slictiky-post">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="main-carousel main-carousel-post"
+                                    data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "adaptiveHeight": true}'>
+                                    {{-- @foreach ($slider as $key => $slide) --}}
+                                    <div class="carousel-cell carousel-cell-post" style="position: relative">
+                                        <div class="wrap-post" style="padding: 0 15px">
+                                            <div class="wrap-post-image">
+                                                <img src="Up_Load/Post/post1.jpg" height="100%" width="100%"
+                                                    class="girl img-responsive" alt="" />
+                                            </div>
+                                            <div class="wrap-post-content">
+                                                <h4> Admin </h4>
+                                                <h5>
+                                                    <i class="fa-regular fa-calendar-days"></i>
+                                                    <span>23/10/2022</span>
+                                                </h5>
+                                                <h2>
+                                                    <a href="#">
+                                                        Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
+                                                        tại thủ đô Hà Nội
+                                                    </a>
+                                                </h2>
+                                                <p>
+                                                    Mauris torquent mi eget et amet phas ellus eget ad ullam corper
+                                                    mi a
+                                                    ferm entum vel a a nunc conse
+                                                </p>
+                                            </div>
+                                            <a href="#">Read more...</a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-cell carousel-cell-post" style="position: relative">
+                                        <div class="wrap-post" style="padding: 0 15px">
+                                            <div class="wrap-post-image">
+                                                <img src="Up_Load/Post/post1.jpg" height="100%" width="100%"
+                                                    class="girl img-responsive" alt="" />
+                                            </div>
+                                            <div class="wrap-post-content">
+                                                <h4> Admin </h4>
+                                                <h5>
+                                                    <i class="fa-regular fa-calendar-days"></i>
+                                                    <span>23/10/2022</span>
+                                                </h5>
+                                                <h2>
+                                                    <a href="#">
+                                                        Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
+                                                        tại thủ đô Hà Nội
+                                                    </a>
+                                                </h2>
+                                                <p>
+                                                    Mauris torquent mi eget et amet phas ellus eget ad ullam corper
+                                                    mi a
+                                                    ferm entum vel a a nunc conse
+                                                </p>
+                                            </div>
+                                            <a href="#">Read more...</a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-cell carousel-cell-post" style="position: relative">
+                                        <div class="wrap-post" style="padding: 0 15px">
+                                            <div class="wrap-post-image">
+                                                <img src="Up_Load/Post/post1.jpg" height="100%" width="100%"
+                                                    class="girl img-responsive" alt="" />
+                                            </div>
+                                            <div class="wrap-post-content">
+                                                <h4> Admin </h4>
+                                                <h5>
+                                                    <i class="fa-regular fa-calendar-days"></i>
+                                                    <span>23/10/2022</span>
+                                                </h5>
+                                                <h2>
+                                                    <a href="#">
+                                                        Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
+                                                        tại thủ đô Hà Nội
+                                                    </a>
+                                                </h2>
+                                                <p>
+                                                    Mauris torquent mi eget et amet phas ellus eget ad ullam corper
+                                                    mi a
+                                                    ferm entum vel a a nunc conse
+                                                </p>
+                                            </div>
+                                            <a href="#">Read more...</a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-cell carousel-cell-post" style="position: relative">
+                                        <div class="wrap-post" style="padding: 0 15px">
+                                            <div class="wrap-post-image">
+                                                <img src="Up_Load/Post/post1.jpg" height="100%" width="100%"
+                                                    class="girl img-responsive" alt="" />
+                                            </div>
+                                            <div class="wrap-post-content">
+                                                <h4> Admin </h4>
+                                                <h5>
+                                                    <i class="fa-regular fa-calendar-days"></i>
+                                                    <span>23/10/2022</span>
+                                                </h5>
+                                                <h2>
+                                                    <a href="#">
+                                                        Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
+                                                        tại thủ đô Hà Nội
+                                                    </a>
+                                                </h2>
+                                                <p>
+                                                    Mauris torquent mi eget et amet phas ellus eget ad ullam corper
+                                                    mi a
+                                                    ferm entum vel a a nunc conse
+                                                </p>
+                                            </div>
+                                            <a href="#">Read more...</a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-cell carousel-cell-post" style="position: relative">
+                                        <div class="wrap-post" style="padding: 0 15px">
+                                            <div class="wrap-post-image">
+                                                <img src="Up_Load/Post/post1.jpg" height="100%" width="100%"
+                                                    class="girl img-responsive" alt="" />
+                                            </div>
+                                            <div class="wrap-post-content">
+                                                <h4> Admin </h4>
+                                                <h5>
+                                                    <i class="fa-regular fa-calendar-days"></i>
+                                                    <span>23/10/2022</span>
+                                                </h5>
+                                                <h2>
+                                                    <a href="#">
+                                                        Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
+                                                        tại thủ đô Hà Nội
+                                                    </a>
+                                                </h2>
+                                                <p>
+                                                    Mauris torquent mi eget et amet phas ellus eget ad ullam corper
+                                                    mi a
+                                                    ferm entum vel a a nunc conse
+                                                </p>
+                                            </div>
+                                            <a href="#">Read more...</a>
+                                        </div>
+                                    </div>
+                                    {{-- @endforeach --}}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    {{-- <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="{{asset('Front_End/image/home/recommend1.j')}}pg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+                
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="{{asset('Front_End/image/home/recommend2.j')}}pg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+                
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="{{asset('Front_End/image/home/recommend3.j')}}pg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+                
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="{{asset('Front_End/image/home/recommend1.j')}}pg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+                
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="{{asset('Front_End/image/home/recommend2.j')}}pg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+                
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="{{asset('Front_End/image/home/recommend3.j')}}pg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+                
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left recommended-item-control" href="#recommended-item-carousel"
+                            data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right recommended-item-control" href="#recommended-item-carousel"
+                            data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -545,14 +1212,16 @@
                                     _token: _token
                                 },
                                 success: function() {
-                                    swal("Đơn hàng", "Đơn hàng của bản đã đã gửi thành công ", "success");
+                                    swal("Đơn hàng",
+                                        "Đơn hàng của bản đã đã gửi thành công ",
+                                        "success");
                                 }
 
                             });
                             window.setTimeout(() => {
                                 location.reload();
                             }, 3000);
-                           
+
                         } else {
                             swal("Đóng", "Đơn hàng chưa được gửi, vui lòng suy nghĩ lại", "error");
                         }
