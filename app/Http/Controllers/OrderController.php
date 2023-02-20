@@ -33,6 +33,7 @@ class OrderController extends Controller
         foreach($order as $key =>$ord){
             $customer_id = $ord->customer_id;
             $shipping_id = $ord->shipping_id;
+
         }
         $customer = Customer::where('customer_id', $customer_id)->first();
         $shipping = Shipping::where('shipping_id', $shipping_id)->first();
@@ -227,6 +228,7 @@ class OrderController extends Controller
         foreach($order as $key =>$ord){
             $customer_id = $ord->customer_id;
             $shipping_id = $ord->shipping_id;
+            $order_status = $ord->order_status;
         }
         $customer = Customer::where('customer_id', $customer_id)->first();
         $shipping = Shipping::where('shipping_id', $shipping_id)->first();
@@ -249,7 +251,7 @@ class OrderController extends Controller
         }
 
 
-        return view('admin.view_order', compact('title'))->with(compact('order_details', 'customer', 'shipping', 'order_details','coupon_condition','coupon_number','order'));
+        return view('admin.view_order', compact('title'))->with(compact('order_details', 'customer', 'shipping', 'order_details','coupon_condition','coupon_number','order','order_status'));
     }
    
 
@@ -282,6 +284,20 @@ class OrderController extends Controller
                         $product_remain = $product_quantity - $data_second; 
                         $product->product_quantity = $product_remain; 
                         $product->product_sold = $product_sold + $data_second; 
+                        $product->save(); 
+                    } 
+                }
+            }
+        }elseif($order_status->order_status!=2){
+            foreach($data['order_product_id'] as $key =>$product_id){
+                $product = Product::find($product_id);
+                $product_quantity = $product->product_quantity; 
+                $product_sold = $product->product_sold; 
+                foreach($quantity_order as $key2 => $data_second){ 
+                    if($key == $key2){ 
+                        $product_remain = $product_quantity + $data_second; 
+                        $product->product_quantity = $product_remain; 
+                        $product->product_sold = $product_sold - $data_second; 
                         $product->save(); 
                     } 
                 }

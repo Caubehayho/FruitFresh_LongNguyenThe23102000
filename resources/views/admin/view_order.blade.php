@@ -87,7 +87,7 @@
                             $subtotal = $details->product_price * $details->product_sales_quantity;
                             $total += $subtotal;
                         @endphp
-                        <tr>
+                        <tr class="color_qty_{{$details->product_id}}">
                             <td class="budget">
                                 {{ $i }}
                             </td>
@@ -113,16 +113,16 @@
                             </td>
 
                             <td>
-                                <input type="number" class="order_qty_{{$details->product_id}}" min="1" value="{{ $details->product_sales_quantity }}" name="product_sales_quantity">
+                                <input type="number" class="order_qty_{{$details->product_id}}" min="1" {{$order_status==2 ? 'disabled' : ''}} value="{{ $details->product_sales_quantity }}" name="product_sales_quantity">
                                
 
-                                
+                                <input type="hidden" name="order_qty_storage" class="order_qty_storage_{{$details->product_id}}" value="{{$details->product->product_quantity}}">
                                 <input type="hidden" name="order_code" class="order_code" value="{{$details->order_code}}">
                                 <input type="hidden" name="order_product_id" class="order_product_id" value="{{$details->product_id}}">
 
-
+                                @if($order_status != 2)
                                 <button class="btn btn-default update_quantity_order" data-product_id="{{$details->product_id}}" name="update_quantity_order">Cập nhật</button>
-
+                                @endif
                             <td>
                                 {{ number_format($details->product_price, 0, ',', '.') }}vnđ
                             </td>

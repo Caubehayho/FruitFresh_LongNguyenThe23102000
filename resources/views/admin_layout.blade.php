@@ -517,7 +517,27 @@
             $("input[name='order_product_id']").each(function(){
                 order_product_id.push($(this).val());
             });
-            $.ajax({
+
+            j=0;
+            for(i=0; i<order_product_id.length; i++){
+                //so luong khach dat
+                var order_qty = $('.order_qty_' + order_product_id[i]).val();
+                //so luong ton kho
+                var order_qty_storage = $('.order_qty_storage_' + order_product_id[i]).val();
+
+                // alert(order_qty_storage);
+
+                if(parseInt(order_qty)>parseInt(order_qty_storage)){
+                    j = j + 1;
+                    if(j==1){
+                        alert('Vui lòng kiểm tra lại số lượng sản phẩm!')
+                    }
+                    $('.color_qty_'+order_product_id[i]).css('background','#F5F5ED');
+                    
+                }
+            }
+            if(j==0){
+                $.ajax({
                     url: '{{ url('/update-order-qty') }}',
                     method: 'POST',
                     data: {
@@ -530,10 +550,10 @@
                     },
                     success: function(data) {
                         alert('Cập nhật trạng thái đơn hàng thành công')
-                       location.reload();
+                    location.reload();
                     }
                 });
-
+            }
 
         });
     </script>
