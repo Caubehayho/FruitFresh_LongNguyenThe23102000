@@ -25,8 +25,9 @@ class HomeController extends Controller
         // ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->orderby('tbl_product.product_id', 'desc')->get();
 
         $all_product = DB::table('tbl_product')->where('product_status', '1')->orderby('product_id', 'desc')->limit(6)->get();
+        $all_post = DB::table('tbl_post')->where('post_status', '1')->orderby('post_id', 'desc')->limit(6)->get();
 
-        return view('pages.home')->with('category', $cate_product)->with('brand', $brand_product)->with('all_product', $all_product)->with('slider', $slider);
+        return view('pages.home')->with('category', $cate_product)->with('brand', $brand_product)->with('all_product', $all_product)->with('slider', $slider)->with('all_post', $all_post);
     }
 
 
@@ -64,18 +65,20 @@ class HomeController extends Controller
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
         //Slider
         $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
+        $all_post = DB::table('tbl_post')->where('post_status', '1')->orderby('post_id', 'desc')->limit(3)->get();
 
-        return view('pages.news.news', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider);
+        return view('pages.news.news', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider)->with('all_post', $all_post);
     }
 
-    public function details_new(){
+    public function details_new($detailsId){
         $title = 'Chi tiết bài viết';
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
         //Slider
         $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
+        $all_post = DB::table('tbl_post')->where('post_status', '1')->where('post_id', $detailsId)->orderby('post_id', 'desc')->limit(3)->get();
 
-        return view('pages.news.details-new', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider);
+        return view('pages.news.details-new', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider)->with('all_post', $all_post);
     }
 
 }

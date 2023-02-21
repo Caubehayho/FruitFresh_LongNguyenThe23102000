@@ -15,6 +15,8 @@
                                     value="{{ $product->product_id }}">
                                 <input type="hidden" class="cart_product_name_{{ $product->product_id }}"
                                     value="{{ $product->product_name }}">
+                                <input type="hidden" class="cart_product_quantity_{{ $product->product_id }}"
+                                     value="{{ $product->product_quantity }}">
                                 <input type="hidden" class="cart_product_image_{{ $product->product_id }}"
                                     value="{{ $product->product_image }}">
                                 <input type="hidden" class="cart_product_price_{{ $product->product_id }}"

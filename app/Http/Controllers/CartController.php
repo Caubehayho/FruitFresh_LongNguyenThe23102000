@@ -10,6 +10,7 @@ session_start();
 
 use Illuminate\Http\Request;
 use App\Models\Coupon;
+use App\Models\Slider;
 use DB;
 use Cart;
 
@@ -44,9 +45,9 @@ class CartController extends Controller
         $title = 'Thêm giỏ hàng';
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
-        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->get();
+        $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
 
-        return view('pages.cart.show_cart', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home);
+        return view('pages.cart.show_cart', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider);
     }
 
 
@@ -88,6 +89,7 @@ class CartController extends Controller
                     'session_id' => $session_id,
                     'product_id' => $data['cart_product_id'],
                     'product_name' => $data['cart_product_name'],
+                    'product_quantity' => $data['cart_product_quantity'],
                     'product_image' =>$data['cart_product_image'],
                     'product_qty' => $data['cart_product_qty'],
                     'product_price' => $data['cart_product_price']
@@ -99,6 +101,7 @@ class CartController extends Controller
                 'session_id' => $session_id,
                 'product_id' => $data['cart_product_id'],
                 'product_name' => $data['cart_product_name'],
+                'product_quantity' => $data['cart_product_quantity'],
                 'product_image' =>$data['cart_product_image'],
                 'product_qty' => $data['cart_product_qty'],
                 'product_price' => $data['cart_product_price']
@@ -113,9 +116,9 @@ class CartController extends Controller
         $title = 'Thêm giỏ hàng ajax';
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
-        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->get();
+        $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
 
-        return view('pages.cart.cart_ajax', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home);
+        return view('pages.cart.cart_ajax', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider);
     }
 
     //delete-ajax

@@ -17,6 +17,7 @@ use App\Models\Feeship;
 use App\Models\Shipping;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\Slider;
 
 
 class CheckoutController extends Controller
@@ -138,11 +139,11 @@ class CheckoutController extends Controller
 
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->limit(4)->get();
+        $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
 
 
 
-        return view ('pages.checkout.login_checkout', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home);
+        return view ('pages.checkout.login_checkout', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider);
     }
 
 
@@ -168,13 +169,13 @@ class CheckoutController extends Controller
 
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->limit(4)->get();
+        $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
 
         $city = City::orderby('matp', 'ASC')->get();
 
 
 
-        return view ('pages.checkout.show_checkout', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home)->with('city', $city);
+        return view ('pages.checkout.show_checkout', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider)->with('city', $city);
     }
 
 
@@ -201,11 +202,11 @@ class CheckoutController extends Controller
 
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->limit(4)->get();
+        $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
 
 
 
-        return view ('pages.checkout.payment', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home);
+        return view ('pages.checkout.payment', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider);
     }
 
     
@@ -246,11 +247,11 @@ class CheckoutController extends Controller
 
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->limit(4)->get();
+        $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
 
 
 
-        return view ('pages.checkout.handcash')->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home);
+        return view ('pages.checkout.handcash')->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider);
        }
        else
        echo ' Thẻ ghi nợ';

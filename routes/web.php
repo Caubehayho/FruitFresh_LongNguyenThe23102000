@@ -13,6 +13,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,6 +61,17 @@ Route::post('/update-category-product/{categoryProductId}', [CategoryProduct::cl
 //Category Product-show-hide-product
 Route::get('/hide-category-fruit/{categoryProductId}', [CategoryProduct::class, "hide_category_product"]);
 Route::get('/show-category-fruit/{categoryProductId}', [CategoryProduct::class, "show_category_product"]);
+
+
+//Post
+Route::get('/add-post', [PostController::class, "add_post"])->name("add_post");
+Route::post('/save-post', [PostController::class, "save_post"]);
+Route::get('/all-post', [PostController::class, "all_post"])->name("post_list");
+Route::get('/edit-post/{PostId}', [PostController::class, "edit_post"]);
+Route::post('/update-post/{PostId}', [PostController::class, "update_post"]);
+Route::get('/delete-post/{PostId}', [PostController::class, "delete_post"]);
+Route::get('/hide-post/{PostId}', [PostController::class, "hide_post"]);
+Route::get('/show-post/{PostId}', [PostController::class, "show_post"]);
 
 
 
@@ -172,6 +184,7 @@ Route::get('/contact', [HomeController::class, "contact"]);
 
 //News
 Route::get('/news', [HomeController::class, "news"]);
-Route::get('/details-new', [HomeController::class, "details_new"]);
+Route::get('/details-new/{detailsId}', [HomeController::class, "details_new"]);
+// Route::get('/edit-category-product/{categoryProductId}', [CategoryProduct::class, "edit_category_product"]);
 
 

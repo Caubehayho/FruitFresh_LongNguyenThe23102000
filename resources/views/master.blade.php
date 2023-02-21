@@ -710,144 +710,35 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="main-carousel main-carousel-post"
-                                    data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "adaptiveHeight": true}'>
-                                    {{-- @foreach ($slider as $key => $slide) --}}
+                                    data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true}'>
+                                    @foreach ($all_post as $key => $post)
                                     <div class="carousel-cell carousel-cell-post" style="position: relative">
                                         <div class="wrap-post" style="padding: 0 15px">
-                                            <div class="wrap-post-image">
-                                                <img src="Up_Load/Post/post1.jpg" height="100%" width="100%"
-                                                    class="girl img-responsive" alt="" />
-                                            </div>
+                                           <a href="{{ URL::to('details-new/' . $post->post_id) }}">
+                                                <div class="wrap-post-image" style="height: 250px; overflow: hidden">
+                                                    <img src="{{asset('/Up_Load/Post/'. $post->post_image)}}" height="100%" width="100%"
+                                                        class="girl img-responsive" alt="" />
+                                                </div>
+                                           </a>
                                             <div class="wrap-post-content">
                                                 <h4> Admin </h4>
                                                 <h5>
                                                     <i class="fa-regular fa-calendar-days"></i>
-                                                    <span>23/10/2022</span>
+                                                    <span>{{$post->created_at}}</span>
                                                 </h5>
                                                 <h2>
                                                     <a href="#">
-                                                        Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
-                                                        tại thủ đô Hà Nội
+                                                        {{$post->post_name}}
                                                     </a>
                                                 </h2>
                                                 <p>
-                                                    Mauris torquent mi eget et amet phas ellus eget ad ullam corper
-                                                    mi a
-                                                    ferm entum vel a a nunc conse
+                                                    {{ Str::limit($post->post_des, 150, ' ...')}}
                                                 </p>
                                             </div>
-                                            <a href="#">Read more...</a>
+                                            <a href="{{ URL::to('details-new/' . $post->post_id) }}">Read more...</a>
                                         </div>
                                     </div>
-                                    <div class="carousel-cell carousel-cell-post" style="position: relative">
-                                        <div class="wrap-post" style="padding: 0 15px">
-                                            <div class="wrap-post-image">
-                                                <img src="Up_Load/Post/post1.jpg" height="100%" width="100%"
-                                                    class="girl img-responsive" alt="" />
-                                            </div>
-                                            <div class="wrap-post-content">
-                                                <h4> Admin </h4>
-                                                <h5>
-                                                    <i class="fa-regular fa-calendar-days"></i>
-                                                    <span>23/10/2022</span>
-                                                </h5>
-                                                <h2>
-                                                    <a href="#">
-                                                        Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
-                                                        tại thủ đô Hà Nội
-                                                    </a>
-                                                </h2>
-                                                <p>
-                                                    Mauris torquent mi eget et amet phas ellus eget ad ullam corper
-                                                    mi a
-                                                    ferm entum vel a a nunc conse
-                                                </p>
-                                            </div>
-                                            <a href="#">Read more...</a>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-cell carousel-cell-post" style="position: relative">
-                                        <div class="wrap-post" style="padding: 0 15px">
-                                            <div class="wrap-post-image">
-                                                <img src="Up_Load/Post/post1.jpg" height="100%" width="100%"
-                                                    class="girl img-responsive" alt="" />
-                                            </div>
-                                            <div class="wrap-post-content">
-                                                <h4> Admin </h4>
-                                                <h5>
-                                                    <i class="fa-regular fa-calendar-days"></i>
-                                                    <span>23/10/2022</span>
-                                                </h5>
-                                                <h2>
-                                                    <a href="#">
-                                                        Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
-                                                        tại thủ đô Hà Nội
-                                                    </a>
-                                                </h2>
-                                                <p>
-                                                    Mauris torquent mi eget et amet phas ellus eget ad ullam corper
-                                                    mi a
-                                                    ferm entum vel a a nunc conse
-                                                </p>
-                                            </div>
-                                            <a href="#">Read more...</a>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-cell carousel-cell-post" style="position: relative">
-                                        <div class="wrap-post" style="padding: 0 15px">
-                                            <div class="wrap-post-image">
-                                                <img src="Up_Load/Post/post1.jpg" height="100%" width="100%"
-                                                    class="girl img-responsive" alt="" />
-                                            </div>
-                                            <div class="wrap-post-content">
-                                                <h4> Admin </h4>
-                                                <h5>
-                                                    <i class="fa-regular fa-calendar-days"></i>
-                                                    <span>23/10/2022</span>
-                                                </h5>
-                                                <h2>
-                                                    <a href="#">
-                                                        Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
-                                                        tại thủ đô Hà Nội
-                                                    </a>
-                                                </h2>
-                                                <p>
-                                                    Mauris torquent mi eget et amet phas ellus eget ad ullam corper
-                                                    mi a
-                                                    ferm entum vel a a nunc conse
-                                                </p>
-                                            </div>
-                                            <a href="#">Read more...</a>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-cell carousel-cell-post" style="position: relative">
-                                        <div class="wrap-post" style="padding: 0 15px">
-                                            <div class="wrap-post-image">
-                                                <img src="Up_Load/Post/post1.jpg" height="100%" width="100%"
-                                                    class="girl img-responsive" alt="" />
-                                            </div>
-                                            <div class="wrap-post-content">
-                                                <h4> Admin </h4>
-                                                <h5>
-                                                    <i class="fa-regular fa-calendar-days"></i>
-                                                    <span>23/10/2022</span>
-                                                </h5>
-                                                <h2>
-                                                    <a href="#">
-                                                        Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
-                                                        tại thủ đô Hà Nội
-                                                    </a>
-                                                </h2>
-                                                <p>
-                                                    Mauris torquent mi eget et amet phas ellus eget ad ullam corper
-                                                    mi a
-                                                    ferm entum vel a a nunc conse
-                                                </p>
-                                            </div>
-                                            <a href="#">Read more...</a>
-                                        </div>
-                                    </div>
-                                    {{-- @endforeach --}}
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -1061,10 +952,12 @@
                 var id = $(this).data('id_product');
                 var cart_product_id = $('.cart_product_id_' + id).val();
                 var cart_product_name = $('.cart_product_name_' + id).val();
+                var cart_product_quantity = $('.cart_product_quantity_' + id).val()
                 var cart_product_image = $('.cart_product_image_' + id).val();
                 var cart_product_price = $('.cart_product_price_' + id).val();
                 var cart_product_qty = $('.cart_product_qty_' + id).val();
                 var _token = $('input[name="_token"]').val();
+              
 
                 $.ajax({
                     url: '{{ url('/add-cart-ajax') }}',
@@ -1072,6 +965,7 @@
                     data: {
                         cart_product_id: cart_product_id,
                         cart_product_name: cart_product_name,
+                        cart_product_quantity: cart_product_quantity,
                         cart_product_image: cart_product_image,
                         cart_product_price: cart_product_price,
                         cart_product_qty: cart_product_qty,

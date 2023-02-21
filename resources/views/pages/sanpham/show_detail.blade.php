@@ -3,86 +3,100 @@
     @foreach ($product_details as $detail_pro)
         <div class="product-details">
             <!--product-details-->
-           <div>
-            <div class="col-sm-5">
-                <div class="view-product">
-                    <img src="{{ URL::to('Up_Load/Product/' . $detail_pro->product_image) }}" alt="" />
-                    <h3>ZOOM</h3>
-                </div>
-                <div id="similar-product" class="carousel slide" data-ride="carousel">
+            <div>
+                <div class="col-sm-5">
+                    <div class="view-product">
+                        <img src="{{ URL::to('Up_Load/Product/' . $detail_pro->product_image) }}" alt="" />
+                        <h3>ZOOM</h3>
+                    </div>
+                    <div id="similar-product" class="carousel slide" data-ride="carousel">
 
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar1.jpg') }}"
-                                    alt=""></a>
-                            <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar2.jpg') }}"
-                                    alt=""></a>
-                            <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar3.jpg') }}"
-                                    alt=""></a>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar1.jpg') }}"
+                                        alt=""></a>
+                                <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar2.jpg') }}"
+                                        alt=""></a>
+                                <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar3.jpg') }}"
+                                        alt=""></a>
+                            </div>
+                            <div class="item">
+                                <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar1.jpg') }}"
+                                        alt=""></a>
+                                <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar2.jpg') }}"
+                                        alt=""></a>
+                                <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar3.jpg') }}"
+                                        alt=""></a>
+                            </div>
                         </div>
-                        <div class="item">
-                            <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar1.jpg') }}"
-                                    alt=""></a>
-                            <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar2.jpg') }}"
-                                    alt=""></a>
-                            <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar3.jpg') }}"
-                                    alt=""></a>
-                        </div>
+
+                        <!-- Controls -->
+                        <a class="left item-control" href="#similar-product" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right item-control" href="#similar-product" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
                     </div>
 
-                    <!-- Controls -->
-                    <a class="left item-control" href="#similar-product" data-slide="prev">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a class="right item-control" href="#similar-product" data-slide="next">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 </div>
-
-            </div>
-            <div class="col-sm-7">
-                <div class="product-information">
-                    <!--/product-information-->
-                    <img src="images/product-details/new.jpg" class="newarrival" alt="" />
-                    <h1>{{ $detail_pro->product_name }}</h1>
-                    <img src="{{URL::to('Front_End/Image/product-details/rating.png')}}" alt="" />
-                    <form action="{{ URL::to('/save-cart') }}" method="POST">
-                        {{ csrf_field() }}
-                        <span>
-                            <span>{{ number_format($detail_pro->product_price) . '_' . 'VNĐ' }}</span>
-                            <label>Quantity:</label>
-                            <input name="qty" type="number" min="1" value="1" />
-                            <input name="productid_hidden" type="hidden" value="{{ $detail_pro->product_id }}" />
-                        </span>
-                        <p><b>Mã ID:</b> {{ $detail_pro->product_id }} </p>
-                        <p><b>Tình trạng:</b> Còn hàng</p>
-                        <p><b>Thương hiệu: </b>{{ $detail_pro->brand_name }}</p>
-                        <p><b>Danh mục: </b>{{ $detail_pro->category_name }}</p>
-                        <a href=""><img src="{{URL::to('Front_End/Image/product-details/share.png')}}" class="share img-responsive"
-                                alt="" /></a>
-                        <button style="margin-left: 0;margin-top: 15px; display: block" type="submit" class="btn btn-fefault cart">
-                            <i class="fa fa-shopping-cart"></i>
-                            Thêm giỏ hàng
-                        </button>
-                        <div class="fb-share-button" data-href="http://127.0.0.1:8000/"
-                        data-layout="button_count" data-size="large"><a target="_blank"
-                         href="https://www.facebook.com/sharer/sharer.php?u={{$url_canonical}}&amp;src=sdkpreparse"
-                          class="fb-xfbml-parse-ignore">Chia sẻ</a>
-                       </div>
-                       {{-- <div class="fb-like" data-href="http://127.0.0.1:8000/"
+                <div class="col-sm-7">
+                    <div class="product-information">
+                        <!--/product-information-->
+                        <img src="images/product-details/new.jpg" class="newarrival" alt="" />
+                        <h1>{{ $detail_pro->product_name }}</h1>
+                        <img src="{{ URL::to('Front_End/Image/product-details/rating.png') }}" alt="" />                                       
+                        <form>
+                            @csrf
+                            <span>
+                                <span>{{ number_format($detail_pro->product_price) . '_' . 'VNĐ' }}</span>
+                                <label>Quantity:</label>
+                                <input name="qty" type="number" min="1" value="1" />
+                                <input name="productid_hidden" type="hidden" value="{{ $detail_pro->product_id }}" />
+                            </span>
+                            <p><b>Mã ID:</b> {{ $detail_pro->product_id }} </p>
+                            <p><b>Tình trạng:</b> Còn hàng</p>
+                            <p><b>Thương hiệu: </b>{{ $detail_pro->brand_name }}</p>
+                            <p><b>Danh mục: </b>{{ $detail_pro->category_name }}</p>
+                            <a href=""><img src="{{ URL::to('Front_End/Image/product-details/share.png') }}"
+                                    class="share img-responsive" alt="" /></a>
+                                {{-- ajax --}}
+                                            <input type="hidden" class="cart_product_id_{{ $detail_pro->product_id }}"
+                                                value="{{ $detail_pro->product_id }}">
+                                            <input type="hidden" class="cart_product_name_{{ $detail_pro->product_id }}"
+                                                value="{{ $detail_pro->product_name }}">
+                                            <input type="hidden" class="cart_product_image_{{ $detail_pro->product_id }}"
+                                                value="{{ $detail_pro->product_image }}">
+                                            <input type="hidden" class="cart_product_price_{{ $detail_pro->product_id }}"
+                                                value="{{ $detail_pro->product_price }}">
+                                            <input type="hidden" class="cart_product_quantity_{{ $detail_pro->product_id }}"
+                                                value="{{ $detail_pro->product_quantity }}">
+                                                
+                                            
+                                {{-- ajax --}}
+                            <button style="margin-left: 0;margin-top: 15px; display: block" type="button"
+                                class="btn btn-fefault add-to-cart" data-id_product={{$detail_pro->product_id}} name="add-to-cart">
+                                <i class="fa fa-shopping-cart"></i>
+                                Thêm giỏ hàng
+                            </button>
+                            <div class="fb-share-button" data-href="http://127.0.0.1:8000/" data-layout="button_count"
+                                data-size="large"><a target="_blank"
+                                    href="https://www.facebook.com/sharer/sharer.php?u={{ $url_canonical }}&amp;src=sdkpreparse"
+                                    class="fb-xfbml-parse-ignore">Chia sẻ</a>
+                            </div>
+                            {{-- <div class="fb-like" data-href="http://127.0.0.1:8000/"
                         data-width="" data-layout="standard" data-action="like"
                          data-size="small" data-share="false">
                         </div> --}}
-                    </form>
+                        </form>
+                       
+                    </div>
+                    <!--/product-information-->
                 </div>
-                <!--/product-information-->
             </div>
-           </div>
         </div>
 
-        <div class="fb-comments" data-href="{{$url_canonical}}" data-width="" data-numposts="5">
-        </div>
         <!--/product-details-->
 
 
@@ -90,13 +104,14 @@
             <!--category-tab-->
             <div class="col-sm-12">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#details" data-toggle="tab">Mô tả sản phẩm</a></li>
+                    <li class="active"><a href="#comment" data-toggle="tab">Bình luận</a></li>
+                    <li><a href="#details" data-toggle="tab">Mô tả sản phẩm</a></li>
                     <li><a href="#companyprofile" data-toggle="tab">Chi tiết sản phẩm</a></li>
-                    <li><a href="#reviews" data-toggle="tab">Đánh giá (5)</a></li>
+                    <li><a href="#reviews" data-toggle="tab">Đánh giá (5)</a></li>            
                 </ul>
             </div>
             <div class="tab-content">
-                <div class="tab-pane fade active in" id="details">
+                <div class="tab-pane fade" id="details">
                     <p>
                         {!! $detail_pro->product_content !!}
                     </p>
@@ -137,7 +152,10 @@
                         </form>
                     </div>
                 </div>
-
+                <div class="tab-pane fade active in" id="comment">
+                    <div class="fb-comments" data-href="{{ $url_canonical }}" data-width="" data-numposts="5">
+                    </div>
+                </div>
             </div>
         </div>
         <!--/category-tab-->

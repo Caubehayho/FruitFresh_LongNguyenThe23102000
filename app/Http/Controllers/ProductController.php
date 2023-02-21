@@ -10,6 +10,7 @@ session_start();
 
 use Illuminate\Http\Request;
 use DB;
+use App\Models\Slider;
 
 class ProductController extends Controller
 {
@@ -180,7 +181,7 @@ class ProductController extends Controller
 
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
-        $slide_home = DB::table('tbl_slide')->where('slide_status', '1')->orderby('slide_id', 'desc')->get();
+        $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
 
         $details_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
@@ -198,7 +199,7 @@ class ProductController extends Controller
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->where('tbl_category_product.category_id', $category_id )->whereNotIn('tbl_product.product_id', [$product_id] )->limit(3)->get();
 
-        return view('pages.sanpham.show_detail')->with('category', $cate_product)->with('brand', $brand_product)->with('slide', $slide_home)->with('product_details' , $details_product )->with('relate', $related_product )->with('url_canonical', $url_canonical);
+        return view('pages.sanpham.show_detail')->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider)->with('product_details' , $details_product )->with('relate', $related_product )->with('url_canonical', $url_canonical);
     }
 
 

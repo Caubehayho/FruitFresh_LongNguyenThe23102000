@@ -256,6 +256,23 @@
                         </div>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link " href="#navbar" data-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="navbar">
+                            <i class="fa-solid fa-carrot"></i>
+                            <span class="nav-link-text">Bài viết</span>
+                        </a>
+                        <div class="collapse" id="navbar" style="">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item active">
+                                    <a href="{{ URL::to('/add-post') }}" class="nav-link">Thêm bài viết</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a href="{{ URL::to('/all-post') }}" class="nav-link">Tất cả bài viết</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active collapsed" href="#navbar-examples" data-toggle="collapse"
                             role="button" aria-expanded="false" aria-controls="navbar-examples">
                             <i class="fab fa-laravel"></i>

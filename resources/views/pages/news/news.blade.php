@@ -1,111 +1,4 @@
-{{-- @extends('master')
-@section('content')
-    <section id="cart_items">
-        <div class="breadcrumbs">
-            <ol class="breadcrumb">
-                <li><a href="{{ URL::to('/') }}">Trang chủ</a></li>
-                <li class="active">Tin tức</li>
-            </ol>
-        </div>
 
-        @if (session()->has('message'))
-            <div class="alert alert-success">
-                {{ session()->get('message') }}
-            </div>
-        @elseif(session()->has('error'))
-            <div class="alert alert-danger">
-                {{ session()->get('error') }}
-            </div>
-        @endif
-    </section>
-    
-    <div class="blog-post-area">
-        <h2 class="title text-center">Tin tức</h2>
-        <div class="single-blog-post">
-            <h3> Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
-                tại thủ đô Hà Nội</h3>
-            <div class="post-meta">
-                <ul>
-                    <li><i class="fa fa-user"></i> Admin</li>
-                    <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-                    <li><i class="fa fa-calendar"></i> 23/10/2022</li>
-                </ul>
-                <span>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                </span>
-                <div class="single-blog-post-img"  style="width: 50%; margin-top: 35px">
-                    <img src="Up_Load/Post/post1.jpg" height="100%" width="100%" class="girl img-responsive" alt="" />
-                </div>
-            </div>
-            <p> Mauris torquent mi eget et amet phas ellus eget ad ullam corper
-                mi a
-                ferm entum vel a a nunc conse</p>
-            <a  class="btn btn-primary" href="/details-new">Read More...</a>
-        </div>
-        <div class="single-blog-post">
-            <h3> Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
-                tại thủ đô Hà Nội</h3>
-            <div class="post-meta">
-                <ul>
-                    <li><i class="fa fa-user"></i> Admin</li>
-                    <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-                    <li><i class="fa fa-calendar"></i> 23/10/2022</li>
-                </ul>
-                <span>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                </span>
-                <div class="single-blog-post-img"  style="width: 50%; margin-top: 35px">
-                    <img src="Up_Load/Post/post2.jpg" height="100%" width="100%" class="girl img-responsive" alt="" />
-                </div>
-            </div>
-            <p> Mauris torquent mi eget et amet phas ellus eget ad ullam corper
-                mi a
-                ferm entum vel a a nunc conse</p>
-            <a  class="btn btn-primary" href="/details-new">Read More...</a>
-        </div>
-        <div class="single-blog-post">
-            <h3> Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
-                tại thủ đô Hà Nội</h3>
-            <div class="post-meta">
-                <ul>
-                    <li><i class="fa fa-user"></i> Admin</li>
-                    <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-                    <li><i class="fa fa-calendar"></i> 23/10/2022</li>
-                </ul>
-                <span>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                </span>
-                <div class="single-blog-post-img"  style="width: 50%; margin-top: 35px">
-                    <img src="Up_Load/Post/post3.jpg" height="100%" width="100%" class="girl img-responsive" alt="" />
-                </div>
-            </div>
-            <p> Mauris torquent mi eget et amet phas ellus eget ad ullam corper
-                mi a
-                ferm entum vel a a nunc conse</p>
-            <a  class="btn btn-primary" href="/details-new">Read More...</a>
-        </div>
-        <div class="pagination-area">
-            <ul class="pagination">
-                <li><a href="" class="active">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li><a href=""><i class="fa fa-angle-double-right"></i></a></li>
-            </ul>
-        </div>
-    </div>
-@endsection --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -414,81 +307,34 @@
                     
                     <div class="blog-post-area">
                         <h2 class="title text-center">Tin tức</h2>
-                        <div class="single-blog-post">
-                            <h3> Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
-                                tại thủ đô Hà Nội</h3>
-                            <div class="post-meta">
-                                <ul>
-                                    <li><i class="fa fa-user"></i> Admin</li>
-                                    <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-                                    <li><i class="fa fa-calendar"></i> 23/10/2022</li>
-                                </ul>
-                                <span>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                </span>
-                                <div class="single-blog-post-img"  style="width: 50%; margin-top: 35px">
-                                    <img src="Up_Load/Post/post1.jpg" height="100%" width="100%" class="girl img-responsive" alt="" />
+                            @foreach ($all_post as $key => $post)
+                                <div class="single-blog-post">
+                                    <a href="{{ URL::to('details-new/' . $post->post_id) }}">
+                                        <h3> {{$post->post_name}}</h3>
+                                    </a>
+                                    <div class="post-meta">
+                                        <ul>
+                                            <li><i class="fa fa-user"></i> Admin</li>
+                                            <li><i class="fa fa-calendar"></i>{{$post->created_at}}</li>
+                                        </ul>
+                                        <span>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                        </span>
+                                        <a href="{{ URL::to('details-new/' . $post->post_id) }}">
+                                            <div class="single-blog-post-img"  style="width: 50%; margin-top: 35px">
+                                                <img src="{{asset('/Up_Load/Post/'. $post->post_image)}}" height="100%" width="100%" class="girl img-responsive" alt="" />
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <p> {{$post->post_des}} </p>
+                                    <a  class="btn btn-primary" href="{{ URL::to('details-new/' . $post->post_id) }}">Đọc thêm...</a>
                                 </div>
-                            </div>
-                            <p> Mauris torquent mi eget et amet phas ellus eget ad ullam corper
-                                mi a
-                                ferm entum vel a a nunc conse</p>
-                            <a  class="btn btn-primary" href="/details-new">Read More...</a>
-                        </div>
-                        <div class="single-blog-post">
-                            <h3> Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
-                                tại thủ đô Hà Nội</h3>
-                            <div class="post-meta">
-                                <ul>
-                                    <li><i class="fa fa-user"></i> Admin</li>
-                                    <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-                                    <li><i class="fa fa-calendar"></i> 23/10/2022</li>
-                                </ul>
-                                <span>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                </span>
-                                <div class="single-blog-post-img"  style="width: 50%; margin-top: 35px">
-                                    <img src="Up_Load/Post/post2.jpg" height="100%" width="100%" class="girl img-responsive" alt="" />
-                                </div>
-                            </div>
-                            <p> Mauris torquent mi eget et amet phas ellus eget ad ullam corper
-                                mi a
-                                ferm entum vel a a nunc conse</p>
-                            <a  class="btn btn-primary" href="/details-new">Read More...</a>
-                        </div>
-                        <div class="single-blog-post">
-                            <h3> Cách bảo quản trái cây sử dụng lâu trong những ngày hè nóng bức
-                                tại thủ đô Hà Nội</h3>
-                            <div class="post-meta">
-                                <ul>
-                                    <li><i class="fa fa-user"></i> Admin</li>
-                                    <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-                                    <li><i class="fa fa-calendar"></i> 23/10/2022</li>
-                                </ul>
-                                <span>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                </span>
-                                <div class="single-blog-post-img"  style="width: 50%; margin-top: 35px">
-                                    <img src="Up_Load/Post/post3.jpg" height="100%" width="100%" class="girl img-responsive" alt="" />
-                                </div>
-                            </div>
-                            <p> Mauris torquent mi eget et amet phas ellus eget ad ullam corper
-                                mi a
-                                ferm entum vel a a nunc conse</p>
-                            <a  class="btn btn-primary" href="/details-new">Read More...</a>
-                        </div>
+                            @endforeach
+                        
                         <div class="pagination-area">
                             <ul class="pagination">
                                 <li><a href="" class="active">1</a></li>
