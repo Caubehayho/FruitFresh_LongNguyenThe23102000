@@ -14,6 +14,9 @@ use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\PaymentCheckoutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -102,6 +105,14 @@ Route::post('/update-product/{ProductId}', [ProductController::class, "update_pr
 // Product-show-hide-product
 Route::get('/hide-product/{ProductId}', [ProductController::class, "hide_product"]);
 Route::get('/show-product/{ProductId}', [ProductController::class, "show_product"]);
+//comment
+Route::post('/load-comment', [ProductController::class, "load_comment"]);
+Route::post('/send-comment', [ProductController::class, "send_comment"]);
+//comment-admin
+Route::get('/comment', [ProductController::class, "list_comment"]);
+Route::post('/allow-comment', [ProductController::class, "allow_comment"]);
+Route::post('/reply-comment', [ProductController::class, "reply_comment"]);
+Route::get('/delete-comment/{CommentId}', [ProductController::class, "delete_comment"]);
 
 
 
@@ -115,6 +126,13 @@ Route::post('/insert-slider', [BannerController::class, "insert_slider"]);
 Route::get('/unactive-slide/{slide_id}', [BannerController::class, "unactive_slide"]);
 Route::get('/active-slide/{slide_id}', [BannerController::class, "active_slide"]);
 
+
+
+// User
+Route::get('/manage-user', [UserController::class, "manage_user"]);
+Route::get('/delete-user/{user_id}', [UserController::class, "delete_user"]);
+Route::get('/edit-user/{usertId}', [UserController::class, "edit_user"]);
+Route::post('/update-user/{userId}', [UserController::class, "update_user"]);
 
 
 
@@ -186,5 +204,29 @@ Route::get('/contact', [HomeController::class, "contact"]);
 Route::get('/news', [HomeController::class, "news"]);
 Route::get('/details-new/{detailsId}', [HomeController::class, "details_new"]);
 // Route::get('/edit-category-product/{categoryProductId}', [CategoryProduct::class, "edit_category_product"]);
+
+
+//Profile user
+Route::get('/profile/{profileId}', [UserController::class, "show_profile"]);
+Route::post('/update-profile/{profilecusId}', [UserController::class, "update_profile"]);
+
+
+// Send mail
+Route::get('/send-coupon-vip/{coupon_time}/{coupon_condition}/{coupon_number}/{coupon_code}', [MailController::class, "send_coupon_vip"]);
+Route::get('/send-coupon/{coupon_time}/{coupon_condition}/{coupon_number}/{coupon_code}', [MailController::class, "send_coupon"]);
+Route::get('/mail-example', [MailController::class, "mail_example"]);
+//Quên mật khẩu
+Route::get('quen-mat-khau', [MailController::class, "quen_mat_khau"]);
+Route::post('recover-pass', [MailController::class, "recover_pass"]);
+Route::get('update-new-pass', [MailController::class, "update_new_pass"]);
+Route::post('reset-new-pass', [MailController::class, "reset_new_pass"]);
+
+
+
+/// Cooonht thanh toán trực tuyến
+Route::post('vnpay-payment', [PaymentCheckoutController::class, "vnpay_payment"]);
+Route::get('thanks-payment', [PaymentCheckoutController::class, "thanks_payment"]);
+
+
 
 

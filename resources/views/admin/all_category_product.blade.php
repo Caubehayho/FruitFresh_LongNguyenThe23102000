@@ -72,30 +72,7 @@
                                     <a href="{{ URL::to('delete-category-product/'.$Data->category_id) }}"> <button
                                         class="btn btn-warning">Xóa</button>
                                 </a>
-                                    {{-- <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#modal-default">Xóa</button> --}}
-                                    {{-- <div class="modal fade" id="modal-default" tabindex="-1" role="dialog"
-                                        aria-labelledby="modal-default" aria-hidden="true">
-                                        <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <span>Bạn có chắn chắn xóa hay không?</span>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <a href="{{ URL::to('delete-category-product/'.$Data->category_id) }}">
-                                                        <button type="button" class="btn btn-primary">Đồng ý</button></a>
-                                                    <button type="button" class="btn btn-link  ml-auto"
-                                                        data-dismiss="modal">Thoát</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
+                                
                                 </div>
                             </td>
                         </tr>
@@ -104,30 +81,7 @@
             </table>
         </div>
 
-        <div class="card-footer py-4">
-            <nav aria-label="...">
-                <ul class="pagination justify-content-end mb-0">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">
-                            <i class="fas fa-angle-left"></i>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2 <span class="sr-only">(Hiện tại)</span></a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="fas fa-angle-right"></i>
-                            <span class="sr-only">Tiếp theo</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+      
+        {{ $ListData->links() }}
     </div>
 @endsection

@@ -27,7 +27,7 @@ class OrderController extends Controller
         return $pdf->stream();
     }
 
-    public function print_order_convert($checkout_code){
+    public function print_order_convert($checkout_code){   // ham in pdf
         $order_details = OrderDetails::where('order_code', $checkout_code)->get();
         $order = Order::where('order_code', $checkout_code)->get();
         foreach($order as $key =>$ord){
@@ -260,7 +260,7 @@ class OrderController extends Controller
     public function manage_order(){
         $title = 'Quản lý đơn hàng';
 
-        $order = Order::orderby('created_at', 'DESC')->get();
+        $order = Order::orderby('created_at', 'DESC')->paginate(3);
         return view('admin.manage_order', compact('title'))->with(compact('order'));
     }
 

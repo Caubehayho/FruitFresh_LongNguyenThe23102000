@@ -27,7 +27,7 @@ class BannerController extends Controller
 
     public function manage_slider(){
         $title = 'Tất cả slide';
-        $all_slide = Slider::orderBy('slider_id', 'DESC')->get();
+        $all_slide = Slider::orderBy('slider_id', 'DESC')->paginate(3);
         return view('admin.slider.list_slider')->with(compact('title','all_slide'));
     }
 
@@ -44,6 +44,21 @@ class BannerController extends Controller
         $data = $request->all();
         $this->AuthLogin();
 
+        $rules = [
+            'slider_name'=> 'required',
+            'slider_image'=> 'required',
+            'slider_des'=> 'required',
+            'slider_content'=> 'required'
+        ];
+        $message = [
+            'slider_name.required' => 'Tên slide bắt buộc phải nhập',
+            'slider_image.required' => 'Hình ảnh slide bắt buộc phải nhập',
+            'slider_des.required' => 'Mô tả slide bắt buộc phải nhập',
+            'slider_content.required' => 'Nội dung bắt buộc phải nhập',             
+        ];
+        $request->validate($rules, $message);
+
+
         $get_image = $request->file('slider_image');
         if($get_image){
                  $get_name_image = $get_image->getClientOriginalName();
@@ -52,16 +67,16 @@ class BannerController extends Controller
                  
                  $get_image->move('Up_Load/Slide', $new_image);
 
-                 $slider = new Slider();
-                 $slider->slider_name = $data['slider_name'];
-                 $slider->slider_image = $new_image;
-                 $slider->slider_status = $data['slider_status'];
-                 $slider->slider_des = $data['slider_des'];
-                 $slider->slider_content = $data['slider_content'];
-                 $slider->save();
+        $slider = new Slider();
+        $slider->slider_name = $data['slider_name'];
+        $slider->slider_image = $new_image;
+        $slider->slider_status = $data['slider_status'];
+        $slider->slider_des = $data['slider_des'];
+        $slider->slider_content = $data['slider_content'];
+        $slider->save();
 
-                 Session::put('message', 'Thêm slide thành công');
-                 return Redirect::to('add-slider');
+        Session::put('message', 'Thêm slide thành công');
+        return Redirect::to('add-slider');
         }
         else{
             Session::put('message', 'Làm ơn thêm ảnh');

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Dưa Hấu X</title>
+    <title>Minh&Trang Fruit</title>
     {{-- seo --}}
     {{-- <link rel="canonical" href="{{$url_canonical}}"> --}}
     {{-- seo-end --}}
@@ -77,7 +77,7 @@
                         <div class="logo pull-left" style=" display: flex">
                             <a style="display: block; max-width: 320px;" href="{{ URL::to('/Trangchu') }}">
                                 <img style="width: 100%; height: 100%"
-                                    src="{{ asset('Back_End/image/logoduahau6.png') }}"alt="" />
+                                    src="{{ asset('Back_End/image/logominhtrang1.png') }}"alt="" />
                             </a>
                         </div>
                     </div>
@@ -284,7 +284,7 @@
                                             <h2 class="title text-center">Mạng xã hội</h2>
                                             <ul>
                                                 <li>
-                                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                                    <a href="https://www.facebook.com/caubehayho2k"><i class="fa fa-facebook"></i></a>
                                                 </li>
                                                 <li>
                                                     <a href="#"><i class="fa fa-twitter"></i></a>
@@ -293,10 +293,10 @@
                                                     <a href="#"><i class="fa fa-google-plus"></i></a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"><i class="fa fa-youtube"></i></a>
+                                                    <a href="https://www.youtube.com/watch?v=Y04uCqaECqY"><i class="fa fa-youtube"></i></a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                                                    <a href="https://www.instagram.com/?hl=en"><i class="fa-brands fa-instagram"></i></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -397,7 +397,7 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="row">
-                    <p class="pull-left">Copyright © 2023 DưaHấu - X Inc. All rights reserved.</p>
+                    <p class="pull-left">Copyright © 2023 LongTheNguyen Inc. All rights reserved.</p>
                     <p class="pull-right">Designed by <span><a target="_blank"
                                 href="https://www.facebook.com/thelong.nguyen.3150807/">Caubehayho2k</a></span></p>
                 </div>

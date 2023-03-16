@@ -39,7 +39,7 @@ class PostController extends Controller
 
         $this->AuthLogin();
         $title = 'Tất cả bài viết';
-        $all_post = DB::table('tbl_post')->get();
+        $all_post = DB::table('tbl_post')->paginate(3);
         $manager_post = view('admin.post.all_post', compact('title'))->with('ListPost', $all_post);
         return view ('admin_layout')->with('admin.post.all_post', $manager_post);
     }
@@ -51,12 +51,14 @@ class PostController extends Controller
         $rules = [
             'post_name'=> 'required|min:10',
             'post_des'=> 'required|min:25',
+            'post_image'=> 'required'
         ];
         $message = [
             'post_name.required' => 'Tên bài viết bắt buộc phải nhập',
             'post_name.min' => 'Tên bài viết không được nhỏ hơn :min ký tự',
             'post_des.required' => 'Tên bài viết bắt buộc phải nhập',
             'post_des.min' => 'Tên bài viết không được nhỏ hơn :min ký tự',
+            'post_image.required' => 'Hình ảnh bài viết bắt buộc phải chọn'
             
         ];
         $request->validate($rules, $message);

@@ -406,6 +406,7 @@ a#scrollUp i {
   top: 100%;
   content: url(../../Back_End/image/decor.PNG);
   z-index: 20;
+  display: none;
 }
 
 .slider-slictiky::before {
@@ -414,6 +415,7 @@ a#scrollUp i {
   top: 100%;
   content: url(../../Back_End/image/decor.PNG);
   z-index: 20;
+  display: none;
 }
 
 .header-middle .container .row {
@@ -1388,6 +1390,10 @@ h2.title:before {
   margin-top: 30px;
 }
 
+.info_wishlist >p{
+  margin-bottom: 0;
+}
+
 .well {
   background-color: #FFFFFF;
   border: 1px solid #F7F7F0;
@@ -1510,6 +1516,7 @@ h2.title {
   text-align: center;
   width: 100%;
 }
+
 
 .product-overlay .add-to-cart {
   background: #fff;
@@ -1943,7 +1950,7 @@ h2.title {
 }
 
 #reviews p {
-  color: #363432;
+  color: black;
 }
 
 #reviews form span {
@@ -2590,7 +2597,8 @@ textarea {
 .form-two,
 .form-one {
   float: left;
-  width: 47%
+  width: 100%;
+  display: flex;
 }
 
 

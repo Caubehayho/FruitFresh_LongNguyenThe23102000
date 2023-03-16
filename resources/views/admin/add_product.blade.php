@@ -40,13 +40,16 @@
                                 <label for="exampleInputEmail1">Số lượng</label>
                                 <input type="text" name="product_quantity" class="form-control" id="exampleInputEmail1"
                                     placeholder="Số lượng sản phẩm">
-                                @error('product_name')
+                                @error('product_quantity')
                                     <div style="color: red"><i>{{ $message }}</i></div>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Hình ảnh sản phẩm</label>
                                 <input type="file" name="product_image" class="form-control" id="exampleInputEmail1">
+                                @error('product_image')
+                                    <div style="color: red"><i>{{ $message }}</i></div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Giá sản phẩm</label>

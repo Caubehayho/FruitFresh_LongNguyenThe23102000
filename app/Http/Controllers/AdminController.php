@@ -9,6 +9,10 @@ session_start();
 
 use Illuminate\Http\Request;
 use DB;
+use App\Models\Product;
+use App\Models\Post;
+use App\Models\Order;
+use App\Models\Customer;
 
 class AdminController extends Controller
 {
@@ -29,22 +33,17 @@ class AdminController extends Controller
         return view('admin_login');
     }
 
-    //Hiển thị dashboard admin
-    public function show_dashboard(){
-        $this->AuthLogin();
-        $title = ' Bảng điều khiển ';
-        return view('admin.dashboard', compact('title'));
-    }
 
-
-    // Post yêu cầu đăng nhập
-    public function dashboard(Request $request){
+     // Post yêu cầu đăng nhập
+     public function dashboard(Request $request){
         $admin_email = $request->admin_email;
         $admin_password = md5($request->admin_password);
 
         $result = DB::table('tbl_admin')->where('admin_email', $admin_email)->where('admin_password', $admin_password)->first();
+       
+
         if($result){
-            Session::put('admin_name', $result->admin_name);
+            Session::put('admin_name', $result->admin_name);         
             Session::put('admin_id', $result->admin_id);
             return Redirect('/dashboard');
         }
@@ -54,6 +53,23 @@ class AdminController extends Controller
         }
         }
 
+
+    //Hiển thị dashboard admin
+    public function show_dashboard(){
+        $this->AuthLogin();
+        $title = ' Bảng điều khiển ';
+        $product = Product::all()->count();
+        $post = Post::all()->count();
+        $order = Order::all()->count();
+        $customer = Customer::all()->count(); 
+        // dd($result);      
+        
+        
+        return view('admin.dashboard', compact('title', 'product', 'post', 'order', 'customer'));
+    }
+
+
+   
 
 
         //Đăng xuất tài khoản

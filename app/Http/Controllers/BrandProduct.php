@@ -36,7 +36,7 @@ class BrandProduct extends Controller
     public function all_brand_product(){
         $this->AuthLogin();
         $title = 'Tất cả thương hiệu';
-        $all_brand_product = DB::table('tbl_brand')->get();
+        $all_brand_product = DB::table('tbl_brand')->paginate(5);
         $manager_brand_product = view('admin.all_brand_product', compact('title'))->with('ListData', $all_brand_product);
         return view ('admin_layout')->with('admin.all_brand_product', $manager_brand_product);
     }
@@ -45,6 +45,20 @@ class BrandProduct extends Controller
 
     public function save_brand_product(Request $request){
         $this->AuthLogin();
+
+        $rules = [
+            'brand_product_name'=> 'required|min:5',
+            'brand_product_desc'=> 'required|min:10'
+        ];
+        $message = [
+            'brand_product_name.required' => 'Tên thương hiệu bắt buộc phải nhập',
+            'brand_product_name.min' => 'Tên thương hiệu không được nhỏ hơn :min ký tự',
+            'brand_product_desc.required' => 'Mô tả thương hiệu bắt buộc phải nhập',
+            'brand_product_desc.min' => 'Mô tả thương hiệu không được nhỏ hơn :min ký tự',      
+        ];
+        $request->validate($rules, $message);
+
+
         $data = array();
         $data['brand_name'] = $request->brand_product_name;
         $data['brand_desc'] = $request->brand_product_desc;
@@ -120,8 +134,9 @@ class BrandProduct extends Controller
 
          //lấy tên danh mục làm tiêu đề
          $brand_name = DB::table('tbl_brand')->where('tbl_brand.brand_id', $brand_id )->limit(1)->get();
+         $all_post = DB::table('tbl_post')->where('post_status', '1')->orderby('post_id', 'desc')->limit(6)->get();
        
 
-        return view('pages.brand.show_brand')->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider)->with('brand_by_id', $brand_by_id)->with('brand_name', $brand_name);
+        return view('pages.brand.show_brand')->with('all_post', $all_post)->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider)->with('brand_by_id', $brand_by_id)->with('brand_name', $brand_name);
     }
 }

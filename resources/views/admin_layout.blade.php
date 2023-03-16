@@ -116,11 +116,21 @@
         rel="stylesheet">
     {{-- <link type="text/css" href="{{asset('BackEnd/css/style.css')}}" rel="stylesheet"> --}}
 
-    <link type="text/css" href="https://argon-dashboard-laravel-bs4.creative-tim.com/argon/css/argon.css?v=1.0.0"
+    <link type="text/css" href="{{asset('Front_End/admin/admin.css')}}"
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/5bf87cd97a.js" crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script> --}}
+    {{-- <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="   crossorigin="anonymous"></script> --}}
+  
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+   
 
 
+    <style>
+        .bg-gradient-primary{
+            background-color: #44a41bb8 !important;
+        }
+    </style>
 
 </head>
 
@@ -144,7 +154,7 @@
             <a class="navbar-brand pt-0" href="{{ URL::to('/dashboard') }}">
                 <img style="max-height: 3.5rem;" src="{{ asset('Back_End/image/logoduahau.png') }}"
                     class="navbar-brand-img" alt="...">
-                <span class="h4 mb-0 text-black text-uppercase d-none d-lg-inline-block">DUAHAU-X</span>
+                <span class="h4 mb-0 text-black text-uppercase d-none d-lg-inline-block">Minh&Trang Fruit</span>
             </a>
 
             <ul class="nav align-items-center d-md-none">
@@ -157,24 +167,16 @@
                             </span>
                             <div class="media-body ml-2 d-none d-lg-block">
                                 <span class="mb-0 text-sm  font-weight-bold">
-                                    <?php
-                                    $name = session()->get('admin_name');
-                                    if ($name) {
-                                        echo $name;
-                                        $name = session()->put('admin_name', '');
-                                    }
-                                    ?>
+                                    
                                 </span>
                             </div>
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                        <div class=" dropdown-header noti-title">
-                            <h6 class="text-overflow m-0">Chào mừng!</h6>
-                        </div>
+                       
                         <a href="https://argon-dashboard-laravel-bs4.creative-tim.com/profile" class="dropdown-item">
                             <i class="ni ni-single-02"></i>
-                            <span>Thông tin cá nhân</span>
+                            <span>Thông tin cá nhânn</span>
                         </a>
                         <a href="#" class="dropdown-item">
                             <i class="ni ni-settings-gear-65"></i>
@@ -256,6 +258,12 @@
                         </div>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link "  href="{{ URL::to('manage-user') }}">
+                            <i class="fa-solid fa-carrot"></i>
+                            <span class="nav-link-text">Khách hàng</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link " href="#navbar" data-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="navbar">
                             <i class="fa-solid fa-carrot"></i>
@@ -294,16 +302,16 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link collapsed" href="#navbar" data-toggle="collapse" role="button"
+                        <a class="nav-link collapsed" href="#navbars" data-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="navbar">
                             <i class="fab fa-laravel"></i>
-                            <span class="nav-link-text">Vận chuyển</span>
+                            <span class="nav-link-text">Quản lý vận chuyển</span>
                         </a>
-                        <div class="collapse" id="navbar" style="">
+                        <div class="collapse" id="navbars" style="">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ URL::to('/delivery') }}">
-                                        Quản lý vận chuyển
+                                        Thêm vận chuyển
                                     </a>
                                 </li>
                                 {{-- <li class="nav-item">
@@ -375,7 +383,7 @@
                         <a class="nav-link" href="#navbar-maps" data-toggle="collapse" role="button"
                             aria-expanded="" aria-controls="navbar-maps">
                             <i class="fa-solid fa-spider"></i>
-                            <span class="nav-link-text">Slider</span>
+                            <span class="nav-link-text">Slide</span>
                         </a>
                         <div class="collapse " id="navbar-maps">
                             <ul class="nav nav-sm flex-column">
@@ -384,6 +392,23 @@
                                 </li>
                                 <li class="nav-item ">
                                     <a href="{{ URL::to('/manage-slider') }}" class="nav-link">Quản lý slide</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#navbar-m" data-toggle="collapse" role="button"
+                            aria-expanded="" aria-controls="navbar-m">
+                            <i class="fa-solid fa-spider"></i>
+                            <span class="nav-link-text">Bình luận</span>
+                        </a>
+                        <div class="collapse " id="navbar-m">
+                            <ul class="nav nav-sm flex-column">
+                                {{-- <li class="nav-item ">
+                                    <a href="{{ URL::to('/add-slider') }}" class="nav-link">Thêm slide</a>
+                                </li> --}}
+                                <li class="nav-item ">
+                                    <a href="{{ URL::to('/comment') }}" class="nav-link">Quản lý bình luận</a>
                                 </li>
                             </ul>
                         </div>
@@ -427,13 +452,7 @@
                                 </span>
                                 <div class="media-body ml-2 d-none d-lg-block">
                                     <span class="mb-0 text-sm  font-weight-bold">
-                                        <?php
-                                        $name = session()->get('admin_name');
-                                        if ($name) {
-                                            echo $name;
-                                            $name = session()->put('admin_name', '');
-                                        }
-                                        ?>
+                                           
                                     </span>
                                 </div>
                             </div>
@@ -479,6 +498,8 @@
         integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA=="
         data-cf-beacon='{"rayId":"7811a966298787f6","version":"2022.11.3","r":1,"token":"1b7cbb72744b40c580f8633c6b62637e","si":100}'
         crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js" integrity="sha512-RCgrAvvoLpP7KVgTkTctrUdv7C6t7Un3p1iaoPr1++3pybCyCsCZZN7QEHMZTcJTmcJ7jzexTO+eFpHk4OCFAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     {{-- validator-form --}}
     {{-- <script src="{{ asset('public/Back_End/js/jquery.form-validator.min.js') }}"></script>
     <script type="text/javascript">
@@ -486,6 +507,100 @@
 
         });
     </script> --}}
+    {{-- Chọn ngày bắt đầu kết thúc- admin-thêm coupon --}}
+    <script type="text/javascript">
+
+    $(function(){
+        $("#start_coupon").datepicker({
+            // prevText:"Tháng trước",
+            // nextText:"Tháng sau",
+            // dateFormat:"dd/mm/yy",
+            // dayNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4". "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
+            // duration: "slow"
+        });                                                                                                     
+        
+        $("#end_coupon").datepicker({
+            // prevText:"Tháng trước",
+            // nextText:"Tháng sau",
+            // dateFormat:"dd/mm/yy",
+            // dayNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4". "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
+            // duration: "slow"
+        });
+    });         
+       
+    </script>
+
+
+
+
+
+
+    {{-- Cập nhật trạng thái duyệt bình luận --}}
+    <script type=text/javascript>
+        $('.comment_duyet_btn').click(function(){
+            var comment_status = $(this).data('comment_status');
+            var comment_id = $(this).data('comment_id');
+            var comment_product_id = $(this).attr('id');
+            var _token = $('input[name="_token"]').val();
+
+            if(comment_status==0){
+                var alert = 'Duyệt thành công';
+            }else{
+                var alert = 'Bỏ duyệt';
+            }
+            $.ajax({
+                    url: '{{ url('/allow-comment') }}',
+                    method: 'POST',
+                    data: {
+                        "comment_status": comment_status,
+                        "comment_id": comment_id,
+                        "comment_product_id": comment_product_id,
+                        "_token": _token,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
+                        location.reload();
+                        $('#notify_commment').html('<span class="text text-alert">'+alert+'</span>');
+                    }
+                });
+
+
+        });
+
+        // trả lời comment
+        $('.btn-reply-comment').click(function(){
+            var comment_id = $(this).data('comment_id');
+
+            var comment = $('.reply_comment_'+comment_id).val();
+            
+            var comment_product_id = $(this).data('product_id');
+
+            var _token = $('input[name="_token"]').val();
+
+            
+
+            $.ajax({
+                    url: '{{ url('/reply-comment') }}',
+                    method: 'POST',
+                    data: {
+                        "comment": comment,
+                        "comment_id": comment_id,
+                        "comment_product_id": comment_product_id,
+                        "_token": _token,
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success:function(data) {
+                        $('.reply_comment_'+comment_id).val('');
+                        $('#notify_commment').html('<span class="text text-alert">Trả lời bình luận thành công</span>');
+                    }
+                });
+
+
+        });
+    </script>
+
+
+
 
     {{-- Button cập nhật view_order --}}
     <script type="text/javascript">

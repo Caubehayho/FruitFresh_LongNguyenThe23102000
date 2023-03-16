@@ -26,7 +26,7 @@
                         <p>Điền thông tin gửi hàng</p>
                         <div class="form-one">
 
-                            <form method="POST">
+                            <form method="POST" style="width: 50%">
                                  @csrf
                                 <input type="text" name="shipping_email" class="shipping_email" placeholder="Email*">
                                 <input type="text" name="shipping_name" class="shipping_name" placeholder="Họ và tên*">
@@ -62,12 +62,12 @@
                                 <input type="button" name="send_order" value="Xác nhận đơn hàng" class="btn btn-primary btn-sm send_order">
                             </form>
                             
-                            <form>
+                            <form style="width: 50%; padding-left:20px; padding-top:18px">
                                 @csrf
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
                                     <label for="">Chọn thành phố</label>
-                                    <select name="city" id="city" class="form-control input-sm m-bot15 choose city">
+                                    <select style="height: 40px" name="city" id="city" class="form-control input-sm m-bot15 choose city">
                                             <option value="">---Chọn tỉnh thành phố---</option>
                                         @foreach($city as $key => $ci)
                                             <option value="{{$ci->matp}}">{{$ci->name_city}}</option>
@@ -77,14 +77,14 @@
 
                                 <div class="form-group">
                                     <label for="">Chọn quận huyện</label>
-                                    <select name="province" id="province" class="form-control input-sm m-bot15 choose province">
+                                    <select style="height: 40px" name="province" id="province" class="form-control input-sm m-bot15 choose province">
                                         <option value="">---Chọn quận huyện---</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="">Chọn xã phường</label>
-                                    <select name="wards" id="wards" class="form-control input-sm m-bot15 wards">
+                                    <select style="height: 40px" name="wards" id="wards" class="form-control input-sm m-bot15 wards">
                                         <option value="">---Chọn xã phường---</option>
                                     </select>
                                 </div>
@@ -108,6 +108,9 @@
                     </div>
                      @endif
                     <div class="table-responsive cart_info">
+                        {{-- <div class="review-payment">
+                            <h2>Xem lại giỏ hàng</h2>
+                        </div> --}}
                         <table class="table table-condensed">
                             <thead>
                                 <tr class="cart_menu text-center">
@@ -278,6 +281,12 @@
                                                                 @endif
                                                         </form>
                                                 </td>
+                                                <td>
+                                                    <form action="{{ url('/vnpay-payment') }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-default check_out" name="redirect">Thanh toán VNPay</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @endif
                                 @else
@@ -297,9 +306,6 @@
                 </div>
 
             </div>
-        </div>
-        <div class="review-payment">
-            <h2>Xem lại giỏ hàng</h2>
         </div>
 
     </section>

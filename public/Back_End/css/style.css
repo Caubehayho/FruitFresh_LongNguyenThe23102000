@@ -9,11 +9,12 @@ h1, h2, h3 {margin: 0;}
 ul, ol {margin: 0;}
 p {margin: 0;}
 
+
 html, body{
 	font-family: 'Roboto', sans-serif;
     font-size: 100%;
     overflow-x: hidden;
-    background: url(../image/bg.jpg) no-repeat 0px 0px;
+    background: url(../image/bg2.webp) no-repeat 0px 0px;
 	background-size:cover;
 }
 body a{
@@ -2355,7 +2356,7 @@ ul.inbox-pagination li {
 }
 /*-- gallery --*/
 .w3layouts-main h2 {
-	color: #8b5c7e;
+	color: #fff;
     font-size: 29px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -2365,7 +2366,7 @@ ul.inbox-pagination li {
 .w3layouts-main {
     width: 30%;
     margin:5em auto;
-    background:rgba(171, 119, 157, 0.27);
+    background:#00000087;
     padding: 42px 35px;
 }
 /*--//header--*/
@@ -2375,7 +2376,7 @@ input.ggg{
     padding: 15px 0px 15px 15px;
     border: 1px solid #fff;
     outline: none;
-    font-size: 14px;
+    font-size: 15px;
     color: #fff;
     margin: 14px 0px;
 	background: none;
@@ -2417,7 +2418,7 @@ input.ggg{
     font-size: 18px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    background: #f0bcb4;
+    background: #44a41bb8;
     color: white;
     border: none;
     outline: none;
@@ -2431,7 +2432,8 @@ input.ggg{
     -ms-transition: 0.5s all;
 }
 .w3layouts-main input[type="submit"]:hover {
-	background:#8b5c7e;
+	background: white;
+    color: #44a41b;
 	transition:0.5s all;
 	-webkit-transition:0.5s all;
 	-o-transition:0.5s all;
@@ -2439,8 +2441,10 @@ input.ggg{
 	-ms-transition:0.5s all;
 }
 .w3layouts-main p a {
-    color: #f0bcb4;
+    color: white;
     padding: 10px;
+    padding-left: 40px;
+
 }
 .w3layouts-main p a:hover {
     color: #fff;

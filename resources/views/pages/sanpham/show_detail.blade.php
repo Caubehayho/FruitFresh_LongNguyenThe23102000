@@ -14,19 +14,19 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                             <div class="item active">
-                                <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar1.jpg') }}"
+                                <a href=""><img style="width: 84px; height: 84px" src="{{ URL::to('Front_End/Image/product-details/1.jpg') }}"
                                         alt=""></a>
-                                <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar2.jpg') }}"
+                                <a href=""><img style="width: 84px; height: 84px" src="{{ URL::to('Front_End/Image/product-details/4.jpg') }}"
                                         alt=""></a>
-                                <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar3.jpg') }}"
+                                <a href=""><img style="width: 84px; height: 84px" src="{{ URL::to('Front_End/Image/product-details/3.jpg') }}"
                                         alt=""></a>
                             </div>
                             <div class="item">
-                                <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar1.jpg') }}"
+                                <a href=""><img style="width: 84px; height: 84px" src="{{ URL::to('Front_End/Image/product-details/1.jpg') }}"
                                         alt=""></a>
-                                <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar2.jpg') }}"
+                                <a href=""><img style="width: 84px; height: 84px" src="{{ URL::to('Front_End/Image/product-details/4.jpg') }}"
                                         alt=""></a>
-                                <a href=""><img src="{{ URL::to('Front_End/Image/product-details/similar3.jpg') }}"
+                                <a href=""><img style="width: 84px; height: 84px" src="{{ URL::to('Front_End/Image/product-details/3.jpg') }}"
                                         alt=""></a>
                             </div>
                         </div>
@@ -72,6 +72,8 @@
                                                 value="{{ $detail_pro->product_price }}">
                                             <input type="hidden" class="cart_product_quantity_{{ $detail_pro->product_id }}"
                                                 value="{{ $detail_pro->product_quantity }}">
+                                            <input type="hidden" class="cart_product_qty_{{ $detail_pro->product_id }}"
+                                            value="{{ 1 }}">
                                                 
                                             
                                 {{-- ajax --}}
@@ -103,11 +105,17 @@
         <div style="margin-top: 20px" class="category-tab shop-details-tab">
             <!--category-tab-->
             <div class="col-sm-12">
+                <iframe width="100%" height="350px" src="https://www.youtube.com/embed/1IwKWYNycj8" title="YouTube video player"
+                    frameborder="0" allow="accelerometer; autoplay;
+                    clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                </iframe>
+            </div>
+            <div class="col-sm-12">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#comment" data-toggle="tab">Bình luận</a></li>
+                    <li class="active"><a href="#reviews" data-toggle="tab">Đánh giá (5)</a></li> 
+                    <li><a href="#comment" data-toggle="tab">Bình luận</a></li>
                     <li><a href="#details" data-toggle="tab">Mô tả sản phẩm</a></li>
-                    <li><a href="#companyprofile" data-toggle="tab">Chi tiết sản phẩm</a></li>
-                    <li><a href="#reviews" data-toggle="tab">Đánh giá (5)</a></li>            
+                    <li><a href="#companyprofile" data-toggle="tab">Chi tiết sản phẩm</a></li>                            
                 </ul>
             </div>
             <div class="tab-content">
@@ -124,35 +132,64 @@
                 </div>
 
 
-                <div class="tab-pane fade " id="reviews">
+                <div class="tab-pane fade active in" id="reviews">
                     <div class="col-sm-12">
                         <ul>
-                            <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
+                            <li><a href=""><i class="fa fa-user"></i>Admin</a></li>
                             <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-                            <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
+                            <li><a href=""><i class="fa fa-calendar-o"></i>14-02-2023</a></li>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut
-                            aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur.</p>
-                        <p><b>Write Your Review</b></p>
+                        <style type="text/css">
+                            .style_comment{
+                                background-color: #F0F0E9;
+                                border: 1px solid gainsboro;
+                                color: black;
+                            }
+                        </style>
+                            <form>
+                                @csrf
+                                <input type="hidden" name="comment_product_id" class="comment_product_id" value="{{$detail_pro->product_id}}">
+                                <div id="comment_show"></div>                      
+                            </form>
+                            
+                            <?php
+                            $customer_id = Session::get('customer_id');
+                            $customer_name = Session::get('customer_name');
+                            $customer_img = Session::get('customer_img');
 
-                        <form action="#">
-                            <span>
-                                <input type="text" placeholder="Your Name" />
-                                <input type="email" placeholder="Email Address" />
-                            </span>
-                            <textarea name=""></textarea>
-                            <b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-                            <button type="button" class="btn btn-default pull-right">
-                                Submit
-                            </button>
-                        </form>
+                            if ($customer_id != null){
+                                ?>
+                               <p><b>Viết đánh giá của bạn</b></p>
+                               <form action="#">
+                                   <span>
+                                       <input style="width: 100%; margin-left: 0" disabled type="text" placeholder="Tên bình luận" value="{{ $customer_name }}" class="comment_name" />
+                                       {{-- <input type="email" placeholder="Email Address" /> --}}
+                                   </span>
+                                   <input type="hidden" name="comment_customer_img" class="comment_customer_img" value="{{ $customer_img }}">
+                                   <textarea name="comment" class="comment_content" placeholder="Nội dung bình luận"></textarea>
+                                   <div id="notify_comment"></div>
+                                   <b>Đánh giá sao: </b> <img src="images/product-details/rating.png" alt="" />
+                                   <button type="button" class="btn btn-default pull-right send-comment">
+                                       Gửi bình luận
+                                   </button>
+                               </form>
+                            <?php
+                            }
+
+                            else {
+                                    ?>
+                               <span>
+                                    Vui lòng đăng nhập để có thể đánh giá sản phẩm!
+                               </span>
+                                <?php
+                                }
+                                ?>
+
+                            
+                     
                     </div>
                 </div>
-                <div class="tab-pane fade active in" id="comment">
+                <div class="tab-pane fade " id="comment">
                     <div class="fb-comments" data-href="{{ $url_canonical }}" data-width="" data-numposts="5">
                     </div>
                 </div>
@@ -182,15 +219,6 @@
                                                 class="fa fa-shopping-cart"></i>Thêm vào
                                             giỏ hàng</a>
                                     </div>
-                                    {{-- <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <h2>{{ number_format($product->product_price) . ' ' . 'VNĐ' }}</h2>
-                                        <p>{{ $product->product_name }}</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add
-                                            to
-                                            cart</a>
-                                    </div>
-                                </div> --}}
                                 </div>
                             </div>
                         </div>

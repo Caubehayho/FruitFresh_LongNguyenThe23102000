@@ -39,7 +39,7 @@ class CategoryProduct extends Controller
         
         $this->AuthLogin();
         $title = 'Danh sách danh mục';
-        $all_category_product = DB::table('tbl_category_product')->get();
+        $all_category_product = DB::table('tbl_category_product')->paginate(5);
         $manager_category_product = view('admin.all_category_product', compact('title'))->with('ListData', $all_category_product);
         return view ('admin_layout')->with('admin.all_category_product', $manager_category_product);
     }
@@ -48,6 +48,20 @@ class CategoryProduct extends Controller
 
     public function save_category_product(Request $request){
         $this->AuthLogin();
+
+        $rules = [
+            'category_product_name'=> 'required|min:5',
+            'category_product_desc'=> 'required|min:10'
+        ];
+        $message = [
+            'category_product_name.required' => 'Tên danh mục bắt buộc phải nhập',
+            'category_product_name.min' => 'Tên danh mục không được nhỏ hơn :min ký tự',
+            'category_product_desc.required' => 'Mô tả danh mục bắt buộc phải nhập',
+            'category_product_desc.min' => 'Mô tả danh mục không được nhỏ hơn :min ký tự',      
+        ];
+        $request->validate($rules, $message);
+
+
         $data = array();
         $data['category_name'] = $request->category_product_name;
         $data['category_desc'] = $request->category_product_desc;
@@ -120,8 +134,9 @@ class CategoryProduct extends Controller
 
          //lấy tên danh mục làm tiêu đề
         $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id', $category_id )->limit(1)->get();
+        $all_post = DB::table('tbl_post')->where('post_status', '1')->orderby('post_id', 'desc')->limit(6)->get();
 
-        return view('pages.category.show_category')->with('category', $cate_product)->with('brand', $brand_product)->with('category_by_id', $category_by_id)->with('category_name', $category_name)->with('slider', $slider);
+        return view('pages.category.show_category')->with('all_post', $all_post)->with('category', $cate_product)->with('brand', $brand_product)->with('category_by_id', $category_by_id)->with('category_name', $category_name)->with('slider', $slider);
     }
 
       

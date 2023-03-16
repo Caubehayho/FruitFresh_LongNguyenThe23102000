@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
 use Session;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 
@@ -22,6 +23,31 @@ class CouponController extends Controller
     public function insert_coupon_code(Request $request){
        $data = $request->all();
 
+       $rules = [
+        'coupon_name'=> 'required|min:6',
+        'coupon_date_start'=> 'required',
+        'coupon_date_end'=> 'required',
+        'coupon_code'=> 'required|min:5',
+        'coupon_condition'=> 'required',
+        'coupon_time'=> 'required|integer',
+        'coupon_number'=> 'required|integer'
+        ];
+        $message = [
+            'coupon_name.required' => 'Tên mã giảm giá bắt buộc phải nhập',
+            'coupon_name.min' => 'Tên mã giảm giá không được nhỏ hơn :min ký tự',
+            'coupon_date_start.required' => 'Ngày bắt đầu bắt buộc phải nhập',
+            'coupon_date_end.required' => 'Ngày bắt đầu bắt buộc phải nhập',
+            'coupon_code.required' => 'Mã giảm giá bắt buộc phải nhập',
+            'coupon_code.integer' => 'Mã giảm giá không được nhỏ hơn :min kí tự',
+            'coupon_condition.required' => 'Bắt buộc phải chọn tính năng mã',
+            'coupon_time.required' => 'Số lượng mã giảm giá bắt buộc phải nhập',
+            'coupon_time.integer' => 'Số lượng mã giảm giá bắt buộc phải là số',
+            'coupon_number.required' => 'Số tiền giảm giá bắt buộc phải nhập',
+            'coupon_number.integer' => 'Số tiền giảm giá bắt buộc phải là số'
+            
+        ];
+       $request->validate($rules, $message);
+
        $coupon = new Coupon;
 
        $coupon->coupon_name = $data['coupon_name'];
@@ -29,6 +55,9 @@ class CouponController extends Controller
        $coupon->coupon_code = $data['coupon_code'];
        $coupon->coupon_time = $data['coupon_time'];
        $coupon->coupon_condition = $data['coupon_condition'];
+       $coupon->coupon_date_start = $data['coupon_date_start'];
+       $coupon->coupon_date_end = $data['coupon_date_end'];
+    //    $coupon->coupon_status = 1;
 
        $coupon->save();
 
@@ -39,8 +68,10 @@ class CouponController extends Controller
     public function list_coupon(){
 
         $title = 'Tất cả mã giảm giá';
+
+        $today = strtotime(Carbon::now('Asia/Ho_Chi_Minh')->format('m/d/Y'));
         $coupon = Coupon::orderby('coupon_id', 'DESC')->get();
-        return view('admin.coupon.list-coupon', compact('title'))->with(compact('coupon'));
+        return view('admin.coupon.list-coupon', compact('title'))->with(compact('coupon', 'today'));
     }
 
 

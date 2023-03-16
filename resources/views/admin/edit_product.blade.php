@@ -34,6 +34,8 @@
                                     <input type="text" name="product_quantity" class="form-control" id="exampleInputEmail1"
                                         value="{{ $Data->product_quantity }}">
                                 </div>
+                                <input type="hidden" name="product_sold" class="form-control" id="exampleInputEmail1"
+                                        value="{{ $Data->product_sold }}">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Hình ảnh sản phẩm</label>
                                     <input type="file" name="product_image" class="form-control" id="exampleInputEmail1">

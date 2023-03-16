@@ -13,7 +13,7 @@ use App\Models\City;
 use App\Models\Province;
 use App\Models\Wards;
 use App\Models\Feeship;
-
+use App\Models\Coupon;
 use App\Models\Shipping;
 use App\Models\Order;
 use App\Models\OrderDetails;
@@ -25,6 +25,17 @@ class CheckoutController extends Controller
 
     public function confirm_order(Request $request){
         $data = $request->all(); 
+
+        //lấy coupon để trừ số lượng mã giảm khi khách xác nhận đơn hàng
+        if(Session::get('coupon')){
+            $coupon = Coupon::where('coupon_code', $data['order_coupon'])->first();
+            $coupon->coupon_used = $coupon->coupon_used.','.Session::get('customer_id');
+            $coupon->coupon_time = $coupon->coupon_time - 1;
+            $coupon->save();
+        }
+        else{}
+      
+        // lấy vận chuyển
         $shipping = new Shipping();
         $shipping->shipping_name = $data['shipping_name'];
         $shipping->shipping_email = $data['shipping_email'];
@@ -38,6 +49,7 @@ class CheckoutController extends Controller
 
         $checkout_code = substr(md5(microtime()), rand(0, 26),5);
 
+        //lấy order
         $order = new Order();
         $order->customer_id = Session::get('customer_id');
         $order->shipping_id = $shipping_id;
@@ -141,9 +153,11 @@ class CheckoutController extends Controller
 
         $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
 
+        $all_post = DB::table('tbl_post')->where('post_status', '1')->orderby('post_id', 'desc')->limit(3)->get();
 
 
-        return view ('pages.checkout.login_checkout', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider);
+
+        return view ('pages.checkout.login_checkout', compact('title'))->with('all_post', $all_post)->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider);
     }
 
 
@@ -153,13 +167,17 @@ class CheckoutController extends Controller
         $data['customer_name'] = $request->customer_name;
         $data['customer_phone'] = $request->customer_phone;
         $data['customer_email'] = $request->customer_email;
+        $data['customer_address'] = '';
+        $data['customer_img'] = $request->customer_default_avatar;
         $data['customer_password'] = md5($request->customer_password);
 
         $customer_id = DB::table('tbl_customer')->insertGetId($data);
+        $customer_name = DB::table('tbl_customer')->get('customer_name');
 
         Session::put('customer_id', $customer_id);
-        Session::put('customer_name', $request->customer_name);
-        return Redirect::to('/check-out');
+        Session::put('customer_name', $customer_name);
+    
+        return Redirect::to('/login-checkout');
     }
 
 
@@ -170,12 +188,13 @@ class CheckoutController extends Controller
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
         $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
+        $all_post = DB::table('tbl_post')->where('post_status', '1')->orderby('post_id', 'desc')->limit(6)->get();
 
         $city = City::orderby('matp', 'ASC')->get();
 
 
 
-        return view ('pages.checkout.show_checkout', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider)->with('city', $city);
+        return view ('pages.checkout.show_checkout', compact('title'))->with('all_post', $all_post)->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider)->with('city', $city);
     }
 
 
@@ -203,10 +222,11 @@ class CheckoutController extends Controller
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
         $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
+        $all_post = DB::table('tbl_post')->where('post_status', '1')->orderby('post_id', 'desc')->limit(6)->get();
 
 
 
-        return view ('pages.checkout.payment', compact('title'))->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider);
+        return view ('pages.checkout.payment', compact('title'))->with('all_post', $all_post)->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider);
     }
 
     
@@ -279,12 +299,21 @@ class CheckoutController extends Controller
         $email = $request->email_account;
         $password = md5($request->password_account);
         $result = DB::table('tbl_customer')->where('customer_email', $email)->where('customer_password', $password)->first();
+        if(Session::get('coupon')==true){
+            Session::forget('coupon');
+        }
+
         if($result){
+            $customer_name = $result->customer_name;
+            $resultt = DB::table('tbl_customer')->where('customer_email', $email)->where('customer_password', $password)->first();
+            $customer_img = $result->customer_img;
             Session::put('customer_id', $result->customer_id);
+            Session::put('customer_name', $customer_name);
+            Session::put('customer_img', $customer_img);
             return Redirect::to('/check-out');
         }
         else{
-            return Redirect::to('/login-checkout');
+            return redirect('login-checkout')->with('error', 'Thông tin tài khoản sai, vui lòng đăng nhập lại');
         }
         
     }

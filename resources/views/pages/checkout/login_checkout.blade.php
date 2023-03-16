@@ -7,15 +7,29 @@
                 <div class="col-sm-4 col-sm-offset-1">
                     <div class="login-form">
                         <!--login form-->
+                        @if (session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                        @elseif(session()->has('error'))
+                            <div class="alert alert-danger">
+                                {{ session()->get('error') }}
+                            </div>
+                        @endif
                         <h2>Đăng nhập tài khoản</h2>
                         <form action="{{URL::to('/login-customer')}}" method="POST">
                             @csrf
                             <input type="text" name= "email_account" placeholder="Tài khoản" />
                             <input type="password"name="password_account" placeholder="Password" />
-                            <span>
-                                <input type="checkbox" class="checkbox">
-                                Ghi nhớ đăng nhập
-                            </span>
+                            <div style="display: flex; justify-content: space-between">
+                                <span>
+                                    <input type="checkbox" class="checkbox">
+                                    Ghi nhớ đăng nhập
+                                </span>
+                                <span>
+                                   <a style="color: #44a41b" href="{{url('/quen-mat-khau')}}">Quên mật khẩu</a>
+                                </span>
+                            </div>
                             <button type="submit" class="btn btn-default">Đăng nhập</button>
                         </form>
                     </div>
@@ -34,6 +48,7 @@
                             <input type="email" name="customer_email" placeholder="Địa chỉ email" />
                             <input type="password" name="customer_password" placeholder="Mật khẩu" />
                             <input type="text" name="customer_phone" placeholder="Phone" />
+                            <input type="hidden" name="customer_default_avatar" value="AvatarDefaultMinhTrang.png" />
                             <button type="submit" class="btn btn-default">Đăng kí</button>
                         </form>
                     </div>

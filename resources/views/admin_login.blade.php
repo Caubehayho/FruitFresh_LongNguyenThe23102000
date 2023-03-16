@@ -40,12 +40,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 {{ csrf_field() }}
                 <input type="text" class="ggg" name="admin_email" placeholder="Nhập email" required="">
                 <input type="password" class="ggg" name="admin_password" placeholder="Nhập password" required="">
-                <span><input type="checkbox" />Remember Me</span>
-                <h6><a href="#">Forgot Password?</a></h6>
+                <span><input type="checkbox" />Lưu đăng nhập</span>
+                <h6><a href="#">Quên mật khẩu?</a></h6>
                 <div class="clearfix"></div>
-                <input type="submit" value="Sign In" name="login">
+                <input type="submit" value="Đăng nhập" name="login">
             </form>
-            <p>Don't Have an Account ?<a href="registration.html">Create an account</a></p>
         </div>
     </div>
     <script src="{{ asset('Back_End/js/bootstrap.js') }}"></script>

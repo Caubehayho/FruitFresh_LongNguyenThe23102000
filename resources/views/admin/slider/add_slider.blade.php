@@ -22,23 +22,40 @@
                     <div class="position-center ">
                         <form role="form" action="{{URL::to('/insert-slider')}}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
+                            @if ($errors->any())
+                            <div class="alert alert-danger text-center">
+                                Vui lòng kiểm tra lại các trường thông tin
+                            </div>
+                             @endif
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên slide</label>
                                 <input type="text" name="slider_name" class="form-control" id="exampleInputEmail1" placeholder="Tên slide">
+                                @error('slider_name')
+                                <div style="color: red"><i>{{ $message }}</i></div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Hình ảnh</label>
                                 <input type="file" name="slider_image" class="form-control" id="exampleInputEmail1" placeholder="Slide">
+                                @error('slider_image')
+                                <div style="color: red"><i>{{ $message }}</i></div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Mô tả</label>
                                 <textarea style="resize: : none" rows="8" type="password" name="slider_des" class="form-control" id="exampleInputPassword1"
                                     placeholder="Mô tả slide"></textarea>
+                                    @error('slider_des')
+                                    <div style="color: red"><i>{{ $message }}</i></div>
+                                    @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Nội dung</label>
                                 <textarea style="resize: : none" rows="8" type="password" name="slider_content" class="form-control" id="exampleInputPassword1"
                                     placeholder="Mô tả nội dung slide"></textarea>
+                                    @error('slider_content')
+                                    <div style="color: red"><i>{{ $message }}</i></div>
+                                    @enderror
                             </div>
                             <div class="form-group">
                                 <label for="">Hiển thị</label>

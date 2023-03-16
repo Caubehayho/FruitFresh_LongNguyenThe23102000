@@ -35,14 +35,14 @@
                             <td class="budget">
                                 {{ $Data->post_id }}
                             </td>
-                            <td class="budget">
+                            <td  class="budget">
                                 {{ $Data->post_name }}
                             </td>
                             <td>
                                 <img src="Up_Load/Post/{{ $Data->post_image }}" height="100" width="100">
                             </td>
                             <td class="budget">
-                                {{ $Data->post_des }}
+                            {{ Str::limit($Data->post_des, 40, ' ...')}}
                             </td>
                             <td>
                                 <div class="avatar-group">
@@ -76,31 +76,7 @@
                 </tbody>
             </table>
         </div>
-
-        <div class="card-footer py-4">
-            <nav aria-label="...">
-                <ul class="pagination justify-content-end mb-0">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">
-                            <i class="fas fa-angle-left"></i>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2 <span class="sr-only">(Hiện tại)</span></a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="fas fa-angle-right"></i>
-                            <span class="sr-only">Tiếp theo</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        {{ $ListPost->links() }}
     </div>
+    
 @endsection

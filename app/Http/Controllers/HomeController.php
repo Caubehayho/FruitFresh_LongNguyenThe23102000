@@ -41,9 +41,10 @@ class HomeController extends Controller
         $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
 
         $search_product = DB::table('tbl_product')->where('product_status', '1')->where('product_name', 'like', '%'.$keywords. '%')->get();
+        $all_post = DB::table('tbl_post')->where('post_status', '1')->orderby('post_id', 'desc')->limit(6)->get();
 
 
-        return view('pages.sanpham.search')->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider)->with('search_product', $search_product);
+        return view('pages.sanpham.search')->with('all_post', $all_post)->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider)->with('search_product', $search_product);
 
     }
 

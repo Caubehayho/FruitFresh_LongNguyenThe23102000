@@ -22,14 +22,25 @@
                     <div class="position-center ">
                         <form role="form" action="{{URL::to('/save-brand-product')}}" method="post">
                             {{ csrf_field() }}
+                            @if ($errors->any())
+                            <div class="alert alert-danger text-center">
+                                Vui lòng kiểm tra lại các trường thông tin
+                            </div>
+                             @endif
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên thương hiệu</label>
                                 <input type="text" name="brand_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên thương hiệu">
+                                @error('brand_product_name')
+                                <div style="color: red"><i>{{ $message }}</i></div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Mô tả thương hiệu</label>
                                 <textarea style="resize: : none" rows="8" type="password" name="brand_product_desc" class="form-control" id="exampleInputPassword1"
                                     placeholder="Mô tả thương hiệu"></textarea>
+                                    @error('brand_product_desc')
+                                    <div style="color: red"><i>{{ $message }}</i></div>
+                                    @enderror
                             </div>
                             <div class="form-group">
                                 <label for="">Hiển thị</label>

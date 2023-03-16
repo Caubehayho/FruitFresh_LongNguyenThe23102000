@@ -11,6 +11,7 @@ session_start();
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Slider;
+use App\Models\Comment;
 
 class ProductController extends Controller
 {
@@ -23,6 +24,119 @@ class ProductController extends Controller
         else{
             return Redirect::to('admin')->send();
         }
+    }
+
+
+    // Xoa comment
+    public function delete_comment( $CommentId ){
+        $this->AuthLogin();
+        DB::table('tbl_comment')->where('comment_id', $CommentId)->delete();
+        Session::put('message', 'Xóa bình luận thành công');
+        return Redirect::to('/comment');
+    }
+ 
+    //Trả lời comment
+    public function reply_comment(Request $request){
+        $data = $request->all();
+        $comment = new Comment();
+        $comment->comment = $data['comment'];
+        $comment->comment_product_id = $data['comment_product_id'];
+        $comment->comment_parent_comment = $data['comment_id'];
+        $comment->comment_status = 0;
+        $comment->comment_name = 'MinhTrangFruit';
+        $comment->save();
+    }
+
+
+    // Duyệt comment
+    public function allow_comment(Request $request){
+        $data = $request->all();
+        $comment = Comment::find($data['comment_id']);
+        $comment->comment_status = $data['comment_status'];
+        $comment->save();
+    }
+
+
+
+    //Quản lý comment- admin
+    public function list_comment(){
+        $title ='Quản lý bình luận';
+        $comment = Comment::with('product')->where('comment_parent_comment','=',0)->orderBy('comment_id', 'DESC')->get();
+        $comment_rep = Comment::with('product')->where('comment_parent_comment','>',0)->get();
+        return view('admin.comment.list-comment', compact('title'))->with('comment', $comment)->with('comment_rep', $comment_rep);
+    }
+
+
+
+
+    //Comment send
+    public function send_comment(Request $request){
+        $product_id = $request->product_id;
+        $comment_name = $request->comment_name;
+        $comment_content = $request->comment_content;
+        $comment_customer_img = $request->comment_customer_img;
+        $comment = new Comment();
+        $comment->comment = $comment_content;
+        $comment->comment_name = $comment_name;
+        $comment->comment_product_id = $product_id;
+        $comment->comment_status = 1;
+        $comment->comment_parent_comment = 0;
+        $comment->comment_customer_img =  $comment_customer_img;
+        $comment->save();
+    }
+
+
+
+
+    //Comment load hiển thị
+    public function load_comment(Request $request){
+        $product_id = $request->product_id;
+        $comment = Comment::where('comment_product_id', $product_id)->where('comment_parent_comment','=',0)->where('comment_status', 0)->orderBy('comment_id', 'DESC')->get();
+        $comment_rep = Comment::with('product')->where('comment_parent_comment','>',0)->get();
+
+        $output = '';
+        foreach($comment as $key => $comm){
+          
+            $output.= '
+
+                        <div class="row style_comment" style="margin-bottom: 25px">
+                            <div class="col-md-2">
+                            
+                                <img style="width: 80%" src="'.url('/Up_Load/Profile/'.$comm->comment_customer_img).'" alt="photo">
+                            </div>
+                            <div class="col-md-10">
+                                <p style="color: #44a41b; margin-bottom: 0">@'.$comm->comment_name.'</p>
+                                <p style="color: #44a41b">'.$comm->comment_date.'</p>
+                                <p>
+                                '.$comm->comment.'
+                                </p>
+                            </div>
+                        </div>
+                        ';
+
+            foreach($comment_rep as $rep_comment){
+            if($rep_comment->comment_parent_comment==$comm->comment_id){
+                $output.= '<div class="row style_comment" style="margin: 5px 40px; margin-right: 0;  background-color: #44a41b">
+                                <div class="col-md-2">
+                                
+                                    <img style="width: 80%" src="'.url('/Up_Load/Profile/reply.jpeg').'" alt="photo">
+                                </div>
+                                <div class="col-md-10">
+                                    <p style="color: white; margin-bottom: 0">@'.$rep_comment->comment_name.'</p>
+                                    <p style="color: white">'.$rep_comment->comment.'</p>
+                                    <p>
+                                    
+                                    </p>
+                                </div>
+                          </div>     
+                        <p></p>';
+                }}
+
+
+
+            
+        }
+        echo $output;
     }
 
 
@@ -47,8 +161,8 @@ class ProductController extends Controller
         $title = 'Tất cả sản phẩm';
         $all_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
-        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->orderby('tbl_product.product_id', 'desc')->get();
-        $manager_product = view('admin.all_product', compact('title'))->with('ListData', $all_product);
+        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->orderby('tbl_product.product_id', 'desc')->paginate(5);
+        $manager_product = view('admin.all_product', compact('title', 'all_product'))->with('ListData', $all_product);
         return view ('admin_layout')->with('admin.all_product', $manager_product);
     }
 
@@ -59,15 +173,17 @@ class ProductController extends Controller
         $rules = [
             'product_name'=> 'required|min:6',
             'product_price'=> 'required|integer',
-            'product_quantity'=> 'required|integer'
+            'product_quantity'=> 'required|integer',
+            'product_image'=> 'required'
         ];
         $message = [
             'product_name.required' => 'Tên sản phẩm bắt buộc phải nhập',
             'product_name.min' => 'Tên sản phẩm không được nhỏ hơn :min ký tự',
             'product_price.required' => 'Giá sản phẩm bắt buộc phải nhập',
             'product_price.integer' => 'Giá sản phẩm bắt buộc phải là số',
-            'product_quantity.required' => 'Sos lượng sản phẩm bắt buộc phải nhập',
-            'product_quantity.integer' => 'Sos lượng sản phẩm bắt buộc phải là số'
+            'product_quantity.required' => 'Số lượng sản phẩm bắt buộc phải nhập',
+            'product_quantity.integer' => 'Số lượng sản phẩm bắt buộc phải là số',
+            'product_image.required' => 'Hình ảnh sản phẩm bắt buộc phải chọn'
         ];
         $request->validate($rules, $message);
 
@@ -76,6 +192,7 @@ class ProductController extends Controller
         $data['product_name'] = $request->product_name;
         $data['product_quantity'] = $request->product_quantity;
         $data['product_price'] = $request->product_price;
+        $data['product_sold'] = 0;
         $data['product_type'] = $request->product_type;
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
@@ -137,6 +254,7 @@ class ProductController extends Controller
         $data['product_name'] = $request->product_name;
         $data['product_quantity'] = $request->product_quantity;
         $data['product_price'] = $request->product_price;
+        $data['product_sold'] = $request->product_sold;
         $data['product_type'] = $request->product_type;
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
@@ -182,6 +300,7 @@ class ProductController extends Controller
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
         $slider = Slider::orderBy('slider_id', 'DESC')->where('slider_status', '1')->take(5)->get();
+        $all_post = DB::table('tbl_post')->where('post_status', '1')->orderby('post_id', 'desc')->limit(3)->get();
 
         $details_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
@@ -199,7 +318,7 @@ class ProductController extends Controller
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->where('tbl_category_product.category_id', $category_id )->whereNotIn('tbl_product.product_id', [$product_id] )->limit(3)->get();
 
-        return view('pages.sanpham.show_detail')->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider)->with('product_details' , $details_product )->with('relate', $related_product )->with('url_canonical', $url_canonical);
+        return view('pages.sanpham.show_detail')->with('category', $cate_product)->with('brand', $brand_product)->with('slider', $slider)->with('product_details' , $details_product )->with('all_post', $all_post)->with('relate', $related_product )->with('url_canonical', $url_canonical);
     }
 
 

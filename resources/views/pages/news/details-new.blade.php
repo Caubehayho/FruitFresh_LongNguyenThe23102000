@@ -126,7 +126,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Dưa Hấu X</title>
+    <title>Minh&Trang Fruit</title>
     {{-- seo --}}
     {{-- <link rel="canonical" href="{{$url_canonical}}"> --}}
     {{-- seo-end --}}
@@ -197,7 +197,7 @@
                         <div class="logo pull-left" style=" display: flex">
                             <a style="display: block; max-width: 320px;" href="{{ URL::to('/Trangchu') }}">
                                 <img style="width: 100%; height: 100%"
-                                    src="{{ asset('Back_End/image/logoduahau6.png') }}"alt="" />
+                                    src="{{ asset('Back_End/image/logominhtrang3.png') }}"alt="" />
                             </a>
                         </div>
                     </div>

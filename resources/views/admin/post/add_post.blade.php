@@ -39,11 +39,17 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Hình ảnh bài viết</label>
                                 <input type="file" name="post_image" class="form-control" id="exampleInputEmail1">
+                                @error('post_image')
+                                <div style="color: red"><i>{{ $message }}</i></div>
+                            @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Nội dung bài viết</label>
                                 <textarea style="resize: : none" rows="2" type="password" name="post_des" class="form-control"
                                     id="exampleInputPassword1" placeholder="Nội dung bài viết"></textarea>
+                                @error('post_des')
+                                    <div style="color: red"><i>{{ $message }}</i></div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="">Hiển thị</label>
